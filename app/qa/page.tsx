@@ -7,9 +7,17 @@ import Image from 'next/image';
 import { Suspense } from 'react';
 
 
-export const metadata: Metadata = {
+const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
 
-}
+export const metadata: Metadata = {
+  title: 'שאלות ותשובות',
+  description: 'דף שאלות ותשובות עם אופציה לחיפוש חופשי בנושאי הלכה, אמונה ויהדות.',
+  alternates: {
+    canonical: `${baseUrl}/qa`, // ✅ זה מצביע על העמוד הנכון
+  },
+  metadataBase: new URL(baseUrl),
+};
+
 
 interface Props {
   searchParams?: Promise<{
@@ -27,7 +35,7 @@ export default async function Qa(props: Props) {
     <>
       <div className="relative flex flex-col h-[40vh]">
         <Image
-          src={'/hero.png'}
+          src={'/hero.webp'}
           alt={'people learning'}
           fill
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
@@ -43,7 +51,7 @@ export default async function Qa(props: Props) {
         </div>
       </div>
       <div className="container mx-auto px-4 py-6 flex justify-center">
-        <Search variant='white' placeholder='חפש שאלה...' />
+        <Search autoFocus variant='white' placeholder='חפש שאלה...' />
       </div>
       <Suspense key={query + currentPage} fallback={<ResultQuestionsSkeleton />}>
         <ResultQuestions

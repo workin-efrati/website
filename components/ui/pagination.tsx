@@ -31,8 +31,8 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         {allPages.map((page, index) => {
           let position: 'first' | 'last' | 'single' | 'middle' | undefined;
 
-          if (index === 0) position = 'first';
-          if (index === allPages.length - 1) position = 'last';
+          if (index === 0) position = 'last';
+          if (index === allPages.length - 1) position = 'first';
           if (allPages.length === 1) position = 'single';
           if (page === '...') position = 'middle';
 
@@ -110,16 +110,17 @@ function PaginationArrow({
 
   const icon =
     direction === 'left' ? (
-      <ArrowLeft className="w-4" />
+      <ArrowLeft className="w-4" aria-hidden="true" />
     ) : (
-      <ArrowRight className="w-4" />
+      <ArrowRight className="w-4" aria-hidden="true" />
     );
 
-  return isDisabled ? (
-    <div className={className}>{icon}</div>
-  ) : (
-    <Link className={className} href={href}>
+  const label =
+    direction === 'left' ? 'Move to next page' : 'Move to previous page'; // or reverse it according to your website's direction (RTL)
+
+  return (
+    <Link className={`${className} ${isDisabled ? 'pointer-events-none' : ''}`} href={href} aria-label={isDisabled ? `disabled ${label}` : label}>
       {icon}
-    </Link>
-  );
+    </Link>)
+
 }

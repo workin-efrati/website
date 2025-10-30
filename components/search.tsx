@@ -11,6 +11,7 @@ interface SearchProps {
   placeholder?: string;
   variant?: Variant;
   addPathName?: string;
+  autoFocus?: boolean;
 }
 
 const variants = {
@@ -34,7 +35,7 @@ const variants = {
   }
 };
 
-export default function Search({ placeholder, variant = 'white', addPathName = '' }: SearchProps) {
+export default function Search({ placeholder, variant = 'white', addPathName = '', autoFocus }: SearchProps) {
   const searchParams = useSearchParams();
   const searchValue = new URLSearchParams(searchParams).get('query') || ''
   const { replace } = useRouter();
@@ -65,6 +66,7 @@ export default function Search({ placeholder, variant = 'white', addPathName = '
         <input
           id="search"
           type="text"
+          autoFocus={autoFocus}
           defaultValue={searchValue}
           onChange={(e) => {
             handleSearch(e.target.value);

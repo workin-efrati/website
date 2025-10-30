@@ -15,6 +15,7 @@ export interface IShut {
   titleQuestion?: string;
   titleStatment?: string;
   tags?: mongoose.Types.ObjectId[];
+  tag?: string; 
   date?: Date;
   messagesId?: mongoose.Types.ObjectId[];
   fuqs?: Fuq[];
@@ -33,6 +34,7 @@ const shutSchema = new Schema<ShutDocument>(
     titleQuestion: { type: String },
     titleStatment: { type: String },
     tags: [{ type: Schema.Types.ObjectId, ref: "tag" }],
+    tag: { type: String },
     date: { type: Date, required: true, default: Date.now },
     messagesId: [{ type: Schema.Types.ObjectId, ref: "whatsappmsg" }],
     fuqs: [
@@ -46,8 +48,8 @@ const shutSchema = new Schema<ShutDocument>(
 );
 
 // Create or reuse model
-export const ShutModel: Model<ShutDocument> =
-  mongoose.models.shut || mongoose.model<ShutDocument>("shut", shutSchema);
+export const ShutModel: Model<ShutDocument> = 
+mongoose.models.shut || mongoose.model<ShutDocument>("shut", shutSchema);
 // export const ShutModel: Model<ShutDocument> =
 //   mongoose.models["qa"] || mongoose.model("qa", shutSchema)
 
