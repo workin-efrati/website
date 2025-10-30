@@ -1,17 +1,14 @@
-// app/category/[categoryId]/page.tsx
-import Image from "next/image";
-import Link from "next/link";
-// import TagCategory from "@/components/TagCategory";
-// import SearchQuestions from "@/components/SearchQuestions";
 import ResultQuestions from "@/components/result-questions";
 import ResultQuestionsSkeleton from "@/components/result-questions-skeleton";
 import Search from "@/components/search";
 import { Badge } from "@/components/ui/badge";
-import { findNodeKeysByPath } from "@/lib/getTags";
+import { favoriteTags } from "@/lib/favorite-tags-list";
+import { findDirectChildrenByPath, findNodeKeysByPath, findParentsByKey } from "@/lib/getTags";
 import tagsLeavesToAncestors from "@/lib/tags_leaves_to_ancestors.json";
 import { connectToMongodb } from "@/server/connect";
+import Image from "next/image";
+import Link from "next/link";
 import { Suspense } from "react";
-import { favoriteTags } from "@/lib/favorite-tags-list";
 
 interface PageProps {
    params: Promise<{ category: string }>;
@@ -29,13 +26,13 @@ export default async function Page({ params, searchParams }: PageProps) {
    const query = searchParamsObj?.query || '';
    const currentPage = Number(searchParamsObj?.page) || 1;
 
-   // const categoryData = (await familyOfCategoryService({ _id: category })) as CategoryFamilyResult;
-   // const { categoryObject, parents = [], children = [] } =  categoryData || {};
    const dataParents = tagsLeavesToAncestors as Record<string, string[]>;
-   const parents: string[] = dataParents[category] || [];
-   const children = findNodeKeysByPath([...parents, category])
+   const parents: string[] = dataParents[category] || findParentsByKey(category) || [];
+   const children = Array.from(new Set(findNodeKeysByPath([...parents, category])))
+   const directChildren = findDirectChildrenByPath([...parents, category])
 
    // console.log({ parents, children })
+   console.log({ directChildren, parents })
 
    if (!parents.length && !children.length) {
       return (
@@ -53,7 +50,6 @@ export default async function Page({ params, searchParams }: PageProps) {
    return (
       <>
          <header className="relative w-full h-[60vh] md:h-[64vh] lg:h-[72vh] overflow-hidden">
-            {/* background image */}
             <div className="absolute inset-0 -z-10">
                <Image
                   src={bgSrc}
@@ -63,7 +59,6 @@ export default async function Page({ params, searchParams }: PageProps) {
                   className="object-cover object-center opacity-80"
                   priority
                />
-               {/* overlay gradient to improve text contrast */}
                <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
             </div>
 
@@ -91,7 +86,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                {children.length > 0 && (
                   <div className="mt-6 w-full px-2">
                      <div className="flex flex-wrap justify-center gap-3">
-                        {children.map((c) => (
+                        {directChildren.map((c) => (
                            <Badge className="px-2 py-1 md:px-3 text-sm md:text-md" key={c} asChild>
                               <Link href={`/category/${c}`} className="">
                                  {c}

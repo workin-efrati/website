@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'שאלות ותשובות',
   description: 'דף שאלות ותשובות עם אופציה לחיפוש חופשי בנושאי הלכה, אמונה ויהדות.',
   alternates: {
-    canonical: `${baseUrl}/qa`, // ✅ זה מצביע על העמוד הנכון
+    canonical: `${baseUrl}/qa`, 
   },
   metadataBase: new URL(baseUrl),
 };
