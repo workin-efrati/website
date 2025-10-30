@@ -5,21 +5,21 @@ import Question from "./question-card";
 import Pagination from "./ui/pagination";
 import { IShut } from "@/server/models/shut.model";
 
-interface Props { query: string; currentPage: number, categoryId?: string, pageLength?: number }
+interface Props { query: string; currentPage: number, category?: string, pageLength?: number }
 
-export default async function ResultQuestions({ query, currentPage, categoryId, pageLength = 24 }: Props) {
+export default async function ResultQuestions({ query, currentPage, category, pageLength = 24 }: Props) {
 
    const fetchDataFromServer = async () => {
       const arrToSearch = query.trim().split(" ");
       const queryObj: GenericFilterOptions = {
          queryFilterType: "$and",
-         selector: ["question", "titleQuestion", "titleStatment"],
+         selector: ["question", "titleQuestion", "titleStatment", 'tag'],
          pages: { pageLocation: currentPage - 1, pageLength: pageLength },
          regFilter: {
             searchType: "$and",
             searchValues: arrToSearch.map((v) => {
                return {
-                  fields: ["question"],
+                  fields: ["question" ],
                   value: v,
                   searchType: "$and",
                };
@@ -29,15 +29,15 @@ export default async function ResultQuestions({ query, currentPage, categoryId, 
 
       await connectToMongodb()
 
-      if (categoryId) {
-         const tagsIds = await getAllChildTagIdsDeep(categoryId)
+      if (category) {
+         const categories = [category]
          queryObj.includeFilter = {
             searchType: "$or",
             searchValues: [
                {
-                  field: "tags",
-                  type: "_id",
-                  values: tagsIds,
+                  field: "tag",
+                  type: "string",
+                  values: categories,
                   searchType: "$or",
                },
             ],
@@ -90,18 +90,20 @@ export default async function ResultQuestions({ query, currentPage, categoryId, 
                   <Question
                      key={question._id}
                      id={question._id}
+                     tag={question.tag}
                      question={question.question}
                      title={question.titleQuestion || question.titleStatment || 'שאלה'}
                      answer={question.answer}
+                     rankTitle="h2"
                   />
                ))}
             </div>
          ) : query ? (
             <div className="text-center py-12">
                <div className="text-gray-400 text-6xl mb-4">🔍</div>
-               <h3 className="text-xl font-semibold text-gray-600 mb-2" >
+               <h2 className="text-xl font-semibold text-gray-600 mb-2" >
                   לא נמצאו תוצאות
-               </h3>
+               </h2>
                <p className="text-gray-500">
                   נסה לשנות את מילות החיפוש או לבדוק את האיות
                </p>

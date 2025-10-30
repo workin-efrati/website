@@ -52,7 +52,7 @@ export default function Footer() {
           <Link
             href="https://wa.me/972504723445"
             target="_blank"
-            className="flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg px-4 py-2 text-sm shadow-md transition"
+            className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/50 text-white rounded-lg px-4 py-2 text-sm shadow-md transition"
           >
             <Image alt="whatsapp icon" src='/images/icons/whats.svg' width={32} height={32} />
             הצטרף אלינו לקבוצות הוואטסאפ
@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
 
         {/* Link Columns */}
-        <div className="flex flex-wrap justify-center md:justify-end gap-10">
+        {/* <div className="flex flex-wrap justify-center md:justify-end gap-10">
           {footerLinks.map((group) => (
             <div key={group.title}>
               <h3 className="text-sky-900 text-lg font-semibold mb-2">{group.title}</h3>
@@ -78,7 +78,7 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom Bar */}

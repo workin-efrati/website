@@ -41,6 +41,10 @@ export default function Header() {
           size="icon"
           className="md:hidden text-white"
           onClick={() => setOpen(!open)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-haspopup="dialog"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </Button>

@@ -7,11 +7,11 @@ import ResultQuestions from "@/components/result-questions";
 import Search from "@/components/search";
 import { Badge } from "@/components/ui/badge";
 import { connectToMongodb } from "@/server/connect";
-import { CategoryFamilyResult, familyOfCategoryService } from "@/server/services/tags.service";
 import { Suspense } from "react";
+import ResultQuestionsSkeleton from "@/components/result-questions-skeleton";
 
 interface PageProps {
-   params: Promise<{ categoryId: string }>;
+   params: Promise<{ category: string }>;
    searchParams?: Promise<{
       query?: string;
       page?: string;
@@ -20,13 +20,15 @@ interface PageProps {
 
 export default async function Page({ params, searchParams }: PageProps) {
    await connectToMongodb();
-   const { categoryId } = await params;
+   let { category } = await params;
+   category = decodeURIComponent(category);
    const searchParamsObj = await searchParams;
    const query = searchParamsObj?.query || '';
    const currentPage = Number(searchParamsObj?.page) || 1;
 
-   const categoryData = (await familyOfCategoryService({ _id: categoryId })) as CategoryFamilyResult;
-   const { categoryObject, parents = [], children = [] } = categoryData || {};
+   // const categoryData = (await familyOfCategoryService({ _id: category })) as CategoryFamilyResult;
+   // const { categoryObject, parents = [], children = [] } =  categoryData || {};
+   const { categoryObject = {}, parents = [], children = [] } = {}
 
    if (!categoryObject) {
       return (
@@ -42,7 +44,7 @@ export default async function Page({ params, searchParams }: PageProps) {
    // breadcrumb should go from top-level -> current
    const breadcrumb = [...parents].reverse();
 
-   const bgSrc = categoryObject.coverImage || categoryObject.topicImages?.[0] || "/images/image.png";
+   // const bgSrc = categoryObject.coverImage || categoryObject.topicImages?.[0] || "/images/image.png";
 
    return (
       <>
@@ -50,8 +52,10 @@ export default async function Page({ params, searchParams }: PageProps) {
             {/* background image */}
             <div className="absolute inset-0 -z-10">
                <Image
-                  src={bgSrc}
-                  alt={categoryObject.name}
+                  // src={bgSrc}
+                  src={'/hero.webp'}
+                  alt={'categoryObject.name'}
+                  // alt={categoryObject.name}
                   fill
                   sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
                   className="object-cover object-center opacity-80"
@@ -79,7 +83,7 @@ export default async function Page({ params, searchParams }: PageProps) {
 
                {/* title */}
                <h1 className="text-4xl md:text-7xl font-extrabold leading-tight" >
-                  {categoryObject.name}
+                  {category}
                </h1>
 
                {/* children tags */}
@@ -87,9 +91,9 @@ export default async function Page({ params, searchParams }: PageProps) {
                   <div className="mt-6 w-full px-2">
                      <div className="flex flex-wrap justify-center gap-3">
                         {children.map((c) => (
-                           <Badge className="px-2 py-1 md:px-3 md:text-lg" key={c._id} asChild>
-                              <Link href={`/category/${c._id}`} className="">
-                                 {c.name}
+                           <Badge className="px-2 py-1 md:px-3 md:text-lg" key={c} asChild>
+                              <Link href={`/category/${c}`} className="">
+                                 {c}
                               </Link>
                            </Badge>
                         ))}
@@ -98,24 +102,16 @@ export default async function Page({ params, searchParams }: PageProps) {
                )}
             </div>
          </header>
-
-         <main className="max-w-5xl mx-auto px-4 py-8">
-            {/* Optional description - uncomment if you want to show it */}
-            {/* {categoryObject.description && (
-          <p className="mb-6 text-base text-muted-foreground">{categoryObject.description}</p>
-        )} */}
-
-            <div className="container mx-auto px-4 py-6 flex justify-center">
-               <Search variant='white' placeholder='חפש שאלה...' />
-            </div>
-            <Suspense key={query + currentPage} fallback={<> loading... </>}>
-               <ResultQuestions
-                  currentPage={currentPage}
-                  query={query}
-                  categoryId={categoryId}
-               />
-            </Suspense>
-         </main>
+         <div className="container mx-auto px-4 py-6 flex justify-center">
+            <Search variant='white' placeholder='חפש שאלה...' />
+         </div>
+         <Suspense key={query + currentPage} fallback={<ResultQuestionsSkeleton/>}>
+            <ResultQuestions
+               currentPage={currentPage}
+               query={query}
+               category={category}
+            />
+         </Suspense>
       </>
    );
 }

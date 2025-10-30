@@ -7,6 +7,9 @@ import { Types } from "mongoose";
 export const readAllShutService = async () =>
    await readWithOptions({}, undefined, undefined, { _id: 1 });
 
+export const readAllShutServiceWithSelect = async (select: Record<string, 0 | 1>) =>
+   await readWithOptions({}, undefined, undefined, select);
+
 export const readOneShutWithPopulateService = async ( filter: FilterQuery<IShut> ) =>
    await readOne(filter, { path: 'tags', select: 'name' });
 
