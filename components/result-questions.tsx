@@ -5,9 +5,11 @@ import Question from "./question-card";
 import Pagination from "./ui/pagination";
 import { IShut } from "@/server/models/shut.model";
 
-interface Props { query: string; currentPage: number, category?: string, pageLength?: number }
+interface Props { query: string; currentPage: number, category?: string, pageLength?: number, tags?: string[] }
 
-export default async function ResultQuestions({ query, currentPage, category, pageLength = 24 }: Props) {
+export default async function ResultQuestions({ query, currentPage, category, pageLength = 24 , tags}: Props) {
+
+   // console.log({tags})
 
    const fetchDataFromServer = async () => {
       const arrToSearch = query.trim().split(" ");
@@ -29,15 +31,14 @@ export default async function ResultQuestions({ query, currentPage, category, pa
 
       await connectToMongodb()
 
-      if (category) {
-         const categories = [category]
+      if (tags) {
          queryObj.includeFilter = {
             searchType: "$or",
             searchValues: [
                {
                   field: "tag",
                   type: "string",
-                  values: categories,
+                  values: tags,
                   searchType: "$or",
                },
             ],
