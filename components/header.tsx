@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export const navItems = [
   // { label: "ילדים ונוער", href: "/kids" },
-  // { label: "שיעורי וידאו", href: "/videos" },
+  { label: "שיעורי וידאו", href: "/videos" },
   // { label: "דרשות ומאמרים", href: "/articles" },
   { label: "שאלות ותשובות", href: "/qa" },
   // { label: "שאל את הרב", href: "/ask" },
@@ -52,7 +52,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       {open && (
-        <div className="md:hidden flex flex-col items-center gap-4 pb-4 text-lg font-semibold bg-blue-900/80 backdrop-blur-md">
+        <div className="md:hidden flex flex-col items-center gap-4 py-4 text-lg font-semibold bg-blue-900/80 backdrop-blur-md">
           {navItems.map((item) => (
             <Link
               key={item.href}
