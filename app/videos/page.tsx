@@ -2,11 +2,10 @@ import HeaderPlaceholder from '@/components/header-placeholder'
 import Image from 'next/image'
 import Videos from './videos'
 
-export const generateMetadata = async () => ({
-  title: "סרטונים",
-  description: "צפו בסרטונים חינוכיים ומרתקים בנושא אקטואליה, מועדים וחגים.",
-});
-
+export const metadata = {
+    title: 'סרטונים מעניינים – אקטואליה, חגים וחברה',
+    description: 'צפו בסרטונים חינוכיים ומרתקים בנושא אקטואליה, מועדים וחגים, ותיהנו מתכנים איכותיים בעברית.',
+}
 
 export default function VideosPage() {
   return (

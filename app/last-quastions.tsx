@@ -1,9 +1,11 @@
 import QuestionCard from "@/components/question-card";
+import { connectToMongodb } from "@/server/connect";
 import { IShut } from "@/server/models/shut.model";
 import { readLast3ShutsService } from "@/server/services/shut.service";
 
 export default async function LastQuestions() {
     // Map tags from { name: string }[] to string[] if tags is present
+    await connectToMongodb();
     const questions = (await readLast3ShutsService([{ path: 'tags', select: 'name' }])) || [];
 
     return (
