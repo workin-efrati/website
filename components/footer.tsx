@@ -1,5 +1,6 @@
 "use client";
-import Image from "next/image";
+import { favoriteTags } from "@/lib/favorite-tags-list";
+import { Dot } from "lucide-react";
 import Link from "next/link";
 
 interface FooterLinkGroup {
@@ -49,14 +50,14 @@ export default function Footer() {
             <h2 className="text-3xl font-bold text-sky-900">שׁו"ת הרב אפרתי</h2>
             <p className="text-sky-800 text-sm">הלכה . אמונה . טהרה</p>
           </div>
-          <Link
+          {/* <Link
             href="https://wa.me/972504723445"
             target="_blank"
             className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/50 text-white rounded-lg px-4 py-2 text-sm shadow-md transition"
           >
             <Image alt="whatsapp icon" src='/images/icons/whats.svg' width={32} height={32} />
             הצטרף אלינו לקבוצות הוואטסאפ
-          </Link>
+          </Link> */}
         </div>
 
         {/* Link Columns */}
@@ -79,11 +80,29 @@ export default function Footer() {
             </div>
           ))}
         </div> */}
+        <div>
+          <h3 className="text-sky-900 text-lg font-semibold mb-4">קטגוריות נפוצות</h3>
+          <ul className="grid grid-cols-2 justify-center md:justify-end gap-2">
+
+            {favoriteTags.map((tag) => (
+              <li key={tag.name}>
+                <Link
+                  href={`/category/${tag.name}`}
+                  className="text-gray-700 hover:text-sky-700 transition flex items-center gap-2  "
+                >
+                  <Dot/>
+                  {tag.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
 
       {/* Bottom Bar */}
       <div className="bg-sky-700 text-center text-white text-sm py-3">
-        <p>© תשפ״ד 2024 כל הזכויות שמורות לSKIP - בית תוכנה חכם</p>
+        <p>©{new Date().getFullYear()} כל הזכויות שמורות לSKIP - בית תוכנה חכם</p>
         <p className="text-xs mt-1">עיצוב ופיתוח: Skip ltd</p>
       </div>
     </footer>
