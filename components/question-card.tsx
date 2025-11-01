@@ -1,8 +1,8 @@
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { ChevronLeftIcon, HelpCircle, Tags } from 'lucide-react';
+import { ChevronLeftIcon, HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
+import QuestionCardTagLink from './question-card-tag-link';
 
 interface QuestionProps {
   id: string;
@@ -23,8 +23,8 @@ export default function QuestionCard({
   className
 }: QuestionProps) {
   return (
-    <article
-      // href={`/qa/${id}`}
+    <Link
+      href={`/qa/${id}`}
       className={cn(
         "group relative p-6 border flex flex-col border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 bg-white overflow-hidden",
         "hover:border-blue-200 hover:-translate-y-1",
@@ -54,21 +54,12 @@ export default function QuestionCard({
 
       {/* Read more indicator */}
       <div className="mt-4 flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
-        <Link href={`/qa/${id}`} className='flex items-center gap-1'>
           <span className="ml-1">קרא עוד</span>
           <ChevronLeftIcon
             className="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform duration-200"
           />
-        </Link>
-        {tag && <div className="flex-1 flex items-center gap-2 justify-end">
-          <Link href={`/category/${tag}`}>
-            <Badge>
-              <Tags size={24} strokeWidth={1.8} className="text-(--primary-blue)" />
-              {tag}
-            </Badge>
-          </Link>
-        </div>}
+        {tag && <QuestionCardTagLink tag={tag} />}
       </div>
-    </article>
+    </Link>
   );
 }
