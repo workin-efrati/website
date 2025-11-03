@@ -1,4 +1,5 @@
 import HeaderPlaceholder from "@/components/header-placeholder";
+import QuickShare from "@/components/quick-share";
 import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
 import { connectToMongodb } from "@/server/connect";
@@ -127,11 +128,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </div>
 
                {/* Share links */}
-               <div className="w-full flex justify-center">
-                  <div className="w-full max-w-xl">
-                     {/* <ShareLinks /> */}
-                  </div>
-               </div>
+              <QuickShare />
             </section>
 
             {/* Right side – related questions */}

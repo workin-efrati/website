@@ -20,7 +20,7 @@ export default function Header() {
     <>
     <header className="w-full fixed h-20  top-0 z-50 bg-primary/60 border-b border-primary/70 backdrop-blur-md text-white">
       <nav className="w-full h-full max-w-7xl mx-auto flex items-center justify-between px-4">
-      <Link className="text-3xl font-bold" href={"/"}>לַמְּדֵנִי חֻקֶּךָ</Link>
+      <Link className="text-3xl font-bold" href={"/"}>לַמְּדֵנִי חֻקֶּיךָ</Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 font-semibold text-lg">

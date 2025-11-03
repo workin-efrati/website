@@ -11,16 +11,19 @@ interface QuestionProps {
   answer?: string;
   tag?: string;
   className?: string;
-  rankTitle: 'h2' | 'h3' | 'h4'
+  rankTitle: 'h2' | 'h3' | 'h4',
+  isAnswer?: boolean
 }
 
 export default function QuestionCard({
   id,
   question,
   rankTitle,
+  answer,
   title = 'שאלה',
   tag,
-  className
+  className,
+  isAnswer
 }: QuestionProps) {
   return (
     <Link
@@ -48,9 +51,17 @@ export default function QuestionCard({
       </div>
 
       {/* Question text */}
-      <p className="text-gray-600 flex-1 leading-relaxed line-clamp-3 text-sm">
+      <p className="text-gray-600 leading-relaxed line-clamp-3 text-sm mb-2">
+        {(isAnswer && answer) &&
+          <span className="font-bold">שאלה: {" "} </span>
+        }
         {question}
       </p>
+      {(isAnswer && answer) && <p className="text-gray-600 leading-relaxed line-clamp-2 text-sm">
+        <span className="font-bold">תשובה: {" "} </span>
+        {answer}
+      </p>}
+      <div className='flex-1'/>
 
       {/* Read more indicator */}
       <div className="mt-4 flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">

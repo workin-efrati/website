@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start text-center md:text-right gap-3">
           <div>
             <h2 className="text-3xl font-bold text-sky-900">שׁו"ת הרב אפרתי</h2>
-            <p className="text-sky-800 text-sm">הלכה . אמונה . טהרה</p>
+            <p className="text-sky-800 text-sm"> חינוך וזוגיות . הלכה . אמונה . טהרה</p>
           </div>
           {/* <Link
             href="https://wa.me/972504723445"

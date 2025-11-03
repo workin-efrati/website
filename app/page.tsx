@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Search from '../components/search';
 import LastQuestions from './last-quastions';
 import Tags from './tags';
+import RelevantQuestions from './relevant-questions';
 // import Link from 'next/link';
 // import { SearchBar } from './search/SearchBar'; // Import the Client Component
 
@@ -70,6 +71,7 @@ export default function home() {
         </div>
       </section>
       <Tags />
+      <RelevantQuestions/>
       <LastQuestions />
     </>
   );
