@@ -88,7 +88,7 @@ export default function Footer() {
               <li key={tag.name}>
                 <Link
                   href={`/category/${tag.name}`}
-                  className="text-gray-700 hover:text-sky-700 transition flex items-center gap-2  "
+                  className="text-gray-700 hover:text-sky-700 transition flex items-center gap-1"
                 >
                   <Dot/>
                   {tag.name}

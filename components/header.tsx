@@ -9,6 +9,7 @@ export const navItems = [
   // { label: "ילדים ונוער", href: "/kids" },
   { label: "שיעורי וידאו", href: "/videos" },
   // { label: "דרשות ומאמרים", href: "/articles" },
+  { label: "פרשת שבוע", href: "/vort" },
   { label: "שאלות ותשובות", href: "/qa" },
   // { label: "שאל את הרב", href: "/ask" },
 ];
