@@ -8,7 +8,7 @@ import Link from 'next/link';
 const TorahParshiot = () => {
     return (
         <>
-            <div className="relative w-full h-[30vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
+            <div className="relative w-full h-[42vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
                 <Image
                     src="/hero.webp"
                     alt={`background of vorts`}

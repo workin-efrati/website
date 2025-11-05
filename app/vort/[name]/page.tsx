@@ -1,14 +1,14 @@
-import React from 'react'
-import PDFViewer from '@/components/pdf-viewer'
-import HeaderPlaceholder from '@/components/header-placeholder'
-
-export default function Vort() {
+// app/view-pdf/page.tsx
+export default function ViewPDFPage() {
   return (
     <>
-    <HeaderPlaceholder/>
-    <div>
-        <PDFViewer pdfUrl="/pdf/example.pdf" />
-    </div>
+      <div style={{ width: '100vw', height: '100vh', margin: 0 }}>
+        <iframe
+          src="/api/pdf/1/4"
+          style={{ width: '100%', height: '100%', border: 'none' }}
+          title="PDF Viewer"
+        />
+      </div>
     </>
-  )
+  );
 }
