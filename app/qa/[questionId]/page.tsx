@@ -20,8 +20,10 @@ export const generateStaticParams = async () => {
    await connectToMongodb();
    const res = await readAllShutService();
    // console.log(res.length)
-   return res.map((question: any) => ({ questionId: question._id.toString() }));
-   // return res.slice(0, 100).map((question: any) => ({ questionId: question._id.toString() }));
+   if (process.env.NEXT_PUBLIC_DEV === 'true')
+      return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString() }));
+   else
+      return res.map((question: any) => ({ questionId: question._id.toString() }));
 };
 
 export async function generateMetadata({ params }: QuestionPageProps): Promise<Metadata> {
@@ -128,7 +130,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </div>
 
                {/* Share links */}
-              <QuickShare />
+               <QuickShare />
             </section>
 
             {/* Right side – related questions */}

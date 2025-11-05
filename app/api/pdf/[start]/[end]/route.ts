@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return new Response('Invalid page range', { status: 400 });
     }
     
-    const pdfPath = path.join(process.cwd(), 'public', 'pdf', 'vorts.pdf');
+    const pdfPath = path.join(process.cwd(), 'public', 'large-file.pdf');
     const pdfBytes = await readFile(pdfPath);
     
     const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -42,7 +42,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     
     const newPdfBytes = await newPdf.save();
     
-    return new Response(newPdfBytes, {
+    // המרה ל-Buffer
+    const buffer = Buffer.from(newPdfBytes);
+    
+    return new Response(buffer, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `inline; filename="pages-${startPage}-${endPage}.pdf"`,
