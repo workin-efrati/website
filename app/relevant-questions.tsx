@@ -17,8 +17,8 @@ export default async function RelevantQuestions() {
     // console.log(holidaysQuestions)
 
     return (
-        <section className='pb-12' >
-            <div className='flex justify-center items-center h-[30vh] bg-primary/50 text-white px-4 mb-8'>
+        <section className='pb-12 bg-primary/10' >
+            <div className='flex justify-center items-center h-[30vh] bg-primary/60  text-white px-4 mb-8 relative'>
                 <h2 className='text-3xl md:text-5xl  text-center font-bold '>{currentHeDate} - {currentDate}</h2>
             </div>
             <div className='container mx-auto  px-4'>
