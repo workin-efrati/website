@@ -60,4 +60,4 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
 };
 
 
-export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ||    'https://efrati.co.il'
+export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ||    'https://efrati.co.il'

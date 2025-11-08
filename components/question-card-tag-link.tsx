@@ -11,11 +11,16 @@ export default function QuestionCardTagLink({ tag }: { tag: string }) {
     }
 
     return (
-        <button className=" flex items-center gap-2 justify-end cursor-pointer mr-auto " onClick={onClick}>
-            <Badge className="hover:bg-blue-600 hover:text-white  transition-colors duration-200">
-                <Tags size={24} strokeWidth={1.8} className=" text-(--primary-blue)" />
-                {tag}
-            </Badge>
-        </button>
+        <Badge
+            asChild
+            className="hover:bg-blue-600 hover:text-white w-[145px] transition-colors duration-200 px-3 py-1 text-md flex items-center gap-2 justify-start cursor-pointer mr-auto text-ellipsis "
+        >
+            <button onClick={onClick}>
+                <Tags size={24} strokeWidth={1.8} className=" text-(--primary-blue) shrink-0" />
+                <span className="text-ellipsis overflow-hidden">
+                    {tag}
+                </span>
+            </button>
+        </Badge>
     )
 }

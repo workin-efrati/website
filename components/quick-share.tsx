@@ -36,7 +36,7 @@ export default function QuickShare({
             {/* WhatsApp Share Button */}
             <button
                 onClick={handleWhatsAppShare}
-                className="inline-flex cursor-pointer items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+                className="inline-flex cursor-pointer items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
                 aria-label="Share on WhatsApp"
             >
                 <svg

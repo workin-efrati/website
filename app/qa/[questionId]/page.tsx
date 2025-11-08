@@ -38,8 +38,7 @@ export async function generateMetadata({ params }: QuestionPageProps): Promise<M
    const canonicalUrl = `${baseUrl}/qa/${questionId}`;
 
    return {
-      //@ts-ignore
-      title: data?.titleQuestion || `תשובה בנושא ${data?.tags?.[0]?.name}`,
+      title: data?.titleQuestion || `תשובה בנושא ${data?.tag || 'כללי'}`,
       description: (data.answer || data.titleStatment || '').slice(0, 160).replace(/\n+/g, ' '),
       authors: [{ name: "הרב אפרתי" }],
       alternates: {
@@ -91,7 +90,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                className="object-cover object-center opacity-80"
                priority
             />
-            <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 via-blue-800/70 to-transparent" />
             <HeaderPlaceholder />
             <div className="flex justify-center items-center flex-1 px-4 text-center">
                <h1 className="text-3xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >
@@ -113,12 +112,12 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
 
                {/* Tag */}
                <div className="flex flex-wrap justify-center items-center gap-3 border-b border-blue-200 pb-4">
-                  <Tags size={24} strokeWidth={1.8} className="text-(--primary-blue)" />
-                  <Badge className="px-2 py-1 md:px-3 md:text-lg" asChild>
-                     <Link href={`/category/${question.tag}`} className="">
-                        {question.tag}
-                     </Link>
-                  </Badge>
+                  {question.tag && <> <Tags size={24} strokeWidth={1.8} className="text-(--primary-blue)" />
+                     <Badge className="px-2 py-1 md:px-3 md:text-lg" asChild>
+                        <Link href={`/category/${question.tag}`} className="">
+                           {question.tag}
+                        </Link>
+                     </Badge></>}
                </div>
 
                {/* Answer */}
