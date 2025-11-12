@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return new Response('Invalid page range', { status: 400 });
     }
     
-    const pdfPath = path.join(process.cwd(), 'public', 'large-file.pdf');
+    const pdfPath = path.join(process.cwd(), 'public', "pdf", 'vorts.pdf');
     const pdfBytes = await readFile(pdfPath);
     
     const pdfDoc = await PDFDocument.load(pdfBytes);

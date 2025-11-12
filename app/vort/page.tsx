@@ -1,17 +1,42 @@
 import HeaderPlaceholder from '@/components/header-placeholder';
-import { torahBooks } from '@/lib/parashot';
+// import { torahBooks } from '@/lib/parashot';
+import torahBooks from '@/lib/torah_toc.json';
+import { Parsha, TorahBook } from '@/lib/vorts-types';
 import { BookOpen, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import Script from 'next/script';
 
+export const metadata: Metadata = {
+    title: 'וורטים על פרשיות השבוע | למדני חוקך',
+    description: 'וורטים ומאמרים על פרשיות השבוע לפי חומש ופרשה. צפייה נוחה בקבצי PDF. בחר חומש כדי לפתוח את רשימת הפרשות.',
+    alternates: { canonical: '/vort' },
+    openGraph: {
+        type: 'website',
+        url: '/vort',
+        title: 'וורטים על פרשיות השבוע',
+        description: 'קטלוג וורטים ומאמרים על פרשיות השבוע לפי חומש ופרשה.',
+    },
+};
 
 const TorahParshiot = () => {
     return (
         <>
+            <Script id="breadcrumbs-jsonld" type="application/ld+json" strategy="afterInteractive">
+                {JSON.stringify({
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '') },
+                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+                    ],
+                })}
+            </Script>
             <div className="relative w-full h-[42vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
                 <Image
                     src="/hero.webp"
-                    alt={`background of vorts`}
+                    alt={`רקע אזור הוורטים`}
                     fill
                     sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
                     className="object-cover object-center opacity-80"
@@ -32,7 +57,7 @@ const TorahParshiot = () => {
 
             <div className="min-h-screen bg-linear-to-br from-blue-50 to-purple-50 p-8" dir="rtl">
                 <div className="space-y-4">
-                    {torahBooks.map((book, index) => (
+                    {torahBooks?.map?.((book: TorahBook, index: number) => (
                         <details
                             key={book.name}
                             className="bg-white rounded-lg shadow-lg overflow-hidden group"
@@ -45,7 +70,7 @@ const TorahParshiot = () => {
                                         </div>
                                         <h2 className="text-2xl font-bold text-gray-800">{book.name}</h2>
                                         <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                                            {book.parshiot.length} פרשות
+                                            {book.parashot.length} פרשות
                                         </span>
                                     </div>
                                     <ChevronDown className="w-6 h-6 text-gray-400 transition-transform group-open:rotate-180" />
@@ -55,14 +80,14 @@ const TorahParshiot = () => {
                             <div className="border-t border-gray-200 bg-linear-to-br from-blue-50 to-purple-50">
                                 <div className="p-6">
                                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                                        {book.parshiot.map((parsha, pIndex) => (
+                                        {book.parashot.map((parsha: Parsha, pIndex: number) => (
                                             <Link
                                                 key={pIndex}
-                                                href={`/vort/${parsha}`}
+                                                href={`/vort/${encodeURIComponent(parsha.name)}`}
                                                 className="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow border-r-4 border-blue-600 hover:border-purple-600 cursor-pointer"
                                             >
                                                 <div className="text-sm text-gray-500 mb-1">פרשה {pIndex + 1}</div>
-                                                <div className="font-semibold text-gray-800 text-lg">{parsha}</div>
+                                                <div className="font-semibold text-gray-800 text-lg">{parsha.name}</div>
                                             </Link>
                                         ))}
                                     </div>
