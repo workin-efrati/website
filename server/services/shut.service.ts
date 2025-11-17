@@ -19,10 +19,13 @@ export const readThreeShutsByParashaService = async (parasha: string, populate?:
     { $or: [{ question: { $regex: parasha, $options: 'i' } }, { answer: { $regex: parasha, $options: 'i' } }] }
     , undefined, populate, select, 3);
 
-export const readThreeShutsByHolidayService = async (holiday: string, populate?: string | PopulateOptions | (string | PopulateOptions)[], select?: Record<string, 0 | 1>): Promise<IShut[]> =>
-  await readWithOptions(
+export const readThreeShutsByHolidayService = async (holiday: string, populate?: string | PopulateOptions | (string | PopulateOptions)[], select?: Record<string, 0 | 1>): Promise<IShut[]> =>{
+  console.log({ holiday, populate, select })
+  // TODO - get the children tags
+  return await readWithOptions(
     { tag: { $regex: holiday, $options: 'i' } }
     , undefined, populate, select, 3);
+  }
 
 // TODO - convert to controller and service
 export const relatedShuts = async (shut: { _id?: string; tags?: string[] }) => {
