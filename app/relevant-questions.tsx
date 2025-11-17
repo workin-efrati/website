@@ -23,16 +23,17 @@ export default async function RelevantQuestions() {
     // console.log(holidaysQuestions)
 
     return (
-        <section className='pb-12 bg-primary/10' >
-            <div className='flex justify-center items-center h-[30vh] bg-primary/60  text-white px-4 mb-8 relative'>
+        <section className='pb-12 ' >
+            <div className='flex flex-col justify-center items-center h-[30vh] bg-primary  text-white px-4 mb-8 relative'>
+                <p className='opacity-80 mb-4'>התאריך היום</p>
                 <h2 className='text-3xl md:text-5xl  text-center font-bold '>{currentHeDate} - {currentDate}</h2>
             </div>
-            <div className='container mx-auto  px-4'>
+            <div className='container mx-auto py-8 px-4'>
                 {currentParasha &&
                     <>
                         <article>
                             <h3 className='text-3xl md:text-4xl text-center font-bold mb-8'>
-                                פרשת
+                                פרשת השבוע
                                 {" "}
                                 {currentParasha}
                             </h3>
@@ -82,8 +83,10 @@ export default async function RelevantQuestions() {
                         }
                     </>
                 }
-                {upcomingHoliday &&
-                    <article>
+            </div>
+            {upcomingHoliday &&
+                <article className='bg-slate-50 py-12'>
+                    <div className="container mx-auto px-4">
                         <h3 className='text-3xl md:text-4xl text-center font-bold mb-8'>{upcomingHoliday}</h3>
                         <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                             {holidaysQuestions?.map((shut) => (
@@ -99,9 +102,9 @@ export default async function RelevantQuestions() {
                                 />
                             ))}
                         </div>
-                    </article>
-                }
-            </div>
+                    </div>
+                </article>
+            }
         </section>
     )
 }
