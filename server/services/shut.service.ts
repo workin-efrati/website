@@ -1,6 +1,7 @@
 import { FilterQuery, PopulateOptions } from "mongoose";
 import { readOne, readWithOptions } from "../controllers/shut.controller";
 import ShutModel, { IShut } from "../models/shut.model";
+import { findNodeKeysByPath, findParentsByKey } from "@/lib/getTags";
 
 export const readAllShutService = async () =>
   await readWithOptions({}, undefined, undefined, { _id: 1 });
@@ -19,13 +20,13 @@ export const readThreeShutsByParashaService = async (parasha: string, populate?:
     { $or: [{ question: { $regex: parasha, $options: 'i' } }, { answer: { $regex: parasha, $options: 'i' } }] }
     , undefined, populate, select, 3);
 
-export const readThreeShutsByHolidayService = async (holiday: string, populate?: string | PopulateOptions | (string | PopulateOptions)[], select?: Record<string, 0 | 1>): Promise<IShut[]> =>{
-  console.log({ holiday, populate, select })
-  // TODO - get the children tags
+export const readThreeShutsByHolidayService = async (holiday: string, populate?: string | PopulateOptions | (string | PopulateOptions)[], select?: Record<string, 0 | 1>): Promise<IShut[]> => {
+  const parents = findParentsByKey(holiday) || []
+  const children = Array.from(new Set(findNodeKeysByPath([...parents, holiday])))
   return await readWithOptions(
-    { tag: { $regex: holiday, $options: 'i' } }
+    { tag: { $in: children } }
     , undefined, populate, select, 3);
-  }
+}
 
 // TODO - convert to controller and service
 export const relatedShuts = async (shut: { _id?: string; tags?: string[] }) => {

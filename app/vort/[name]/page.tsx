@@ -1,13 +1,14 @@
+import BreadcrumbsSimple from '@/components/breadcrumbs-simple';
 import HeaderPlaceholder from '@/components/header-placeholder';
 import torahBooks from '@/lib/torah_toc.json';
 import { Parsha, TorahBook } from '@/lib/vorts-types';
-import { notFound } from 'next/navigation';
+import { ArrowDown } from 'lucide-react';
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import ViewPDF from './view-pdf';
-import { ArrowDown } from 'lucide-react';
 
-const findParshaByName = (name: string): Parsha | undefined => {
+export const findParshaByName = (name: string): Parsha | undefined => {
   for (const book of torahBooks as unknown as TorahBook[]) {
     const foundParsha = book.parashot.find(parsha => parsha.name === name);
     if (foundParsha) return foundParsha;
@@ -72,6 +73,12 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
       <HeaderPlaceholder />
       <main className="container mx-auto px-4" dir="rtl">
         <header className="my-6 text-center">
+          <BreadcrumbsSimple links={
+            [
+              { href: `/`, label: 'בית' },
+              { href: `/vort`, label: 'וורטים' },
+            ]
+          } current={parsha.name} />
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
           <p className="text-slate-600">וורטים, מאמרים וצפייה נוחה בקובץ PDF</p>
         </header>
@@ -85,7 +92,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
                   <p className="text-sm text-slate-500">רשימת הוורטים והעמודים במסמך</p>
                 </div>
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold group-open:rotate-180 transition-transform">
-                  <ArrowDown/>
+                  <ArrowDown />
                 </span>
               </summary>
 
