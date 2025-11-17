@@ -44,6 +44,12 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   };
 }
 
+const findSisterParashot = (parsha: string): Parsha[] => {
+  const book = torahBooks.find(b => b.parashot.find(p => p.name === parsha));
+  if (!book) return [];
+  return book.parashot;
+};
+
 export default async function ViewPDFPage({ params }: { params: Promise<{ name: string }> }) {
   const { name } = await params;
   const decoded = decodeURIComponent(name);
@@ -53,6 +59,8 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
   if (!parsha) {
     return notFound();
   }
+
+  const sisterParashot = findSisterParashot(decoded);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -79,6 +87,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
               { href: `/vort`, label: 'וורטים' },
             ]
           } current={parsha.name} />
+          {/* <CarouselNav items={sisterParashot.map(p => ({ label: p.name, href: `/vort/${encodeURIComponent(p.name)}` }))} />  */}
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
           <p className="text-slate-600">וורטים, מאמרים וצפייה נוחה בקובץ PDF</p>
         </header>
