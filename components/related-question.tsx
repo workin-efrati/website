@@ -4,13 +4,13 @@ import QuestionCard from "./question-card";
 
 interface RelatedQuestionsProps {
    _id?: string;
-   tags?: { name: string, _id: string }[];
+   tag?: string;
    title?: string;
    question?: string;
 }
 
 export default async function RelatedQuestions(q: RelatedQuestionsProps) {
-   const query = { ...q, tags: q.tags?.map((tag) => tag._id) };
+   const query = { ...q, tag: q.tag };
    const questions = (await relatedShuts(query)) || [];
 
    return (

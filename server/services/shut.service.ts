@@ -29,15 +29,15 @@ export const readThreeShutsByHolidayService = async (holiday: string, populate?:
 }
 
 // TODO - convert to controller and service
-export const relatedShuts = async (shut: { _id?: string; tags?: string[] }) => {
+export const relatedShuts = async (shut: { _id?: string; tag?: string }) => {
   try {
     let filter = {};
     let related: any[] = [];
 
     // If there are tags, try to find shuts with at least one matching tag (excluding current one)
-    if (shut.tags && shut.tags.length > 0) {
+    if (shut.tag) {
       filter = {
-        tags: { $in: shut.tags },
+        tag: shut.tag,
         _id: { $ne: shut._id },
       };
 
@@ -48,8 +48,9 @@ export const relatedShuts = async (shut: { _id?: string; tags?: string[] }) => {
     }
 
     // If no results (or no tags), fallback to random 3 shuts
-    if (!related.length) {
-      related = await ShutModel.aggregate([{ $sample: { size: 3 } }]);
+    if (!related.length || related.length < 3) {
+      related = [...related, ...(await ShutModel.aggregate([{ $sample: { size: 3 } }]))]
+        .slice(0, 3);
     }
 
     return related;
