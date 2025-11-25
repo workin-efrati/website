@@ -101,9 +101,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-sky-700 text-center text-white text-sm py-3">
+      <div className="text-center text-white text-sm py-3" style={{background:"var(--primary)"}}>
         <p>©{new Date().getFullYear()} כל הזכויות שמורות לSKIP - בית תוכנה חכם</p>
-        <p className="text-xs mt-1">עיצוב ופיתוח: Skip ltd</p>
+        {/* <p className="text-xs mt-1">עיצוב ופיתוח: Skip ltd</p> */}
       </div>
     </footer>
   );
