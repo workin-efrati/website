@@ -35,7 +35,7 @@ const TorahParshiot = () => {
             </Script>
             <div className="relative w-full h-[42vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
                 <Image
-                    src="/hero.webp"
+                    src="/2.webp"
                     alt={`רקע אזור הוורטים`}
                     fill
                     sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"

@@ -15,8 +15,8 @@ export default async function Tags() {
           <Image
             src={t.image}
             alt={`category of - ${t.name}`}
-            width={100}
-            height={100}
+            width={150}
+            height={150}
             className="rounded-full mx-auto transition duration-200 group-hover:grayscale"
           />
           <p className="text-center text-sm md:text-md md:w-[100px] font-semibold pb-2">{t.name}</p>

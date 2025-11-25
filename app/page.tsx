@@ -37,7 +37,7 @@ export default function home() {
         className="relative w-full min-h-[500px] md:h-[700px] flex flex-col items-center justify-center"
       >
         <Image
-          src="/hero.webp"
+          src="/2.webp"
           alt="Students studying in a Jewish Yeshiva"
           fill
           priority
@@ -58,7 +58,7 @@ export default function home() {
               פּסקי דינים ונתיבות אמונה, ממשנת הרב ברוך אפרתי
             </p>
             <Suspense fallback={<div>טוען...</div>}>
-              <Search addPathName="qa" />
+              <Search placeholder='חפש שאלה לפי מלל חופשי' addPathName="qa" />
             </Suspense>
           </div>
 
