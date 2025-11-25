@@ -32,7 +32,7 @@ export default async function Page({ params, searchParams }: PageProps) {
    const directChildren = findDirectChildrenByPath([...parents, category])
 
    // console.log({ parents, children })
-   console.log({ directChildren, parents })
+   // console.log({ directChildren, parents })
 
    if (!parents.length && !children.length) {
       return (

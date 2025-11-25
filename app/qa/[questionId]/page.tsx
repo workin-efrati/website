@@ -136,11 +136,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
             <aside className="md:border-r border-blue-200 ">
                <RelatedQuestions
                   question={question.question}
-                  tags={question.tags?.map((tag: any) => ({
-                     // If already has name/_id shape, use as is; otherwise, fallback
-                     name: tag.name ?? '',
-                     _id: tag._id?.toString?.() ?? tag._id ?? ''
-                  }))}
+                  tag={question.tag}
                />
             </aside>
          </div>

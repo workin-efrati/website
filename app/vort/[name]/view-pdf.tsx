@@ -1,4 +1,3 @@
-// app/view-pdf/page.tsx
 export default function ViewPDF({start, end}: {start: number, end: number}) {
   return (
     <>
