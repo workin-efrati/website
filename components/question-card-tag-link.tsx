@@ -14,7 +14,7 @@ export default function QuestionCardTagLink({ tag }: { tag: string }) {
         <Badge
             asChild
             variant="outline"
-            className="hover:bg-primary text-primary hover:text-white w-[145px] transition-colors duration-200 px-3 py-1 text-md flex items-center gap-2 justify-start cursor-pointer mr-auto group/badge text-ellipsis "
+            className="hover:bg-primary text-primary hover:text-white w-[145px] transition-colors duration-200 px-3 py-1 text-md flex items-center gap-2 justify-center cursor-pointer mr-auto group/badge text-ellipsis "
         >
             <button onClick={onClick}>
                 <Tags size={24} strokeWidth={1.8} className="text-primary shrink-0 transition-colors duration-200 group-hover/badge:text-white" />

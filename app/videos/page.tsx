@@ -12,7 +12,7 @@ export default function VideosPage() {
     <>
       <div className="relative flex flex-col h-[40vh]">
         <Image
-          src={'/hero.webp'}
+          src={'/2.webp'}
           alt={'people learning'}
           fill
           fetchPriority="high"

@@ -35,7 +35,7 @@ export default async function Qa(props: Props) {
     <>
       <div className="relative flex flex-col h-[40vh]">
         <Image
-          src={'/hero.webp'}
+          src={'/2.webp'}
           alt={'people learning'}
           fill
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"

@@ -45,7 +45,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       );
    }
 
-   const bgSrc = favoriteTags.find((t) => t.name === category)?.image || '/hero.webp'
+   const bgSrc = favoriteTags.find((t) => t.name === category)?.image || '/2.webp'
 
    return (
       <>
