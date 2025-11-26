@@ -2,6 +2,7 @@ import HeaderPlaceholder from "@/components/header-placeholder";
 import QuickShare from "@/components/quick-share";
 import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
+import { baseUrl } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
 import { readAllShutService, readOneShutWithPopulateService } from "@/server/services/shut.service";
 import { Tags } from "lucide-react";
@@ -87,10 +88,10 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                fill
                fetchPriority="high"
                sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
-               className="object-cover object-center opacity-80"
+               className="object-cover object-top opacity-80"
                priority
             />
-            <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 via-blue-800/70 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/40" />
             <HeaderPlaceholder />
             <div className="flex justify-center items-center flex-1 px-4 text-center">
                <h1 className="text-3xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >
@@ -129,7 +130,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </div>
 
                {/* Share links */}
-               <QuickShare />
+               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}`} />
             </section>
 
             {/* Right side – related questions */}

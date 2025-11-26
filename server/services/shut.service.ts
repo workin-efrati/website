@@ -20,13 +20,24 @@ export const readThreeShutsByParashaService = async (parasha: string, populate?:
     { $or: [{ question: { $regex: parasha, $options: 'i' } }, { answer: { $regex: parasha, $options: 'i' } }] }
     , undefined, populate, select, 3);
 
-export const readThreeShutsByHolidayService = async (holiday: string, populate?: string | PopulateOptions | (string | PopulateOptions)[], select?: Record<string, 0 | 1>): Promise<IShut[]> => {
-  const parents = findParentsByKey(holiday) || []
-  const children = Array.from(new Set(findNodeKeysByPath([...parents, holiday])))
-  return await readWithOptions(
-    { tag: { $in: children } }
-    , undefined, populate, select, 3);
-}
+export const readThreeShutsByHolidayService = async (
+  holiday: string,
+  populate?: string | PopulateOptions | (string | PopulateOptions)[],
+  select?: Record<string, 0 | 1>
+): Promise<IShut[]> => {
+  const parents = findParentsByKey(holiday) || [];
+  const children = Array.from(new Set(findNodeKeysByPath([...parents, holiday])));
+
+  if (!children.length) return [];
+
+  const perChildPromises = children.map((child) =>
+    readWithOptions({ tag: child }, undefined, populate, select, 3)
+  );
+
+  const resultsPerChild = await Promise.all(perChildPromises);
+
+  return resultsPerChild.flat();
+};
 
 // TODO - convert to controller and service
 export const relatedShuts = async (shut: { _id?: string; tag?: string }) => {

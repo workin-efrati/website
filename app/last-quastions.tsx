@@ -9,7 +9,7 @@ export default async function LastQuestions() {
 
     return (
         <section className="container mx-auto px-4 py-8 flex flex-col items-center">
-            <h2 className="text-4xl font-bold text-(--light-blue) text-center mb-4">
+            <h2 className="text-4xl font-bold text-center mb-4 text-primary">
                 שאלות אחרונות
             </h2>
 
