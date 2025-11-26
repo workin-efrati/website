@@ -59,7 +59,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                   className="object-cover object-center opacity-80"
                   priority
                />
-               <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+               <div className="absolute inset-0 bg-linear-to-r from-primary/80 via-primary/70 to-primary/40" />
             </div>
 
             {/* content */}
@@ -87,7 +87,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                   <div className="mt-6 w-full px-2">
                      <div className="flex flex-wrap justify-center gap-3">
                         {directChildren.map((c) => (
-                           <Badge className="px-2 py-1 md:px-3 text-sm md:text-md" key={c} asChild>
+                           <Badge className="px-2 py-1 md:px-3 text-sm md:text-xl" key={c} asChild>
                               <Link href={`/category/${c}`} className="">
                                  {c}
                               </Link>
