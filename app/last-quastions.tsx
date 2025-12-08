@@ -1,14 +1,15 @@
 import QuestionCard from "@/components/question-card";
+import { connectToMongodb } from "@/server/connect";
 import { IShut } from "@/server/models/shut.model";
 import { readLast3ShutsService } from "@/server/services/shut.service";
 
 export default async function LastQuestions() {
-    // Map tags from { name: string }[] to string[] if tags is present
+    await connectToMongodb();
     const questions = (await readLast3ShutsService([{ path: 'tags', select: 'name' }])) || [];
 
     return (
         <section className="container mx-auto px-4 py-8 flex flex-col items-center">
-            <h2 className="text-4xl font-bold text-(--light-blue) text-center mb-4">
+            <h2 className="text-4xl font-bold text-center mb-4 text-primary">
                 שאלות אחרונות
             </h2>
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'שאלות ותשובות',
   description: 'דף שאלות ותשובות עם אופציה לחיפוש חופשי בנושאי הלכה, אמונה ויהדות.',
   alternates: {
-    canonical: `${baseUrl}/qa`, // ✅ זה מצביע על העמוד הנכון
+    canonical: `${baseUrl}/qa`, 
   },
   metadataBase: new URL(baseUrl),
 };
@@ -35,7 +35,7 @@ export default async function Qa(props: Props) {
     <>
       <div className="relative flex flex-col h-[40vh]">
         <Image
-          src={'/hero.webp'}
+          src={'/2.webp'}
           alt={'people learning'}
           fill
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"

@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Search from '../components/search';
 import LastQuestions from './last-quastions';
 import Tags from './tags';
+import RelevantQuestions from './relevant-questions';
 // import Link from 'next/link';
 // import { SearchBar } from './search/SearchBar'; // Import the Client Component
 
@@ -36,7 +37,7 @@ export default function home() {
         className="relative w-full min-h-[500px] md:h-[700px] flex flex-col items-center justify-center"
       >
         <Image
-          src="/hero.webp"
+          src="/2.webp"
           alt="Students studying in a Jewish Yeshiva"
           fill
           priority
@@ -57,7 +58,7 @@ export default function home() {
               פּסקי דינים ונתיבות אמונה, ממשנת הרב ברוך אפרתי
             </p>
             <Suspense fallback={<div>טוען...</div>}>
-              <Search addPathName="qa" />
+              <Search placeholder='חפש שאלה לפי מלל חופשי' addPathName="qa" />
             </Suspense>
           </div>
 
@@ -70,6 +71,7 @@ export default function home() {
         </div>
       </section>
       <Tags />
+      <RelevantQuestions/>
       <LastQuestions />
     </>
   );

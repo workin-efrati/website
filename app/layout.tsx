@@ -25,7 +25,7 @@ const bonaNova = Bona_Nova(
 );
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_DOMAIN as string), // שנה לכתובת האמיתית שלך
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string), // שנה לכתובת האמיתית שלך
   title: {
     default: "למדני חוקך - שאלות ותשובות יהדות | הרב אפרתי",
     template: "%s | למדני חוקך",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "he_IL",
-    url: process.env.NEXT_PUBLIC_DOMAIN,
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     title: "למדני חוקך - אתר שאלות ותשובות בהלכה | הרב אפרתי",
     description:
       "אתר שאלות ותשובות בהלכה, אמונה ומחשבה מאת הרב אפרתי. חיפוש לפי נושאים, תגים ושאלות עדכניות מהציבור הרחב.",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_DOMAIN,
+    canonical: process.env.NEXT_PUBLIC_SITE_URL,
   },
   category: "Religion & Spirituality",
   robots: {
