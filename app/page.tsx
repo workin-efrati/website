@@ -41,7 +41,7 @@ export default function home() {
           alt="Students studying in a Jewish Yeshiva"
           fill
           priority
-          className="object-cover absolute inset-0"
+          className="object-cover object-top absolute inset-0"
         />
         <div
           className="absolute inset-0 bg-primary/70"
@@ -71,7 +71,7 @@ export default function home() {
         </div>
       </section>
       <Tags />
-      <RelevantQuestions/>
+      <RelevantQuestions />
       <LastQuestions />
     </>
   );

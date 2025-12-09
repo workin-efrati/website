@@ -1,6 +1,7 @@
 import BreadcrumbsSimple from '@/components/breadcrumbs-simple';
 import HeaderPlaceholder from '@/components/header-placeholder';
 import torahBooks from '@/lib/torah_toc.json';
+import { baseUrl } from '@/lib/utils';
 import { Parsha, TorahBook } from '@/lib/vorts-types';
 import { ArrowDown } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -18,7 +19,7 @@ export const findParshaByName = (name: string): Parsha | undefined => {
 
 export const generateStaticParams = async () => {
   const books = torahBooks as unknown as TorahBook[];
-  return books.flatMap((b) => b.parashot.map((p) => ({ name: encodeURIComponent(p.name) })));
+  return books.flatMap((b) => b.parashot.map((p) => ({ name: p.name })));
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ name: string }> }): Promise<Metadata> {
@@ -27,8 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const parsha = findParshaByName(decoded);
   if (!parsha) return {};
 
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
-  const canonicalUrl = `${baseUrl}/vort/${encodeURIComponent(decoded)}`;
+  const canonicalUrl = `${baseUrl}/vort/${decoded}`;
   const articleTitles = (parsha.articles || []).slice(0, 6).map(a => a.title).join(', ');
 
   return {
@@ -60,15 +60,15 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
     return notFound();
   }
 
-  const sisterParashot = findSisterParashot(decoded);
+  // const sisterParashot = findSisterParashot(decoded);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     'itemListElement': [
-      { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '') },
-      { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
-      { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort/${encodeURIComponent(decoded)}` },
+      { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (baseUrl || 'http://localhost:3000').replace(/\/$/, '') },
+      { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+      { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort/${decoded}` },
     ]
   } as const;
 

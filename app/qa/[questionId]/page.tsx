@@ -35,12 +35,11 @@ export async function generateMetadata({ params }: QuestionPageProps): Promise<M
    const data = await readOneShutWithPopulateService({ _id: questionId });
    if (!data) return {}
 
-   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
    const canonicalUrl = `${baseUrl}/qa/${questionId}`;
 
    return {
       title: data?.titleQuestion || `תשובה בנושא ${data?.tag || 'כללי'}`,
-      description: (data.answer || data.titleStatment || '').slice(0, 160).replace(/\n+/g, ' '),
+      description: (data.question || data.titleStatment || '').slice(0, 160).replace(/\n+/g, ' '),
       authors: [{ name: "הרב אפרתי" }],
       alternates: {
          canonical: canonicalUrl
@@ -91,7 +90,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                className="object-cover object-top opacity-80"
                priority
             />
-            <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/40" />
+            <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
             <HeaderPlaceholder />
             <div className="flex justify-center items-center flex-1 px-4 text-center">
                <h1 className="text-3xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >

@@ -1,11 +1,12 @@
 import HeaderPlaceholder from '@/components/header-placeholder';
 // import { torahBooks } from '@/lib/parashot';
 import torahBooks from '@/lib/torah_toc.json';
+import { baseUrl } from '@/lib/utils';
 import { Parsha, TorahBook } from '@/lib/vorts-types';
 import { BookOpen, ChevronDown } from 'lucide-react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
@@ -28,21 +29,21 @@ const TorahParshiot = () => {
                     '@context': 'https://schema.org',
                     '@type': 'BreadcrumbList',
                     itemListElement: [
-                        { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '') },
-                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+                        { '@type': 'ListItem', position: 1, name: 'דף הבית', item: baseUrl.replace(/\/$/, '') },
+                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${baseUrl.replace(/\/$/, '')}/vort` },
                     ],
                 })}
             </Script>
             <div className="relative w-full h-[42vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
                 <Image
-                    src="/2.webp"
+                    src="/1.webp"
                     alt={`רקע אזור הוורטים`}
                     fill
                     sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
-                    className="object-cover object-center opacity-80"
+                    className="object-cover object-top opacity-80"
                     priority
                 />
-                <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
                 <HeaderPlaceholder />
                 <div className="max-w-4xl m-auto relative z-4 flex-1 flex items-center px-2">
                     <div className="bg-white rounded-lg shadow-xl w-full p-8 mb-6">

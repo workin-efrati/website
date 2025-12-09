@@ -2,18 +2,16 @@ import HeaderPlaceholder from '@/components/header-placeholder';
 import ResultQuestions from '@/components/result-questions';
 import ResultQuestionsSkeleton from '@/components/result-questions-skeleton';
 import Search from '@/components/search';
+import { baseUrl } from '@/lib/utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Suspense } from 'react';
-
-
-const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
 
 export const metadata: Metadata = {
   title: 'שאלות ותשובות',
   description: 'דף שאלות ותשובות עם אופציה לחיפוש חופשי בנושאי הלכה, אמונה ויהדות.',
   alternates: {
-    canonical: `${baseUrl}/qa`, 
+    canonical: `${baseUrl}/qa`,
   },
   metadataBase: new URL(baseUrl),
 };
@@ -39,10 +37,10 @@ export default async function Qa(props: Props) {
           alt={'people learning'}
           fill
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
-          className="object-cover object-center opacity-80"
+          className="object-cover object-top opacity-80"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
         <HeaderPlaceholder />
         <div className="flex justify-center items-center flex-1">
           <h1 className="text-4xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >
