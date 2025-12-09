@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { baseUrl } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'וורטים על פרשיות השבוע | למדני חוקך',
@@ -28,8 +29,8 @@ const TorahParshiot = () => {
                     '@context': 'https://schema.org',
                     '@type': 'BreadcrumbList',
                     itemListElement: [
-                        { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '') },
-                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+                        { '@type': 'ListItem', position: 1, name: 'דף הבית', item: baseUrl.replace(/\/$/, '') },
+                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${baseUrl.replace(/\/$/, '')}/vort` },
                     ],
                 })}
             </Script>

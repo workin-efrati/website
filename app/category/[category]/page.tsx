@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { favoriteTags } from "@/lib/favorite-tags-list";
 import { findDirectChildrenByPath, findNodeKeysByPath, findParentsByKey } from "@/lib/getTags";
 import tagsLeavesToAncestors from "@/lib/tags_leaves_to_ancestors.json";
+import { baseUrl } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,6 +17,22 @@ interface PageProps {
       query?: string;
       page?: string;
    }>;
+}
+
+export const generateStaticParams = async () => {
+   return favoriteTags.map((t) => ({ category: t.name }));
+}
+
+export const generateMetadata = async ({ params }: { params: { category: string } }) => {
+   const category = params.category;
+   return {
+      title: category,
+      description: `שאלות בנושא ${category}`,
+      alternates: {
+         canonical: `${baseUrl}/category/${category}`,
+      },
+      authors: [{ name: "הרב אפרתי" }],
+   };
 }
 
 export default async function Page({ params, searchParams }: PageProps) {

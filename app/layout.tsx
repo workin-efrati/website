@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
-import { Bona_Nova, Heebo } from "next/font/google";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { GoogleAnalytics } from '@next/third-parties/google';
+import type { Metadata } from "next";
+import { Bona_Nova, Heebo } from "next/font/google";
 
 //@ts-ignore
 import "./globals.css";
+import { baseUrl } from "@/lib/utils";
 
 const heebo = Heebo(
   {
@@ -25,7 +27,7 @@ const bonaNova = Bona_Nova(
 );
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string), // שנה לכתובת האמיתית שלך
+  metadataBase: new URL(baseUrl as string), // שנה לכתובת האמיתית שלך
   title: {
     default: "למדני חוקך - שאלות ותשובות יהדות | הרב אפרתי",
     template: "%s | למדני חוקך",
@@ -54,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "he_IL",
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    url: baseUrl,
     title: "למדני חוקך - אתר שאלות ותשובות בהלכה | הרב אפרתי",
     description:
       "אתר שאלות ותשובות בהלכה, אמונה ומחשבה מאת הרב אפרתי. חיפוש לפי נושאים, תגים ושאלות עדכניות מהציבור הרחב.",
@@ -76,7 +78,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL,
+    canonical: baseUrl,
   },
   category: "Religion & Spirituality",
   robots: {
@@ -108,6 +110,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ''} />
       </body>
     </html>
   );

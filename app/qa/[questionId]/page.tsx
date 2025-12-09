@@ -35,12 +35,11 @@ export async function generateMetadata({ params }: QuestionPageProps): Promise<M
    const data = await readOneShutWithPopulateService({ _id: questionId });
    if (!data) return {}
 
-   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
    const canonicalUrl = `${baseUrl}/qa/${questionId}`;
 
    return {
       title: data?.titleQuestion || `תשובה בנושא ${data?.tag || 'כללי'}`,
-      description: (data.answer || data.titleStatment || '').slice(0, 160).replace(/\n+/g, ' '),
+      description: (data.question || data.titleStatment || '').slice(0, 160).replace(/\n+/g, ' '),
       authors: [{ name: "הרב אפרתי" }],
       alternates: {
          canonical: canonicalUrl

@@ -2,18 +2,16 @@ import HeaderPlaceholder from '@/components/header-placeholder';
 import ResultQuestions from '@/components/result-questions';
 import ResultQuestionsSkeleton from '@/components/result-questions-skeleton';
 import Search from '@/components/search';
+import { baseUrl } from '@/lib/utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { Suspense } from 'react';
-
-
-const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
 
 export const metadata: Metadata = {
   title: 'שאלות ותשובות',
   description: 'דף שאלות ותשובות עם אופציה לחיפוש חופשי בנושאי הלכה, אמונה ויהדות.',
   alternates: {
-    canonical: `${baseUrl}/qa`, 
+    canonical: `${baseUrl}/qa`,
   },
   metadataBase: new URL(baseUrl),
 };

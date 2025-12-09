@@ -1,6 +1,7 @@
 import BreadcrumbsSimple from '@/components/breadcrumbs-simple';
 import HeaderPlaceholder from '@/components/header-placeholder';
 import torahBooks from '@/lib/torah_toc.json';
+import { baseUrl } from '@/lib/utils';
 import { Parsha, TorahBook } from '@/lib/vorts-types';
 import { ArrowDown } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -27,7 +28,6 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const parsha = findParshaByName(decoded);
   if (!parsha) return {};
 
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
   const canonicalUrl = `${baseUrl}/vort/${encodeURIComponent(decoded)}`;
   const articleTitles = (parsha.articles || []).slice(0, 6).map(a => a.title).join(', ');
 
@@ -66,9 +66,9 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     'itemListElement': [
-      { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '') },
-      { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
-      { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/$/, '')}/vort/${encodeURIComponent(decoded)}` },
+      { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (baseUrl || 'http://localhost:3000').replace(/\/$/, '') },
+      { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+      { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort/${encodeURIComponent(decoded)}` },
     ]
   } as const;
 
