@@ -12,12 +12,12 @@ export default function VideosPage() {
     <>
       <div className="relative flex flex-col h-[40vh]">
         <Image
-          src={'/2.webp'}
+          src={'/1.webp'}
           alt={'people learning'}
           fill
           fetchPriority="high"
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
-          className="object-cover object-center opacity-80"
+          className="object-cover object-top opacity-80"
           priority
         />
         <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
