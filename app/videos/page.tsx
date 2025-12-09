@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Videos from './videos'
 
 export const metadata = {
-    title: 'סרטונים מעניינים – אקטואליה, חגים וחברה',
-    description: 'צפו בסרטונים חינוכיים ומרתקים בנושא אקטואליה, מועדים וחגים, ותיהנו מתכנים איכותיים בעברית.',
+  title: 'סרטונים מעניינים – אקטואליה, חגים וחברה',
+  description: 'צפו בסרטונים חינוכיים ומרתקים בנושא אקטואליה, מועדים וחגים, ותיהנו מתכנים איכותיים בעברית.',
 }
 
 export default function VideosPage() {
@@ -20,7 +20,7 @@ export default function VideosPage() {
           className="object-cover object-center opacity-80"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
         <HeaderPlaceholder />
         <div className="flex justify-center items-center flex-1 px-4 text-center">
           <h1 className="text-3xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >

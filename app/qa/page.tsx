@@ -37,10 +37,10 @@ export default async function Qa(props: Props) {
           alt={'people learning'}
           fill
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
-          className="object-cover object-center opacity-80"
+          className="object-cover object-top opacity-80"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
         <HeaderPlaceholder />
         <div className="flex justify-center items-center flex-1">
           <h1 className="text-4xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >

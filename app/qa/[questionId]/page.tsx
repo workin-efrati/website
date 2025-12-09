@@ -90,7 +90,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                className="object-cover object-top opacity-80"
                priority
             />
-            <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/40" />
+            <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
             <HeaderPlaceholder />
             <div className="flex justify-center items-center flex-1 px-4 text-center">
                <h1 className="text-3xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >
