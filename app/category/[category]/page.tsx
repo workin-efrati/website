@@ -24,7 +24,7 @@ export const generateStaticParams = async () => {
 }
 
 export const generateMetadata = async ({ params }: { params: { category: string } }) => {
-   const category = params.category;
+   const category = decodeURIComponent(params.category);
    return {
       title: category,
       description: `שאלות בנושא ${category}`,
