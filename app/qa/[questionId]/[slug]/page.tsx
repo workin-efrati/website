@@ -22,9 +22,9 @@ export const generateStaticParams = async () => {
    const res = await readAllShutService();
    // console.log(res.length)
    if (process.env.NEXT_PUBLIC_DEV === 'true')
-      return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString() }));
+      return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString(), slug: (question.titleQuestion || 'שאלה').replace(/ /g, '-') }));
    else
-      return res.map((question: any) => ({ questionId: question._id.toString() }));
+      return res.map((question: any) => ({ questionId: question._id.toString(), slug: (question.titleQuestion || 'שאלה').replace(/ /g, '-') }));
 };
 
 export async function generateMetadata({ params }: QuestionPageProps): Promise<Metadata> {
@@ -129,7 +129,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </div>
 
                {/* Share links */}
-               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}/${encodeURIComponent((question.titleQuestion || question?.tag || 'שאלה').replace(/ /g, '-'))}`} />
+               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}/${encodeURIComponent((question.titleQuestion || 'שאלה').replace(/ /g, '-'))}`} />
             </section>
 
             {/* Right side – related questions */}
