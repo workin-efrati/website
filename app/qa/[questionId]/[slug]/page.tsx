@@ -129,7 +129,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </div>
 
                {/* Share links */}
-               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}/${encodeURIComponent(question.titleQuestion.replace(/ /g, '-'))}`} />
+               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}/${encodeURIComponent((question.titleQuestion || question?.tag || 'שאלה').replace(/ /g, '-'))}`} />
             </section>
 
             {/* Right side – related questions */}
