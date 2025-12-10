@@ -54,7 +54,7 @@ export default async function RelevantQuestions() {
                         {parashaVorts &&
                             <>
                                 <h3 className='text-3xl text-center font-bold mb-8 flex items-center gap-4 justify-center'>מאמרים לפרשת השבוע
-                                    <Link href={`/vort/${currentParasha}`} className='flex items-center gap-2 text-sm'>הצג הכל <ArrowLeft /></Link>
+                                    <Link href={`/vort/${currentParasha}`} className='flex hidden md:flex items-center gap-2 text-sm'>הצג הכל <ArrowLeft /></Link>
                                 </h3>
                                 <ul className="grid grid-cols-1 gap-2 w-full">
                                     {parashaVorts.articles.map((article, index) => (

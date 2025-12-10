@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
     const article = parsha.articles.find(a => a.title === decodedVort);
     if (!article) return {};
     const canonicalUrl = `${baseUrl}/vort/${encodeURIComponent(decoded)}/${encodeURIComponent(decodedVort)}`;
-    const desc = `וורט על פרשת ${parsha.name}: ${article.title}.`;
+    const desc = `מאמר על פרשת ${parsha.name}: ${article.title}.`;
 
     return {
         title: `${article.title} – פרשת ${parsha.name} | למדני חוקך`,
@@ -64,7 +64,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
         '@type': 'BreadcrumbList',
         'itemListElement': [
             { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (baseUrl || 'http://localhost:3000').replace(/\/$/, '') },
-            { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+            { '@type': 'ListItem', position: 2, name: 'מאמרים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
             { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort/${encodeURIComponent(decoded)}` },
         ]
     } as const;
@@ -79,7 +79,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
                 <header className="my-6 text-center">
                     <BreadcrumbsSimple links={
                         [
-                            { href: `/vort`, label: 'וורטים' },
+                            { href: `/vort`, label: 'מאמרים' },
                             { href: `/vort/${encodeURIComponent(decoded)}`, label: `פרשת ${parsha.name}` },
                         ]
                     } current={article?.title} />

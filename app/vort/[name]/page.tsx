@@ -32,14 +32,14 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const articleTitles = (parsha.articles || []).slice(0, 6).map(a => a.title).join(', ');
 
   return {
-    title: `פרשת ${parsha.name} – וורטים ומאמרים | למדני חוקך`,
-    description: articleTitles ? `וורטים נבחרים על פרשת ${parsha.name}: ${articleTitles}. צפייה נוחה ב-PDF.` : `וורטים ומאמרים על פרשת ${parsha.name}. צפייה נוחה ב-PDF.`,
+    title: `פרשת ${parsha.name} – מאמרים | למדני חוקך`,
+    description: articleTitles ? `מאמרים נבחרים על פרשת ${parsha.name}: ${articleTitles}. צפייה נוחה ב-PDF.` : `מאמרים על פרשת ${parsha.name}. צפייה נוחה ב-PDF.`,
     alternates: { canonical: canonicalUrl },
     openGraph: {
       type: 'article',
       url: canonicalUrl,
-      title: `פרשת ${parsha.name} – וורטים ומאמרים`,
-      description: articleTitles ? `וורטים על פרשת ${parsha.name}: ${articleTitles}` : `וורטים על פרשת ${parsha.name}`,
+      title: `פרשת ${parsha.name} – מאמרים`,
+      description: articleTitles ? `מאמרים על פרשת ${parsha.name}: ${articleTitles}` : `מאמרים על פרשת ${parsha.name}`,
     },
   };
 }
@@ -67,7 +67,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
     '@type': 'BreadcrumbList',
     'itemListElement': [
       { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (baseUrl || 'http://localhost:3000').replace(/\/$/, '') },
-      { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+      { '@type': 'ListItem', position: 2, name: 'מאמרים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
       { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort/${decoded}` },
     ]
   } as const;
@@ -84,12 +84,12 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
           <BreadcrumbsSimple links={
             [
               { href: `/`, label: 'בית' },
-              { href: `/vort`, label: 'וורטים' },
+              { href: `/vort`, label: 'מאמרים' },
             ]
           } current={parsha.name} />
           {/* <CarouselNav items={sisterParashot.map(p => ({ label: p.name, href: `/vort/${encodeURIComponent(p.name)}` }))} />  */}
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
-          <p className="text-slate-600">וורטים, מאמרים וצפייה נוחה בקובץ PDF</p>
+          <p className="text-slate-600">צפייה נוחה בקובץ PDF</p>
         </header>
 
         {parsha.articles && parsha.articles.length > 0 && (
@@ -98,7 +98,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
               <summary className="cursor-pointer list-none px-6 py-4 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors rounded-xl">
                 <div>
                   <h2 id="toc-heading" className="text-lg md:text-xl font-semibold text-slate-800">תוכן עניינים</h2>
-                  <p className="text-sm text-slate-500">רשימת הוורטים והעמודים במסמך</p>
+                  <p className="text-sm text-slate-500">רשימת המאמרים והעמודים במסמך</p>
                 </div>
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold group-open:rotate-180 transition-transform">
                   <ArrowDown />

@@ -23,8 +23,8 @@ export const generateStaticParams = async () => {
    return favoriteTags.map((t) => ({ category: t.name }));
 }
 
-export const generateMetadata = async ({ params }: { params: { category: string } }) => {
-   const category = decodeURIComponent(params.category);
+export const generateMetadata = async ({ params }: { params: Promise<{ category: string }> }) => {
+   const category = decodeURIComponent((await params).category);
    return {
       title: category,
       description: `שאלות בנושא ${category}`,

@@ -10,14 +10,14 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-    title: 'וורטים על פרשיות השבוע | למדני חוקך',
-    description: 'וורטים ומאמרים על פרשיות השבוע לפי חומש ופרשה. צפייה נוחה בקבצי PDF. בחר חומש כדי לפתוח את רשימת הפרשות.',
+    title: 'מאמרים על פרשיות השבוע | למדני חוקך',
+    description: 'מאמרים  על פרשיות השבוע לפי חומש ופרשה. צפייה נוחה בקבצי PDF. בחר חומש כדי לפתוח את רשימת הפרשות.',
     alternates: { canonical: '/vort' },
     openGraph: {
         type: 'website',
         url: '/vort',
-        title: 'וורטים על פרשיות השבוע',
-        description: 'קטלוג וורטים ומאמרים על פרשיות השבוע לפי חומש ופרשה.',
+        title: 'מאמרים על פרשיות השבוע',
+        description: 'קטלוג מאמרים על פרשיות השבוע לפי חומש ופרשה.',
     },
 };
 
@@ -30,14 +30,14 @@ const TorahParshiot = () => {
                     '@type': 'BreadcrumbList',
                     itemListElement: [
                         { '@type': 'ListItem', position: 1, name: 'דף הבית', item: baseUrl.replace(/\/$/, '') },
-                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${baseUrl.replace(/\/$/, '')}/vort` },
+                        { '@type': 'ListItem', position: 2, name: 'מאמרים', item: `${baseUrl.replace(/\/$/, '')}/vort` },
                     ],
                 })}
             </Script>
             <div className="relative w-full h-[42vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
                 <Image
                     src="/1.webp"
-                    alt={`רקע אזור הוורטים`}
+                    alt={`רקע אזור המאמרים`}
                     fill
                     sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
                     className="object-cover object-top opacity-80"

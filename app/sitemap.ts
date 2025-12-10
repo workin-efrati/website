@@ -49,9 +49,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
     // Dynamic routes for individual Q&A pages
-    const qaRoutes = (await readAllShutServiceWithSelect({ _id: 1, createdAt: 1, updatedAt: 1, tag: 1 }))
+    const qaRoutes = (await readAllShutServiceWithSelect({ _id: 1, createdAt: 1, updatedAt: 1, tag: 1, titleQuestion: 1 }))
         .map((question: IShut) => ({
-            url: `${baseUrl}/qa/${question._id}`,
+            url: `${baseUrl}/qa/${question._id}/${encodeURIComponent((question.titleQuestion || 'שאלה')
+                .trim()
+                .replace(/ /g, '-')
+                .replace(/[^\p{L}\p{N}-]/gu, ''))}`,
             lastModified: new Date(question.updatedAt || question.createdAt || Date.now()),
             changeFrequency: 'weekly' as const,
             priority: 0.6,
@@ -71,10 +74,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 
 function getCategories() {
-    return favoriteTags.map(t => t.name)
+    return favoriteTags.map(t => encodeURIComponent(t.name))
 }
 
 function getBooks() {
     const books = torahBooks as unknown as TorahBook[];
-    return books.flatMap((b) => b.parashot.map((p) => p.name));
+    return books.flatMap((b) => b.parashot.map((p) => encodeURIComponent(p.name)));
 };

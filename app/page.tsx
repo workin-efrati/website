@@ -37,11 +37,11 @@ export default function home() {
         className="relative w-full min-h-[500px] md:h-[700px] flex flex-col items-center justify-center"
       >
         <Image
-          src="/2.webp"
+          src="/cover.webp"
           alt="Students studying in a Jewish Yeshiva"
           fill
           priority
-          className="object-cover object-top absolute inset-0"
+          className="object-cover object-top-left absolute inset-0"
         />
         <div
           className="absolute inset-0 bg-primary/70"

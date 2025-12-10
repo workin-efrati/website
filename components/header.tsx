@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export const navItems = [
-  { label: 'בית', href: '/' },  
+  { label: 'בית', href: '/' },
   { label: "שאלות ותשובות", href: "/qa" },
   { label: "שיעורי וידאו", href: "/videos" },
   { label: "פרשת שבוע", href: "/vort" },
@@ -53,7 +53,7 @@ export default function Header() {
 
         {/* Mobile Nav */}
         {open && (
-          <div className="md:hidden flex flex-col items-center gap-4 py-4 text-lg font-semibold bg-blue-900/80 backdrop-blur-md">
+          <div className="md:hidden flex flex-col items-center gap-4 py-4 text-lg font-semibold bg-primary/95 backdrop-blur-md">
             {navItems.map((item) => (
               <Link
                 key={item.href}
