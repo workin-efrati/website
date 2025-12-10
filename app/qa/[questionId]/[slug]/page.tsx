@@ -2,7 +2,7 @@ import HeaderPlaceholder from "@/components/header-placeholder";
 import QuickShare from "@/components/quick-share";
 import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
-import { baseUrl } from "@/lib/utils";
+import { baseUrl, cleanSlug } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
 import { readAllShutService, readOneShutWithPopulateService } from "@/server/services/shut.service";
 import { Tags } from "lucide-react";
@@ -22,9 +22,9 @@ export const generateStaticParams = async () => {
    const res = await readAllShutService();
    // console.log(res.length)
    if (process.env.NEXT_PUBLIC_DEV === 'true')
-      return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString(), slug: (question.titleQuestion || 'שאלה').replace(/ /g, '-') }));
+      return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString(), slug: cleanSlug(question.titleQuestion || 'שאלה') }));
    else
-      return res.map((question: any) => ({ questionId: question._id.toString(), slug: (question.titleQuestion || 'שאלה').replace(/ /g, '-') }));
+      return res.map((question: any) => ({ questionId: question._id.toString(), slug: cleanSlug(question.titleQuestion || 'שאלה') }));
 };
 
 export async function generateMetadata({ params }: QuestionPageProps): Promise<Metadata> {
@@ -129,7 +129,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </div>
 
                {/* Share links */}
-               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}/${encodeURIComponent((question.titleQuestion || 'שאלה').replace(/ /g, '-'))}`} />
+               <QuickShare title={question.titleQuestion} url={`${baseUrl}/qa/${question._id}/${cleanSlug(question.titleQuestion || 'שאלה')}`} />
             </section>
 
             {/* Right side – related questions */}

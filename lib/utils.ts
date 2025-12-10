@@ -59,5 +59,13 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
   ];
 };
 
+export const cleanSlug = (title: string) => {
+  return (title || 'שאלה')
+    .replace(/\?/g, '')  // מחק סימני שאלה
+    .replace(/[<>:"|\\/*]/g, '-')  // החלף אחרים במקף
+    .replace(/ /g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+};
 
-export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ||    'https://efrati.co.il'
+export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://efrati.co.il'

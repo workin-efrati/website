@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cleanSlug, cn } from '@/lib/utils';
 import { HelpCircle } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -27,7 +27,7 @@ export default function QuestionCard({
 }: QuestionProps) {
   return (
     <Link
-      href={`/qa/${id}/${encodeURIComponent(title.replace(/ /g, '-'))}`}
+      href={`/qa/${id}/${encodeURIComponent(cleanSlug(title))}`}
       className={cn(
         "group relative border flex flex-col border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 bg-white overflow-hidden",
         "hover:border-blue-200 hover:-translate-y-1",

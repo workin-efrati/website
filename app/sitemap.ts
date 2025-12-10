@@ -1,6 +1,6 @@
 import { favoriteTags } from '@/lib/favorite-tags-list';
 import torahBooks from '@/lib/torah_toc.json';
-import { baseUrl } from '@/lib/utils';
+import { baseUrl, cleanSlug } from '@/lib/utils';
 import { TorahBook } from '@/lib/vorts-types';
 import { connectToMongodb } from '@/server/connect';
 import { IShut } from '@/server/models/shut.model';
@@ -51,10 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Dynamic routes for individual Q&A pages
     const qaRoutes = (await readAllShutServiceWithSelect({ _id: 1, createdAt: 1, updatedAt: 1, tag: 1, titleQuestion: 1 }))
         .map((question: IShut) => ({
-            url: `${baseUrl}/qa/${question._id}/${encodeURIComponent((question.titleQuestion || 'שאלה')
-                .trim()
-                .replace(/ /g, '-')
-            )}`,
+            url: `${baseUrl}/qa/${question._id}/${encodeURIComponent(cleanSlug(question.titleQuestion || 'שאלה'))}`,
             lastModified: new Date(question.updatedAt || question.createdAt || Date.now()),
             changeFrequency: 'weekly' as const,
             priority: 0.6,
