@@ -41,6 +41,7 @@ export default function home() {
           alt="harav Efrati"
           fill
           priority
+          fetchPriority="high"
           className="object-cover object-top-left absolute inset-0"
         />
         <div

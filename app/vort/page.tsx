@@ -42,6 +42,7 @@ const TorahParshiot = () => {
                     sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
                     className="object-cover object-top opacity-80"
                     priority
+                    fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
                 <HeaderPlaceholder />
