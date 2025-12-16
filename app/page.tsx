@@ -37,8 +37,8 @@ export default function home() {
         className="relative w-full min-h-[500px] md:h-[700px] flex flex-col items-center justify-center"
       >
         <Image
-          src="/cover.webp"
-          alt="Students studying in a Jewish Yeshiva"
+          src="/cover2.webp"
+          alt="harav Efrati"
           fill
           priority
           className="object-cover object-top-left absolute inset-0"

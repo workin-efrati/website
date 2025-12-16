@@ -12,8 +12,8 @@ export default function VideosPage() {
     <>
       <div className="relative flex flex-col h-[40vh]">
         <Image
-          src={'/1.webp'}
-          alt={'people learning'}
+          src={'/cover3.webp'}
+          alt={'harav Efrati'}
           fill
           fetchPriority="high"
           sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
