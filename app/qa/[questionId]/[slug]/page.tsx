@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: QuestionPageProps): Promise<M
 
    return {
       title: data?.titleQuestion || `תשובה בנושא ${data?.tag || 'כללי'}`,
-      description: (data.question || data.titleStatment || '').slice(0, 160).replace(/\n+/g, ' '),
-      authors: [{ name: "הרב אפרתי" }],
+      description: (data.question || data.titleStatment || '').replace(/\n+/g, ' '),
+      authors: [{ name: "הרב ברוך אפרתי" }],
       alternates: {
          canonical: canonicalUrl
       },

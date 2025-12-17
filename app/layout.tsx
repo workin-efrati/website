@@ -50,8 +50,8 @@ export const metadata: Metadata = {
     "יהדות",
     "תשובות בהלכה",
   ],
-  authors: [{ name: "הרב אפרתי" }],
-  creator: "הרב אפרתי",
+  authors: [{ name: "הרב ברוך אפרתי" }],
+  creator: "הרב ברוך אפרתי",
   publisher: "למדני חוקך",
   openGraph: {
     type: "website",
@@ -66,15 +66,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "למדני חוקך - הרב אפרתי",
+        alt: "למדני חוקך - הרב ברוך אפרתי",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "למדני חוקך - שאלות ותשובות בהלכה | הרב אפרתי",
+    title: "למדני חוקך - שאלות ותשובות בהלכה | הרב ברוך אפרתי",
     description:
-      "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקך' בניהול הרב אפרתי.",
+      "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקך' בניהול הרב ברוך אפרתי.",
     images: ["/og-image.png"],
   },
   alternates: {
