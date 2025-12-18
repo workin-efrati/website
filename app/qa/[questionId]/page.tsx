@@ -41,5 +41,5 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
    if (!question)
       return notFound()
 
-   permanentRedirect(`/qa/${questionId}/${cleanSlug(question.titleQuestion || 'שאלה')}`);
+   permanentRedirect(encodeURI(`/qa/${questionId}/${cleanSlug(question.titleQuestion || 'שאלה')}`));
 }
