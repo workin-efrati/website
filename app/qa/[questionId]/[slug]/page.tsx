@@ -14,7 +14,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 
 interface QuestionPageProps {
-   params: Promise<{ questionId: string }>;
+   params: Promise<{ questionId: string; slug: string }>;
 }
 
 export const generateStaticParams = async () => {
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: QuestionPageProps): Promise<M
    const data = await readOneShutWithPopulateService({ _id: questionId });
    if (!data) return {}
 
-   const canonicalUrl = `${baseUrl}/qa/${questionId}`;
+   const canonicalUrl = `${baseUrl}/qa/${questionId}/${cleanSlug(data.titleQuestion || 'שאלה')}`;
 
    return {
       title: data?.titleQuestion || `תשובה בנושא ${data?.tag || 'כללי'}`,
