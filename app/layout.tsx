@@ -1,12 +1,13 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { JsonLd, createOrganizationSchema, createWebSiteSchema } from "@/components/json-ld";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata } from "next";
 import { Bona_Nova, Heebo } from "next/font/google";
 
 //@ts-ignore
-import "./globals.css";
 import { baseUrl } from "@/lib/utils";
+import "./globals.css";
 
 const heebo = Heebo(
   {
@@ -93,6 +94,9 @@ export const metadata: Metadata = {
     "revisit-after": "7 days",
     "og:locale:alternate": "en_US",
   },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -105,6 +109,16 @@ export default function RootLayout({
       <body
         className={`${heebo.variable} ${bonaNova.variable} font-(--font-heebo) antialiased`}
       >
+        {/* Structured Data for Google Search */}
+        <JsonLd
+          id="website-schema"
+          data={createWebSiteSchema(baseUrl, 'למדני חוקך - הרב אפרתי')}
+        />
+        <JsonLd
+          id="organization-schema"
+          data={createOrganizationSchema(baseUrl)}
+        />
+
         <Header />
         <main className="min-h-screen">
           {children}

@@ -2,6 +2,8 @@ import HeaderPlaceholder from "@/components/header-placeholder";
 import QuickShare from "@/components/quick-share";
 import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
+import Breadcrumbs from "@/components/breadcrumbs";
+import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
 import { baseUrl, cleanSlug } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
 import { readAllShutService, readOneShutWithPopulateService } from "@/server/services/shut.service";
@@ -59,8 +61,27 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
    if (!question)
       return notFound()
 
+   // Build breadcrumb schema
+   const breadcrumbItems = [
+      { name: 'דף הבית', url: baseUrl },
+      { name: 'שאלות ותשובות', url: `${baseUrl}/qa` },
+   ];
+
+   if (question.tag) {
+      breadcrumbItems.push({
+         name: question.tag,
+         url: `${baseUrl}/category/${encodeURIComponent(question.tag)}`,
+      });
+   }
+
+   breadcrumbItems.push({
+      name: question.titleQuestion || 'שאלה',
+      url: `${baseUrl}/qa/${question._id}/${cleanSlug(question.titleQuestion || 'שאלה')}`,
+   });
+
    return (
       <>
+         {/* QA Schema */}
          <Script id={`qa-${question._id}`} type="application/ld+json" strategy="afterInteractive">
             {JSON.stringify({
                "@context": "https://schema.org",
@@ -80,6 +101,13 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                }
             })}
          </Script>
+
+         {/* Breadcrumb Schema */}
+         <JsonLd
+            id={`breadcrumb-${question._id}`}
+            data={createBreadcrumbSchema(breadcrumbItems)}
+         />
+
          <div className="relative flex flex-col h-[40vh]">
             <Image
                src={'/2.webp'}
@@ -98,6 +126,12 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                </h1>
             </div>
          </div>
+
+         {/* Breadcrumbs */}
+         <div className="max-w-6xl mx-auto px-4 pt-4">
+            <Breadcrumbs items={breadcrumbItems} />
+         </div>
+
          {/* Main Grid */}
          <div className="grid grid-cols-1 md:grid-cols-[6fr_3fr] gap-8 max-w-6xl mx-auto py-8 px-4 md:px-0">
             {/* Left side – main content */}

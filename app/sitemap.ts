@@ -7,6 +7,8 @@ import { IShut } from '@/server/models/shut.model';
 import { readAllShutServiceWithSelect } from '@/server/services/shut.service';
 import { MetadataRoute } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Base URLs

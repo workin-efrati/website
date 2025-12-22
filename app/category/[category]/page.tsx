@@ -2,6 +2,7 @@ import ResultQuestions from "@/components/result-questions";
 import ResultQuestionsSkeleton from "@/components/result-questions-skeleton";
 import Search from "@/components/search";
 import { Badge } from "@/components/ui/badge";
+import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
 import { favoriteTags } from "@/lib/favorite-tags-list";
 import { findDirectChildrenByPath, findNodeKeysByPath, findParentsByKey } from "@/lib/getTags";
 import tagsLeavesToAncestors from "@/lib/tags_leaves_to_ancestors.json";
@@ -64,9 +65,29 @@ export default async function Page({ params, searchParams }: PageProps) {
 
    const bgSrc = favoriteTags.find((t) => t.name === category)?.image || '/2.webp'
 
+   // Build breadcrumb schema
+   const breadcrumbItems = [
+      { name: 'דף הבית', url: baseUrl },
+      { name: 'שאלות ותשובות', url: `${baseUrl}/qa` },
+      ...parents.map((p) => ({
+         name: p,
+         url: `${baseUrl}/category/${encodeURIComponent(p)}`,
+      })),
+      {
+         name: category,
+         url: `${baseUrl}/category/${encodeURIComponent(category)}`,
+      },
+   ];
+
    return (
       <>
-         <header className="relative w-full h-[60vh] md:h-[64vh] lg:h-[72vh] overflow-hidden">
+         {/* Breadcrumb Structured Data */}
+         <JsonLd
+            id={`breadcrumb-${category}`}
+            data={createBreadcrumbSchema(breadcrumbItems)}
+         />
+
+         <header className="relative w-full h-[60vh] md:h-[64vh] lg:h-[72vh] overflow-hidden">{/* content */}
             <div className="absolute inset-0 -z-10">
                <Image
                   src={bgSrc}
