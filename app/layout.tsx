@@ -4,8 +4,6 @@ import { JsonLd, createOrganizationSchema, createWebSiteSchema } from "@/compone
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata } from "next";
 import { Bona_Nova, Heebo } from "next/font/google";
-
-//@ts-ignore
 import { baseUrl } from "@/lib/utils";
 import "./globals.css";
 
