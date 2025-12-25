@@ -4,7 +4,7 @@ import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
-import { baseUrl, cleanSlug } from "@/lib/utils";
+import { baseUrl, cleanSlug, convertDateToHebrew } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
 import { readAllShutService, readOneShutWithPopulateService } from "@/server/services/shut.service";
 import { Tags } from "lucide-react";
@@ -142,6 +142,9 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                   <p className="text-(--txt-color) text-lg whitespace-pre-line leading-relaxed">
                      {question.question}
                   </p>
+                  {question.date && <data value={new Date(question.date).toISOString()} className="block text-sm text-gray-500 mt-2">
+                     {convertDateToHebrew(question.date)} - {new Date(question.date).toLocaleDateString('he-IL')}
+                  </data>}
                </div>
 
                {/* Tag */}
