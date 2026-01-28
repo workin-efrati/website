@@ -10,6 +10,7 @@ export const navItems = [
   { label: "הרב נבנצאל", href: "/category/neventzal" },
   { label: "שיעורי וידאו", href: "/videos" },
   { label: "פרשת שבוע", href: "/vort" },
+  { label: "זמני היום", href: "/zmanim" },
   // { label: "ילדים ונוער", href: "/kids" },
   // { label: "דרשות ומאמרים", href: "/articles" },
   // { label: "שאל את הרב", href: "/ask" },

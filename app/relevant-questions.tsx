@@ -20,15 +20,12 @@ export default async function RelevantQuestions() {
 
     const parashaVorts = currentParasha ? findParshaByName(currentParasha) : null
 
-
-    // console.log(parashaQuestions)
-    // console.log(holidaysQuestions)
-
     return (
         <section className='pb-12 ' >
-            <div className='flex flex-col justify-center items-center h-[30vh] bg-primary  text-white px-4 mb-8 relative'>
+            <div className='flex flex-col justify-center items-center min-h-[30vh] bg-primary  text-white px-4 mb-8 relative'>
                 <p className='opacity-80 mb-4'>התאריך היום</p>
                 <h2 className='text-3xl md:text-5xl  text-center font-bold'>{currentHeDate} - {currentDate}</h2>
+
             </div>
             <div className='container mx-auto py-8 px-4'>
                 {currentParasha &&
