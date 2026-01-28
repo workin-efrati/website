@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import ViewPDF from './view-pdf';
+import QuickShare from '@/components/quick-share';
 
 export const findParshaByName = (name: string): Parsha | undefined => {
   for (const book of torahBooks as unknown as TorahBook[]) {
@@ -91,9 +92,9 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
           <p className="text-slate-600">צפייה נוחה בקובץ PDF</p>
         </header>
-
+        <QuickShare title={`מאמר על פרשת ${parsha.name}`} url={`${baseUrl}/vort/${decoded}`} />
         {parsha.articles && parsha.articles.length > 0 && (
-          <section aria-labelledby="toc-heading" className="mb-8">
+          <section aria-labelledby="toc-heading" className="my-8">
             <details className="group rounded-xl border border-slate-200 bg-white/80 shadow-sm backdrop-blur-sm">
               <summary className="cursor-pointer list-none px-6 py-4 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors rounded-xl">
                 <div>

@@ -4,10 +4,10 @@ import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
-import { baseUrl, cleanSlug, convertDateToHebrew } from "@/lib/utils";
+import { baseUrl, cleanSlug, convertDateToHebrew, isCoronaTime, isTkumaWarTime } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
 import { readAllShutService, readOneShutWithPopulateService } from "@/server/services/shut.service";
-import { Tags } from "lucide-react";
+import { Tags, TriangleAlert } from "lucide-react";
 import mongoose from "mongoose";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -63,7 +63,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
 
    // Build breadcrumb schema
    const breadcrumbItems = [
-      { name: 'דף הבית', url: baseUrl },
+      { name: 'בית', url: baseUrl },
       { name: 'שאלות ותשובות', url: `${baseUrl}/qa` },
    ];
 
@@ -155,6 +155,14 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                            {question.tag}
                         </Link>
                      </Badge></>}
+                  {question.date && isCoronaTime(question.date) && <Badge className="px-2 py-1 text-black md:px-3 md:text-lg bg-orange-200">
+                     <TriangleAlert size={24} strokeWidth={1.8} className="text-black" />
+                     תקופת הקורונה
+                  </Badge>}
+                  {question.date && isTkumaWarTime(question.date) && <Badge className="px-2 py-1 text-black md:px-3 md:text-lg bg-orange-200">
+                     <TriangleAlert size={24} strokeWidth={1.8} className="text-black" />
+                     תקופת מלחמת התקומה
+                  </Badge>}
                </div>
 
                {/* Answer */}
