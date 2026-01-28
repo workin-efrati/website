@@ -7,6 +7,7 @@ import { useState } from "react";
 export const navItems = [
   { label: 'בית', href: '/' },
   { label: "שאלות ותשובות", href: "/qa" },
+  { label: "הרב נבנצאל", href: "/category/neventzal" },
   { label: "שיעורי וידאו", href: "/videos" },
   { label: "פרשת שבוע", href: "/vort" },
   // { label: "ילדים ונוער", href: "/kids" },
