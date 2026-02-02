@@ -173,3 +173,20 @@ function toHebrew(num: number): string {
 }
 
 
+export const coronaTime = {
+  start: new Date('2020-02-22'),
+  end: new Date('2022-03-01'),
+}
+
+export const isCoronaTime = (date: Date) => {
+  return date >= coronaTime.start && date <= coronaTime.end;
+}
+
+export const TkumaWarTime = {
+  start: new Date('2023-10-07'),
+  end: new Date('2025-04-07'),
+}
+
+export const isTkumaWarTime = (date: Date) => {
+  return date >= TkumaWarTime.start && date <= TkumaWarTime.end;
+} 
