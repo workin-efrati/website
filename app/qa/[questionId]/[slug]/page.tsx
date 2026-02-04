@@ -1,12 +1,12 @@
+import Breadcrumbs from "@/components/breadcrumbs";
 import HeaderPlaceholder from "@/components/header-placeholder";
+import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
 import QuickShare from "@/components/quick-share";
 import RelatedQuestions from "@/components/related-question";
 import { Badge } from "@/components/ui/badge";
-import Breadcrumbs from "@/components/breadcrumbs";
-import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
 import { baseUrl, cleanSlug, convertDateToHebrew, isCoronaTime, isTkumaWarTime } from "@/lib/utils";
 import { connectToMongodb } from "@/server/connect";
-import { readAllShutService, readOneShutWithPopulateService } from "@/server/services/shut.service";
+import { readOneShutWithPopulateService } from "@/server/services/shut.service";
 import { Tags, TriangleAlert } from "lucide-react";
 import mongoose from "mongoose";
 import { Metadata } from "next";
@@ -20,14 +20,18 @@ interface QuestionPageProps {
 }
 
 export const generateStaticParams = async () => {
-   await connectToMongodb();
-   const res = await readAllShutService();
-   // console.log(res.length)
-   if (process.env.NEXT_PUBLIC_DEV === 'true')
-      return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString(), slug: cleanSlug(question.titleQuestion || 'שאלה') }));
-   else
-      return res.map((question: any) => ({ questionId: question._id.toString(), slug: cleanSlug(question.titleQuestion || 'שאלה') }));
+   // await connectToMongodb();
+   // const res = await readAllShutService();
+   // // console.log(res.length)
+   // if (process.env.NEXT_PUBLIC_DEV === 'true')
+   //    return res.slice(0, 10).map((question: any) => ({ questionId: question._id.toString(), slug: cleanSlug(question.titleQuestion || 'שאלה') }));
+   // else
+   //    return res.map((question: any) => ({ questionId: question._id.toString(), slug: cleanSlug(question.titleQuestion || 'שאלה') }));
+   return []
 };
+
+export const revalidate = 60 * 60 * 24 * 7 * 12
+
 
 export async function generateMetadata({ params }: QuestionPageProps): Promise<Metadata> {
    await connectToMongodb();
