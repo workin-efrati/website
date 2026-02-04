@@ -33,7 +33,7 @@ export default function AboutPage() {
          <div className="max-w-5xl mx-auto px-4 md:px-6 relative z-20 -mt-20">
 
             {/* Intro Card - Website Purpose */}
-            <Card className="bg-card/95 backdrop-blur-md shadow-xl border-t-4 border-t-primary mb-12">
+            <Card className="bg-card/95 backdrop-blur-md shadow-xl mb-12">
                <CardContent className="p-8 md:p-12 text-right">
                   <h2 className="text-3xl font-bold text-primary mb-6 flex items-center gap-3">
                      <span className="text-4xl">📖</span>
