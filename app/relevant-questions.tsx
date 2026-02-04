@@ -1,36 +1,52 @@
+import { unstable_cache } from 'next/cache'
 import QuestionCard from '@/components/question-card'
+import ZmanimWidget from '@/components/zmanim-widget'
 import { readThreeShutsByHolidayService } from '@/server/services/shut.service'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { getCurrentDateInfo } from '../lib/getHolidaysAndParashot'
 import { findParshaByName } from './vort/[name]/page'
 
-export const revalidate = 60 * 60
+// Cache the data fetching functions
+const getCachedDateInfo = unstable_cache(
+    async () => getCurrentDateInfo(),
+    ['date-info'],
+    {
+        revalidate: 60 * 60, // 1 hour
+        tags: ['date-info']
+    }
+)
+
+const getCachedHolidayQuestions = unstable_cache(
+    async (holiday: string) => readThreeShutsByHolidayService(holiday),
+    ['holiday-questions'],
+    {
+        revalidate: 60 * 60,
+        tags: ['holiday-questions']
+    }
+)
 
 export default async function RelevantQuestions() {
+    const { currentParasha, upcomingHoliday, currentHeDate, currentDate } =
+        await getCachedDateInfo()
 
-    const { currentParasha, upcomingHoliday, currentHeDate, currentDate } = await getCurrentDateInfo()
-
-    const holidaysQuestions = upcomingHoliday ? await readThreeShutsByHolidayService(upcomingHoliday) : null
-
-    // const [parashaQuestions, holidaysQuestions] = await Promise.all([
-    //     currentParasha ? readThreeShutsByParashaService(currentParasha) : null,
-    //     upcomingHoliday ? readThreeShutsByHolidayService(upcomingHoliday) : null
-    // ])
+    const holidaysQuestions = upcomingHoliday
+        ? await getCachedHolidayQuestions(upcomingHoliday)
+        : null
 
     const parashaVorts = currentParasha ? findParshaByName(currentParasha) : null
 
     return (
-        <section className='pb-12 ' >
-            <div className='flex flex-col justify-center items-center min-h-[30vh] bg-primary  text-white px-4 mb-8 relative'>
+        <section className='pb-12 mt-4' >
+            <div className='flex flex-col py-12 justify-center items-center min-h-[30vh] bg-primary  text-white px-4 mb-8 relative'>
                 <p className='opacity-80 mb-4'>התאריך היום</p>
-                <h2 className='text-3xl md:text-5xl  text-center font-bold'>{currentHeDate} - {currentDate}</h2>
-
+                <h2 className='text-3xl md:text-5xl mb-8 text-center font-bold'>{currentHeDate} - {currentDate}</h2>
+                <ZmanimWidget />
             </div>
             <div className='container mx-auto py-8 px-4'>
                 {currentParasha &&
                     <article className='flex flex-col items-center justify-center my-8'>
-                        <p> פרשת השבוע</p>
+                        <p className='text-sm opacity-80 mb-2'> פרשת השבוע</p>
                         <h2 className='text-3xl md:text-6xl text-center font-bold mb-8 text-primary'>
                             {currentParasha}
                         </h2>
@@ -84,8 +100,9 @@ export default async function RelevantQuestions() {
             {upcomingHoliday &&
                 <article className='bg-slate-50 py-12'>
                     <div className="container mx-auto px-4">
-                        <h3 className='text-3xl md:text-4xl text-center font-bold mb-8 text-primary'>{upcomingHoliday}</h3>
-                        <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+                        <p className='text-center text-sm opacity-80 mb-2'>החג הקרוב</p>
+                        <h3 className='text-3xl md:text-4xl text-center font-bold  text-primary'>{upcomingHoliday}</h3>
+                        {holidaysQuestions?.length && holidaysQuestions.length > 0 ? <div className='grid grid-cols-1 mt-8 md:grid-cols-3 gap-4'>
                             {holidaysQuestions?.map((shut) => (
                                 <QuestionCard
                                     key={shut._id}
@@ -98,7 +115,7 @@ export default async function RelevantQuestions() {
                                     title={shut.titleQuestion}
                                 />
                             ))}
-                        </div>
+                        </div> : ''}
                     </div>
                 </article>
             }

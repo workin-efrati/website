@@ -1,20 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
-import { Clock, MapPin, Calendar, Sunrise, Sunset, Sun, Moon, Navigation, RefreshCw } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import {
-   Select,
-   SelectContent,
-   SelectGroup,
-   SelectItem,
-   SelectLabel,
-   SelectTrigger,
-   SelectValue,
-} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Calendar, Clock, MapPin, Moon, Navigation, RefreshCw, Sun, Sunrise, Sunset } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface Zmanim {
    alotHaShachar: string;
@@ -53,14 +45,14 @@ const CITIES: Record<string, City[]> = {
       { id: "telaviv", name: "תל אביב", nameEn: "Tel Aviv", latitude: 32.0853, longitude: 34.7818, country: "israel" },
       { id: "haifa", name: "חיפה", nameEn: "Haifa", latitude: 32.7940, longitude: 34.9896, country: "israel" },
       { id: "beersheva", name: "באר שבע", nameEn: "Be'er Sheva", latitude: 31.2518, longitude: 34.7913, country: "israel" },
-      { id: "netanya", name: "נתניה", nameEn: "Netanya", latitude: 32.3215, longitude: 34.8532, country: "israel" },
+      // { id: "netanya", name: "נתניה", nameEn: "Netanya", latitude: 32.3215, longitude: 34.8532, country: "israel" },
       { id: "bneibraq", name: "בני ברק", nameEn: "Bnei Brak", latitude: 32.0809, longitude: 34.8338, country: "israel" },
-      { id: "ramatgan", name: "רמת גן", nameEn: "Ramat Gan", latitude: 32.0719, longitude: 34.8237, country: "israel" },
-      { id: "petahtikva", name: "פתח תקווה", nameEn: "Petah Tikva", latitude: 32.0871, longitude: 34.8880, country: "israel" },
+      // { id: "ramatgan", name: "רמת גן", nameEn: "Ramat Gan", latitude: 32.0719, longitude: 34.8237, country: "israel" },
+      // { id: "petahtikva", name: "פתח תקווה", nameEn: "Petah Tikva", latitude: 32.0871, longitude: 34.8880, country: "israel" },
       { id: "ashdod", name: "אשדוד", nameEn: "Ashdod", latitude: 31.8044, longitude: 34.6553, country: "israel" },
-      { id: "ashkelon", name: "אשקלון", nameEn: "Ashkelon", latitude: 31.6688, longitude: 34.5742, country: "israel" },
-      { id: "rehovot", name: "רחובות", nameEn: "Rehovot", latitude: 31.8914, longitude: 34.8095, country: "israel" },
-      { id: "modiin", name: "מודיעין", nameEn: "Modi'in", latitude: 31.8969, longitude: 35.0098, country: "israel" },
+      // { id: "ashkelon", name: "אשקלון", nameEn: "Ashkelon", latitude: 31.6688, longitude: 34.5742, country: "israel" },
+      // { id: "rehovot", name: "רחובות", nameEn: "Rehovot", latitude: 31.8914, longitude: 34.8095, country: "israel" },
+      // { id: "modiin", name: "מודיעין", nameEn: "Modi'in", latitude: 31.8969, longitude: 35.0098, country: "israel" },
       { id: "eilat", name: "אילת", nameEn: "Eilat", latitude: 29.5577, longitude: 34.9519, country: "israel" },
       { id: "tiberias", name: "טבריה", nameEn: "Tiberias", latitude: 32.7940, longitude: 35.5308, country: "israel" },
       { id: "safed", name: "צפת", nameEn: "Safed", latitude: 32.9658, longitude: 35.4983, country: "israel" },
@@ -305,8 +297,8 @@ export default function ZmanimDisplayWithCitySelect() {
             <div className="flex items-center justify-between">
                <div className="flex-1">
                   <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                     <Clock className="h-6 w-6" />
-                     זמני היום
+                     <Clock className="h-6 w-6" aria-hidden="true" />
+                     <h1>זמני היום</h1>
                   </CardTitle>
                   <CardDescription className="mt-2 text-base flex items-center gap-4 flex-wrap">
                      <span className="flex items-center gap-1">
@@ -340,7 +332,7 @@ export default function ZmanimDisplayWithCitySelect() {
             {/* City Selector */}
             <div className="mt-4 space-y-2">
                <Select value={selectedCity} onValueChange={handleCityChange}>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full" aria-label="בחר עיר להצגת זמנים">
                      <SelectValue placeholder="בחר עיר מהרשימה" />
                   </SelectTrigger>
                   <SelectContent>
@@ -366,11 +358,12 @@ export default function ZmanimDisplayWithCitySelect() {
                      onClick={getUserLocation}
                      disabled={gettingLocation}
                      className="gap-2 flex-1"
+                     aria-label="זהה מיקום באופן אוטומטי"
                   >
                      {gettingLocation ? (
-                        <RefreshCw className="h-4 w-4 animate-spin" />
+                        <RefreshCw className="h-4 w-4 animate-spin" aria-hidden="true" />
                      ) : (
-                        <Navigation className="h-4 w-4" />
+                        <Navigation className="h-4 w-4" aria-hidden="true" />
                      )}
                      זהה מיקום אוטומטי
                   </Button>
@@ -379,8 +372,9 @@ export default function ZmanimDisplayWithCitySelect() {
                      size="sm"
                      onClick={fetchZmanim}
                      className="gap-2"
+                     aria-label="רענן זמני היום"
                   >
-                     <RefreshCw className="h-4 w-4" />
+                     <RefreshCw className="h-4 w-4" aria-hidden="true" />
                      רענן
                   </Button>
                </div>

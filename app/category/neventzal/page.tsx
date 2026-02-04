@@ -17,7 +17,7 @@ interface PageProps {
 export const generateMetadata = async () => {
    return {
       title: "הרב נבנצאל",
-      description: `שאלות ותשובות של הרב נבנצאל`,
+      description: `שאלות ותשובות ממשנתו של הרב נבנצאל`,
       alternates: {
          canonical: `${baseUrl}/category/neventzal`,
       },
