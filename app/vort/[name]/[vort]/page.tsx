@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import ViewPDF from '../view-pdf';
+import QuickShare from '@/components/quick-share';
 
 export const findParshaByName = (name: string): Parsha | undefined => {
     for (const book of torahBooks as unknown as TorahBook[]) {
@@ -83,10 +84,16 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
                             { href: `/vort/${encodeURIComponent(decoded)}`, label: `פרשת ${parsha.name}` },
                         ]
                     } current={article?.title} />
+
+
+                    <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
                     <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">{article?.title}</h1>
+                    <p className="text-slate-600">צפייה נוחה בקובץ PDF</p>
+
                 </header>
+                <QuickShare title={`מאמר על פרשת ${parsha.name} - ${article?.title}`} url={`${baseUrl}/vort/${decoded}/${decodedVort}`} />
             </main>
-            <section aria-label="PDF Viewer">
+            <section aria-label="PDF Viewer" className="my-8">
                 <ViewPDF start={article?.start} end={article?.end} />
             </section>
         </>
