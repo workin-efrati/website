@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import ViewPDF from './view-pdf';
 import QuickShare from '@/components/quick-share';
+import Link from 'next/link';
 
 export const findParshaByName = (name: string): Parsha | undefined => {
   for (const book of torahBooks as unknown as TorahBook[]) {
@@ -113,17 +114,23 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
                       key={index}
                       className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 hover:shadow-sm hover:border-slate-300 transition"
                     >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span className="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-sm font-bold">
-                          {index + 1}
+                      <Link href={`/vort/${parsha.name}/${article.title}`}
+                        className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 hover:shadow-sm hover:border-slate-300 transition"
+                      >
+
+
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-sm font-bold">
+                            {index + 1}
+                          </span>
+                          <span className="font-medium text-slate-800 truncate" title={article.title}>
+                            {article.title}
+                          </span>
+                        </div>
+                        <span className="shrink-0 text-xs md:text-sm text-slate-600 bg-slate-100 px-2 py-1 rounded-full">
+                          עמודים {article.start}-{article.end}
                         </span>
-                        <span className="font-medium text-slate-800 truncate" title={article.title}>
-                          {article.title}
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-xs md:text-sm text-slate-600 bg-slate-100 px-2 py-1 rounded-full">
-                        עמודים {article.start}-{article.end}
-                      </span>
+                      </Link>
                     </li>
                   ))}
                 </ul>
