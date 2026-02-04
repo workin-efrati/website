@@ -30,7 +30,7 @@ export const generateStaticParams = async () => {
    return []
 };
 
-export const revalidate = 60 * 60 * 24 * 7 * 12
+export const revalidate = 7257600
 
 
 export async function generateMetadata({ params }: QuestionPageProps): Promise<Metadata> {
