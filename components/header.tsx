@@ -11,7 +11,7 @@ export const navItems = [
   { label: "פרשת שבוע", href: "/vort" },
   { label: "זמני היום", href: "/zmanim" },
   { label: "אודות", href: "/about" },
-  { label: "הרב נבנצאל", href: "/category/neventzal" },
+  { label: "הרב נבנצל", href: "/category/neventzal" },
   // { label: "ילדים ונוער", href: "/kids" },
   // { label: "דרשות ומאמרים", href: "/articles" },
   // { label: "שאל את הרב", href: "/ask" },
