@@ -10,7 +10,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-    title: 'מאמרים על פרשיות השבוע | למדני חוקך',
+    title: 'מאמרים על פרשיות השבוע | למדני חוקיך',
     description: 'מאמרים  על פרשיות השבוע לפי חומש ופרשה. צפייה נוחה בקבצי PDF. בחר חומש כדי לפתוח את רשימת הפרשות.',
     alternates: { canonical: '/vort' },
     openGraph: {

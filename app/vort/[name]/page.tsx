@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const articleTitles = (parsha.articles || []).slice(0, 6).map(a => a.title).join(', ');
 
   return {
-    title: `פרשת ${parsha.name} – מאמרים | למדני חוקך`,
+    title: `פרשת ${parsha.name} – מאמרים | למדני חוקיך`,
     description: articleTitles ? `מאמרים נבחרים על פרשת ${parsha.name}: ${articleTitles}. צפייה נוחה ב-PDF.` : `מאמרים על פרשת ${parsha.name}. צפייה נוחה ב-PDF.`,
     alternates: { canonical: canonicalUrl },
     openGraph: {
