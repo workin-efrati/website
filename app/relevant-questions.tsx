@@ -50,20 +50,6 @@ export default async function RelevantQuestions() {
                         <h2 className='text-3xl md:text-6xl text-center font-bold mb-8 text-primary'>
                             {currentParasha}
                         </h2>
-                        {/* <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-                                {parashaQuestions?.map((shut) => (
-                                    <QuestionCard
-                                        key={shut._id}
-                                        question={shut.question}
-                                        answer={shut.answer}
-                                        isAnswer={true}
-                                        id={shut._id}
-                                        rankTitle='h4'
-                                        tag={shut.tag}
-                                        title={shut.titleQuestion}
-                                    />
-                                ))}
-                            </div> */}
                         {parashaVorts &&
                             <>
                                 <h3 className='text-3xl text-center font-bold mb-8 flex items-center gap-4 justify-center'>מאמרים לפרשת השבוע

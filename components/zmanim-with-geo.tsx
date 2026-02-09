@@ -43,84 +43,46 @@ const CITIES: Record<string, City[]> = {
    israel: [
       { id: "jerusalem", name: "ירושלים", nameEn: "Jerusalem", latitude: 31.7683, longitude: 35.2137, country: "israel" },
       { id: "telaviv", name: "תל אביב", nameEn: "Tel Aviv", latitude: 32.0853, longitude: 34.7818, country: "israel" },
+      { id: "bneibraq", name: "בני ברק", nameEn: "Bnei Brak", latitude: 32.0809, longitude: 34.8338, country: "israel" },
       { id: "haifa", name: "חיפה", nameEn: "Haifa", latitude: 32.7940, longitude: 34.9896, country: "israel" },
       { id: "beersheva", name: "באר שבע", nameEn: "Be'er Sheva", latitude: 31.2518, longitude: 34.7913, country: "israel" },
-      // { id: "netanya", name: "נתניה", nameEn: "Netanya", latitude: 32.3215, longitude: 34.8532, country: "israel" },
-      { id: "bneibraq", name: "בני ברק", nameEn: "Bnei Brak", latitude: 32.0809, longitude: 34.8338, country: "israel" },
-      // { id: "ramatgan", name: "רמת גן", nameEn: "Ramat Gan", latitude: 32.0719, longitude: 34.8237, country: "israel" },
-      // { id: "petahtikva", name: "פתח תקווה", nameEn: "Petah Tikva", latitude: 32.0871, longitude: 34.8880, country: "israel" },
-      { id: "ashdod", name: "אשדוד", nameEn: "Ashdod", latitude: 31.8044, longitude: 34.6553, country: "israel" },
-      // { id: "ashkelon", name: "אשקלון", nameEn: "Ashkelon", latitude: 31.6688, longitude: 34.5742, country: "israel" },
-      // { id: "rehovot", name: "רחובות", nameEn: "Rehovot", latitude: 31.8914, longitude: 34.8095, country: "israel" },
-      // { id: "modiin", name: "מודיעין", nameEn: "Modi'in", latitude: 31.8969, longitude: 35.0098, country: "israel" },
-      { id: "eilat", name: "אילת", nameEn: "Eilat", latitude: 29.5577, longitude: 34.9519, country: "israel" },
-      { id: "tiberias", name: "טבריה", nameEn: "Tiberias", latitude: 32.7940, longitude: 35.5308, country: "israel" },
-      { id: "safed", name: "צפת", nameEn: "Safed", latitude: 32.9658, longitude: 35.4983, country: "israel" },
    ],
    usa: [
       { id: "newyork", name: "ניו יורק", nameEn: "New York", latitude: 40.7128, longitude: -74.0060, country: "usa" },
-      { id: "losangeles", name: "לוס אנג'לס", nameEn: "Los Angeles", latitude: 34.0522, longitude: -118.2437, country: "usa" },
       { id: "miami", name: "מיאמי", nameEn: "Miami", latitude: 25.7617, longitude: -80.1918, country: "usa" },
-      { id: "chicago", name: "שיקגו", nameEn: "Chicago", latitude: 41.8781, longitude: -87.6298, country: "usa" },
-      { id: "philadelphia", name: "פילדלפיה", nameEn: "Philadelphia", latitude: 39.9526, longitude: -75.1652, country: "usa" },
-      { id: "baltimore", name: "בולטימור", nameEn: "Baltimore", latitude: 39.2904, longitude: -76.6122, country: "usa" },
-      { id: "boston", name: "בוסטון", nameEn: "Boston", latitude: 42.3601, longitude: -71.0589, country: "usa" },
-      { id: "detroit", name: "דטרויט", nameEn: "Detroit", latitude: 42.3314, longitude: -83.0458, country: "usa" },
-      { id: "cleveland", name: "קליבלנד", nameEn: "Cleveland", latitude: 41.4993, longitude: -81.6944, country: "usa" },
-      { id: "lasvegas", name: "לאס וגאס", nameEn: "Las Vegas", latitude: 36.1699, longitude: -115.1398, country: "usa" },
+      { id: "losangeles", name: "לוס אנג'לס", nameEn: "Los Angeles", latitude: 34.0522, longitude: -118.2437, country: "usa" },
    ],
    uk: [
       { id: "london", name: "לונדון", nameEn: "London", latitude: 51.5074, longitude: -0.1278, country: "uk" },
       { id: "manchester", name: "מנצ'סטר", nameEn: "Manchester", latitude: 53.4808, longitude: -2.2426, country: "uk" },
-      { id: "gateshead", name: "גייטסהד", nameEn: "Gateshead", latitude: 54.9526, longitude: -1.6033, country: "uk" },
    ],
    france: [
       { id: "paris", name: "פריז", nameEn: "Paris", latitude: 48.8566, longitude: 2.3522, country: "france" },
       { id: "marseille", name: "מרסיי", nameEn: "Marseille", latitude: 43.2965, longitude: 5.3698, country: "france" },
-      { id: "lyon", name: "ליון", nameEn: "Lyon", latitude: 45.7640, longitude: 4.8357, country: "france" },
-      { id: "strasbourg", name: "שטרסבורג", nameEn: "Strasbourg", latitude: 48.5734, longitude: 7.7521, country: "france" },
    ],
    belgium: [
       { id: "antwerp", name: "אנטוורפן", nameEn: "Antwerp", latitude: 51.2194, longitude: 4.4025, country: "belgium" },
-      { id: "brussels", name: "בריסל", nameEn: "Brussels", latitude: 50.8503, longitude: 4.3517, country: "belgium" },
    ],
    canada: [
       { id: "toronto", name: "טורונטו", nameEn: "Toronto", latitude: 43.6532, longitude: -79.3832, country: "canada" },
       { id: "montreal", name: "מונטריאול", nameEn: "Montreal", latitude: 45.5017, longitude: -73.5673, country: "canada" },
-      { id: "vancouver", name: "ונקובר", nameEn: "Vancouver", latitude: 49.2827, longitude: -123.1207, country: "canada" },
    ],
-   australia: [
-      { id: "sydney", name: "סידני", nameEn: "Sydney", latitude: -33.8688, longitude: 151.2093, country: "australia" },
-      { id: "melbourne", name: "מלבורן", nameEn: "Melbourne", latitude: -37.8136, longitude: 144.9631, country: "australia" },
-   ],
-   argentina: [
-      { id: "buenosaires", name: "בואנוס איירס", nameEn: "Buenos Aires", latitude: -34.6037, longitude: -58.3816, country: "argentina" },
-   ],
-   brazil: [
-      { id: "saopaulo", name: "סאו פאולו", nameEn: "São Paulo", latitude: -23.5505, longitude: -46.6333, country: "brazil" },
-   ],
-   southafrica: [
-      { id: "johannesburg", name: "יוהנסבורג", nameEn: "Johannesburg", latitude: -26.2041, longitude: 28.0473, country: "southafrica" },
-      { id: "capetown", name: "קייפטאון", nameEn: "Cape Town", latitude: -33.9249, longitude: 18.4241, country: "southafrica" },
-   ],
-   switzerland: [
-      { id: "zurich", name: "ציריך", nameEn: "Zurich", latitude: 47.3769, longitude: 8.5417, country: "switzerland" },
-      { id: "geneva", name: "ז'נבה", nameEn: "Geneva", latitude: 46.2044, longitude: 6.1432, country: "switzerland" },
+   others: [
+      { id: "melbourne", name: "מלבורן", nameEn: "Melbourne", latitude: -37.8136, longitude: 144.9631, country: "others" },
+      { id: "buenosaires", name: "בואנוס איירס", nameEn: "Buenos Aires", latitude: -34.6037, longitude: -58.3816, country: "others" },
+      { id: "johannesburg", name: "יוהנסבורג", nameEn: "Johannesburg", latitude: -26.2041, longitude: 28.0473, country: "others" },
+      { id: "zurich", name: "ציריך", nameEn: "Zurich", latitude: 47.3769, longitude: 8.5417, country: "others" },
    ],
 };
 
 const COUNTRY_NAMES: Record<string, string> = {
    israel: "ישראל",
-   usa: "ארצות הברית",
+   usa: "ארה\"ב",
    uk: "בריטניה",
    france: "צרפת",
    belgium: "בלגיה",
    canada: "קנדה",
-   australia: "אוסטרליה",
-   argentina: "ארגנטינה",
-   brazil: "ברזיל",
-   southafrica: "דרום אפריקה",
-   switzerland: "שוויץ",
+   others: "מקומות נוספים",
 };
 
 export default function ZmanimDisplayWithCitySelect() {
@@ -292,34 +254,30 @@ export default function ZmanimDisplayWithCitySelect() {
    }
 
    return (
-      <Card className="w-full pt-0 max-w-2xl mx-auto shadow-lg" dir="rtl">
-         <CardHeader className="bg-gradient-to-r py-6 from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950">
-            <div className="flex items-center justify-between">
-               <div className="flex-1">
-                  <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                     <Clock className="h-6 w-6" aria-hidden="true" />
-                     <h1>זמני היום</h1>
+      <Card className="w-full rounded-2xl pt-0 max-w-2xl mx-auto shadow-xl border-none overflow-hidden" dir="rtl">
+         <CardHeader className="bg-linear-to-tr rounded-2xl from-primary to-primary/80 text-white p-2">
+            {/* <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+               <div className="flex-1 text-center md:text-right w-full">
+                  <CardTitle className="text-3xl font-bold flex items-center justify-center md:justify-start gap-3 font-(--font-bona)">
+                     <Clock className="h-8 w-8 text-white/90" aria-hidden="true" />
+                     <h2>זמני היום</h2>
                   </CardTitle>
-                  <CardDescription className="mt-2 text-base flex items-center gap-4 flex-wrap">
-                     <span className="flex items-center gap-1">
+                  <CardDescription className="mt-3 text-white/80 text-lg flex items-center justify-center md:justify-start gap-4 flex-wrap">
+                     <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full backdrop-blur-sm">
                         <MapPin className="h-4 w-4" />
                         {location.name}
                      </span>
-                     <span className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        {hebrewDate}
-                     </span>
                   </CardDescription>
                </div>
-               <div className="text-left">
-                  <div className="text-3xl font-bold tabular-nums">
+               <div className="text-center md:text-left bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20 w-fit">
+                  <div className="text-4xl font-bold tabular-nums tracking-tight">
                      {currentTime.toLocaleTimeString("he-IL", {
                         hour: "2-digit",
                         minute: "2-digit",
                         second: "2-digit",
                      })}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-white/70 mt-1 font-medium">
                      {currentTime.toLocaleDateString("he-IL", {
                         weekday: "long",
                         day: "numeric",
@@ -327,92 +285,97 @@ export default function ZmanimDisplayWithCitySelect() {
                      })}
                   </div>
                </div>
-            </div>
+            </div> */}
+            <h2 className="text-center text-2xl font-bold mt-2">בחר מיקום</h2>
 
             {/* City Selector */}
-            <div className="mt-4 space-y-2">
-               <Select value={selectedCity} onValueChange={handleCityChange}>
-                  <SelectTrigger className="w-full" aria-label="בחר עיר להצגת זמנים">
-                     <SelectValue placeholder="בחר עיר מהרשימה" />
-                  </SelectTrigger>
-                  <SelectContent>
-                     {Object.entries(CITIES).map(([countryCode, cities]) => (
-                        <SelectGroup key={countryCode}>
-                           <SelectLabel className="font-bold text-primary">
-                              {COUNTRY_NAMES[countryCode]}
-                           </SelectLabel>
-                           {cities.map((city) => (
-                              <SelectItem key={city.id} value={city.id}>
-                                 {city.name} ({city.nameEn})
-                              </SelectItem>
+            <div className="mt-2 space-y-3 bg-white/5 p-4 rounded-xl border border-white/10">
+               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <div className="flex-1">
+                     <Select value={selectedCity} onValueChange={handleCityChange}>
+                        <SelectTrigger className="w-full bg-white text-primary border-none focus:ring-2 focus:ring-white/50 h-11 text-base font-medium" aria-label="בחר עיר להצגת זמנים">
+                           <SelectValue placeholder="בחר עיר מהרשימה" />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-[300px]">
+                           {Object.entries(CITIES).map(([countryCode, cities]) => (
+                              <SelectGroup key={countryCode}>
+                                 <SelectLabel className="font-bold text-primary border-b pb-1 mb-1">
+                                    {COUNTRY_NAMES[countryCode]}
+                                 </SelectLabel>
+                                 {cities.map((city) => (
+                                    <SelectItem key={city.id} value={city.id} className="cursor-pointer">
+                                       {city.name} ({city.nameEn})
+                                    </SelectItem>
+                                 ))}
+                              </SelectGroup>
                            ))}
-                        </SelectGroup>
-                     ))}
-                  </SelectContent>
-               </Select>
-
-               <div className="flex gap-2">
-                  <Button
-                     variant="outline"
-                     size="sm"
-                     onClick={getUserLocation}
-                     disabled={gettingLocation}
-                     className="gap-2 flex-1"
-                     aria-label="זהה מיקום באופן אוטומטי"
-                  >
-                     {gettingLocation ? (
-                        <RefreshCw className="h-4 w-4 animate-spin" aria-hidden="true" />
-                     ) : (
-                        <Navigation className="h-4 w-4" aria-hidden="true" />
-                     )}
-                     זהה מיקום אוטומטי
-                  </Button>
-                  <Button
-                     variant="outline"
-                     size="sm"
-                     onClick={fetchZmanim}
-                     className="gap-2"
-                     aria-label="רענן זמני היום"
-                  >
-                     <RefreshCw className="h-4 w-4" aria-hidden="true" />
-                     רענן
-                  </Button>
+                        </SelectContent>
+                     </Select>
+                  </div>
+                  <div className="flex gap-2">
+                     <Button
+                        variant="secondary"
+                        size="lg"
+                        onClick={getUserLocation}
+                        disabled={gettingLocation}
+                        className="gap-2 bg-white text-primary hover:bg-white/90 border-none h-11 px-6 shadow-sm"
+                        aria-label="זהה מיקום באופן אוטומטי"
+                     >
+                        {gettingLocation ? (
+                           <RefreshCw className="h-4 w-4 animate-spin" aria-hidden="true" />
+                        ) : (
+                           <Navigation className="h-4 w-4" aria-hidden="true" />
+                        )}
+                        <span className="hidden sm:inline">מיקום שלי</span>
+                     </Button>
+                     <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={fetchZmanim}
+                        className="h-11 w-11 bg-white/20 hover:bg-white/30 text-white border-none rounded-xl"
+                        aria-label="רענן זמני היום"
+                     >
+                        <RefreshCw className="h-5 w-5" aria-hidden="true" />
+                     </Button>
+                  </div>
                </div>
             </div>
          </CardHeader>
 
-         <CardContent className="pt-6">
+         <CardContent className="pt-8 pb-8">
             {error && (
-               <Alert className="mb-4 border-red-200 bg-red-50 dark:bg-red-950">
-                  <AlertDescription className="text-red-800 dark:text-red-200">
-                     {error}
+               <Alert className="mb-6 border-destructive/20 bg-destructive/10">
+                  <AlertDescription className="text-destructive font-medium flex items-center gap-2">
+                     <span>⚠️</span> {error}
                   </AlertDescription>
                </Alert>
             )}
 
-            <div className="grid gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {zmanimItems.map((item, index) => {
                   const Icon = item.icon;
                   return (
                      <div
                         key={index}
-                        className={`flex items-center justify-between p-3 rounded-lg transition-all hover:scale-[1.02] ${item.highlight
-                           ? "bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 shadow-sm"
-                           : "bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        className={`flex items-center justify-between p-4 rounded-xl transition-all duration-300 ${item.highlight
+                           ? "bg-primary/5 border-2 border-primary/10 shadow-sm"
+                           : "bg-gray-50/50 border border-gray-100 hover:border-primary/20 hover:bg-white hover:shadow-md"
                            }`}
                      >
-                        <div className="flex items-center gap-3 flex-1">
-                           <Icon className={`h-5 w-5 flex-shrink-0 ${item.highlight ? "text-blue-600 dark:text-blue-400" : "text-gray-600 dark:text-gray-400"}`} />
-                           <div>
-                              <div className={`font-medium ${item.highlight ? "text-blue-900 dark:text-blue-100" : ""}`}>
+                        <div className="flex items-center gap-4 flex-1">
+                           <div className={`p-2.5 rounded-xl ${item.highlight ? "bg-primary text-white" : "bg-white text-primary border border-primary/10 shadow-sm"}`}>
+                              <Icon className="h-5 w-5 flex-shrink-0" />
+                           </div>
+                           <div className="min-w-0">
+                              <div className={`font-bold text-base truncate ${item.highlight ? "text-primary" : "text-gray-800"}`}>
                                  {item.label}
                               </div>
-                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                              <div className="text-xs text-gray-500 font-medium">
                                  {item.desc}
                               </div>
                            </div>
                         </div>
-                        <span className={`text-lg font-bold tabular-nums ${item.highlight ? "text-blue-700 dark:text-blue-300" : ""}`}>
+                        <span className={`text-xl font-extrabold tabular-nums tracking-tight ${item.highlight ? "text-primary" : "text-gray-900"}`}>
                            {item.value}
                         </span>
                      </div>
@@ -420,9 +383,10 @@ export default function ZmanimDisplayWithCitySelect() {
                })}
             </div>
 
-            <div className="mt-6 p-4 bg-amber-50 dark:bg-amber-950 rounded-lg border border-amber-200 dark:border-amber-800">
-               <p className="text-sm text-amber-900 dark:text-amber-100 text-center">
-                  ⚠️ הזמנים מחושבים לפי {location.name}. לדיוק מקסימלי, בחר את העיר המדויקת או השתמש בזיהוי מיקום אוטומטי.
+            <div className="mt-8 p-4 bg-amber-50/50 rounded-2xl border border-amber-200/50 flex items-start gap-3">
+               <span className="text-xl">ℹ️</span>
+               <p className="text-sm text-amber-900/80 leading-relaxed font-medium">
+                  הזמנים מחושבים לפי <span className="font-bold underline decoration-amber-300">{location.name}</span>. לדיוק הלכתי מקסימלי, מומלץ לבחור את העיר המדויקת או להשתמש בלחצן זיהוי המיקום.
                </p>
             </div>
          </CardContent>
