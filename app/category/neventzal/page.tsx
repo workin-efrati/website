@@ -16,8 +16,8 @@ interface PageProps {
 
 export const generateMetadata = async () => {
    return {
-      title: "הרב נבנצאל",
-      description: `שאלות ותשובות ממשנתו של הרב נבנצאל`,
+      title: "הרב נבנצל",
+      description: `שאלות ותשובות ממשנתו של הרב נבנצל`,
       alternates: {
          canonical: `${baseUrl}/category/neventzal`,
       },
@@ -30,7 +30,7 @@ export default async function Page({ params, searchParams }: PageProps) {
    let { category } = await params;
    category = decodeURIComponent(category);
    const searchParamsObj = await searchParams;
-   const query = "נבנצאל|נבנצל";
+   const query = "נבנצל|נבנצל";
    const currentPage = Number(searchParamsObj?.page) || 1;
    const bgSrc = favoriteTags.find((t) => t.name === category)?.image || '/2.webp'
 
@@ -39,7 +39,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       { name: 'דף הבית', url: baseUrl },
       { name: 'שאלות ותשובות', url: `${baseUrl}/qa` },
       {
-         name: 'הרב נבנצאל',
+         name: 'הרב נבנצל',
          url: `${baseUrl}/category/neventzal`,
       },
    ];
@@ -69,7 +69,7 @@ export default async function Page({ params, searchParams }: PageProps) {
             <div className="relative z-10 max-w-5xl mx-auto h-[calc(100%-80px)] px-4 flex flex-col justify-center items-center text-center text-white">
                {/* title */}
                <h1 className="text-4xl md:text-7xl font-extrabold leading-tight" >
-                  הרב נבנצאל
+                  הרב נבנצל
                </h1>
             </div>
          </header>
