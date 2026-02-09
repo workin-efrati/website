@@ -1,8 +1,9 @@
 import HeaderPlaceholder from "@/components/header-placeholder";
-import ZmanimDisplayWithLocation from "@/components/zmanim-with-geo";
-import { Metadata } from "next";
-import { baseUrl } from "@/lib/utils";
 import { JsonLd, createBreadcrumbSchema } from "@/components/json-ld";
+import ZmanimDisplayWithLocation from "@/components/zmanim-with-geo";
+import { baseUrl } from "@/lib/utils";
+import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
    title: "זמני היום בהלכה",
@@ -75,7 +76,24 @@ export default function Zmanim() {
 
    return <div>
       <JsonLd data={breadcrumbData} id="zmanim-breadcrumb" />
-      <HeaderPlaceholder />
+      <div className="relative flex flex-col h-[40vh]">
+         <Image
+            src={'/cover3.webp'}
+            alt={'harav Efrati'}
+            fill
+            fetchPriority="high"
+            sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
+            className="object-cover object-top-left opacity-80"
+            priority
+         />
+         <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
+         <HeaderPlaceholder />
+         <div className="flex justify-center items-center flex-1 px-4 text-center">
+            <h1 className="text-3xl relative z-10 md:text-7xl font-extrabold leading-tight text-white" >
+               זמני היום
+            </h1>
+         </div>
+      </div>
       <div className="py-4">
          <ZmanimDisplayWithLocation />
       </div>

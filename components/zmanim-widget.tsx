@@ -111,7 +111,7 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
 
    if (loading) {
       return (
-         <Card className={`w-full ${className}`} dir="rtl">
+         <Card className={`w-full ${className} max-w-xl`} dir="rtl">
             <CardHeader className="pb-3">
                <Skeleton className="h-6 w-32" />
             </CardHeader>
@@ -126,29 +126,30 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
 
    return (
       <Card
-         className={`w-full pt-0 max-w-xl  overflow-hidden border-none shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] transition-all duration-300 hover:shadow-[0_20px_40px_rgb(0,0,0,0.16)] dark:hover:shadow-[0_20px_40px_rgb(0,0,0,0.4)] ${className}`}
+         className={`w-full pt-0 max-w-xl gap-0 overflow-hidden border-none shadow-2xl transition-all duration-500 hover:shadow-primary/20 ${className}`}
          dir="rtl"
       >
-         {/* Premium Header with Gradient */}
-         <div className="relative h-2 bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-400" />
-         <CardHeader className="pb-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border-b border-gray-100 dark:border-slate-800">
-            <div className="flex items-center justify-between">
-               <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                     <Clock className="h-6 w-6" />
+         <CardHeader className="pb-6 pt-8 bg-linear-to-tr from-primary to-primary/80 text-white border-none relative overflow-hidden">
+            {/* Decorative background circle */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
+
+            <div className="flex items-center justify-between relative z-10">
+               <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-lg">
+                     <Clock className="h-7 w-7" />
                   </div>
                   <div>
-                     <CardTitle className="text-xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+                     <CardTitle className="text-2xl font-bold tracking-tight font-(--font-bona)">
                         זמני היום
                      </CardTitle>
-                     <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
-                        Daily Zmanim
+                     <p className="text-xs font-medium text-white/60 mt-0.5">
+                        Zmanim for Today
                      </p>
                   </div>
                </div>
-               <div className="flex flex-col items-end">
-                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-                     <MapPin className="h-3.5 w-3.5 text-blue-500" />
+               <div className="flex flex-col items-end gap-2">
+                  <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-xs font-bold text-white border border-white/20 shadow-sm">
+                     <MapPin className="h-3.5 w-3.5 text-white/90" />
                      <span>{locationName}</span>
                   </div>
                </div>
@@ -157,38 +158,28 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
 
          <CardContent className="pt-6 pb-6 bg-white dark:bg-slate-950">
             {/* Zmanim Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-2 gap-4 mb-6">
                <ZmanItem
                   label="הנץ החמה"
-                  englishLabel="Sunrise"
                   time={zmanim?.sunrise}
                   icon="🌅"
-                  colorClass="bg-amber-50 dark:bg-amber-950/20 text-amber-900 dark:text-amber-100 border-amber-100 dark:border-amber-900/50"
-                  iconBg="bg-amber-100 dark:bg-amber-900/40"
+                  highlight={true}
                />
                <ZmanItem
                   label="סוף זמן ק''ש"
-                  englishLabel="Latest Shema"
                   time={zmanim?.sofZmanShma}
                   icon="📖"
-                  colorClass="bg-blue-50 dark:bg-blue-950/20 text-blue-900 dark:text-blue-100 border-blue-100 dark:border-blue-900/50"
-                  iconBg="bg-blue-100 dark:bg-blue-900/40"
                />
                <ZmanItem
-                  label="שקיעה"
-                  englishLabel="Sunset"
+                  label="שקיעת החמה"
                   time={zmanim?.sunset}
                   icon="🌇"
-                  colorClass="bg-orange-50 dark:bg-orange-950/20 text-orange-900 dark:text-orange-100 border-orange-100 dark:border-orange-900/50"
-                  iconBg="bg-orange-100 dark:bg-orange-900/40"
+                  highlight={true}
                />
                <ZmanItem
                   label="צאת הכוכבים"
-                  englishLabel="Nightfall"
                   time={zmanim?.tzeitHaKochavim}
                   icon="⭐"
-                  colorClass="bg-indigo-50 dark:bg-indigo-950/20 text-indigo-900 dark:text-indigo-100 border-indigo-100 dark:border-indigo-900/50"
-                  iconBg="bg-indigo-100 dark:bg-indigo-900/40"
                />
             </div>
 
@@ -197,29 +188,20 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
                <Button
                   onClick={detectLocation}
                   disabled={isDetectingLocation}
-                  className="flex-1 cursor-pointer flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold transition-all duration-200 bg-slate-50 hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 active:scale-[0.98] disabled:opacity-50"
+                  variant="outline"
+                  className="flex-1 cursor-pointer flex items-center justify-center gap-2 h-11 rounded-xl text-sm font-bold border-primary/10 hover:bg-primary/5 hover:text-primary transition-all duration-300"
                >
-                  <Navigation className={`h-4 w-4 ${isDetectingLocation ? "animate-pulse" : ""}`} />
+                  <Navigation className={`h-4 w-4 ${isDetectingLocation ? "animate-spin" : ""}`} />
                   {isDetectingLocation ? "מזהה..." : "מיקום שלי"}
                </Button>
 
                <Link href="/zmanim" className="flex-1">
-                  <Button className="w-full cursor-pointer flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-extrabold transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg active:scale-[0.98] group">
+                  <Button className="w-full cursor-pointer flex items-center justify-center gap-2 h-11 rounded-xl text-sm font-extrabold bg-primary hover:bg-primary/80 text-white shadow-md hover:shadow-xl transition-all duration-300 group">
                      כל הזמנים
                      <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
                   </Button>
                </Link>
             </div>
-
-            {/* Premium Footer */}
-            {/* <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-900 flex items-center justify-between">
-               <span className="text-[10px] font-bold text-slate-400 dark:text-slate-600 uppercase tracking-widest">
-                  Halachic Times (GR''A)
-               </span>
-               <span className="text-[10px] font-bold text-slate-400 dark:text-slate-600">
-                  {new Date().toLocaleDateString("he-IL")}
-               </span>
-            </div> */}
          </CardContent>
       </Card>
    );
@@ -227,37 +209,29 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
 
 function ZmanItem({
    label,
-   englishLabel,
    time,
    icon,
-   colorClass,
-   iconBg,
+   highlight = false,
 }: {
    label: string;
-   englishLabel: string;
    time?: string;
    icon: string;
-   colorClass: string;
-   iconBg: string;
+   highlight?: boolean;
 }) {
    return (
       <div
-         className={`group flex items-center justify-between p-3 rounded-2xl border transition-all duration-300 hover:translate-x-1 ${colorClass}`}
+         className={`group flex flex-col p-4 rounded-2xl border transition-all duration-300 hover:shadow-md ${highlight
+               ? "bg-primary/5 border-primary/10 hover:border-primary/30"
+               : "bg-gray-50/50 border-gray-100 hover:border-gray-200"
+            }`}
       >
-         <div className="flex items-center gap-3">
-            <div
-               className={`w-10 h-10 flex items-center justify-center rounded-xl text-xl shadow-sm transition-transform duration-300 group-hover:scale-110 ${iconBg}`}
-            >
-               {icon}
-            </div>
-            <div className="flex flex-col">
-               <span className="text-sm font-extrabold leading-tight">{label}</span>
-               <span className="text-[10px] opacity-60 font-bold uppercase tracking-tight">
-                  {englishLabel}
-               </span>
-            </div>
+         <div className="flex items-center gap-2 mb-2">
+            <span className="text-xl group-hover:scale-110 transition-transform duration-300">{icon}</span>
+            <span className="text-xs font-bold text-gray-500 mt-0.5">{label}</span>
          </div>
-         <span className="text-xl font-black tabular-nums tracking-tight">{time || "--:--"}</span>
+         <span className={`text-2xl font-black tabular-nums tracking-tighter ${highlight ? "text-primary" : "text-slate-900"}`}>
+            {time || "--:--"}
+         </span>
       </div>
    );
 }
