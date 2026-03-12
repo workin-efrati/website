@@ -8,6 +8,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import ViewPDF from './view-pdf';
+import QuickShare from '@/components/quick-share';
+import Link from 'next/link';
 
 export const findParshaByName = (name: string): Parsha | undefined => {
   for (const book of torahBooks as unknown as TorahBook[]) {
@@ -32,23 +34,23 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const articleTitles = (parsha.articles || []).slice(0, 6).map(a => a.title).join(', ');
 
   return {
-    title: `פרשת ${parsha.name} – וורטים ומאמרים | למדני חוקך`,
-    description: articleTitles ? `וורטים נבחרים על פרשת ${parsha.name}: ${articleTitles}. צפייה נוחה ב-PDF.` : `וורטים ומאמרים על פרשת ${parsha.name}. צפייה נוחה ב-PDF.`,
+    title: `פרשת ${parsha.name} – מאמרים | למדני חוקיך`,
+    description: articleTitles ? `מאמרים נבחרים על פרשת ${parsha.name}: ${articleTitles}. צפייה נוחה ב-PDF.` : `מאמרים על פרשת ${parsha.name}. צפייה נוחה ב-PDF.`,
     alternates: { canonical: canonicalUrl },
     openGraph: {
       type: 'article',
       url: canonicalUrl,
-      title: `פרשת ${parsha.name} – וורטים ומאמרים`,
-      description: articleTitles ? `וורטים על פרשת ${parsha.name}: ${articleTitles}` : `וורטים על פרשת ${parsha.name}`,
+      title: `פרשת ${parsha.name} – מאמרים`,
+      description: articleTitles ? `מאמרים על פרשת ${parsha.name}: ${articleTitles}` : `מאמרים על פרשת ${parsha.name}`,
     },
   };
 }
 
-const findSisterParashot = (parsha: string): Parsha[] => {
-  const book = torahBooks.find(b => b.parashot.find(p => p.name === parsha));
-  if (!book) return [];
-  return book.parashot;
-};
+// const findSisterParashot = (parsha: string): Parsha[] => {
+//   const book = torahBooks.find(b => b.parashot.find(p => p.name === parsha));
+//   if (!book) return [];
+//   return book.parashot;
+// };
 
 export default async function ViewPDFPage({ params }: { params: Promise<{ name: string }> }) {
   const { name } = await params;
@@ -67,7 +69,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
     '@type': 'BreadcrumbList',
     'itemListElement': [
       { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (baseUrl || 'http://localhost:3000').replace(/\/$/, '') },
-      { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+      { '@type': 'ListItem', position: 2, name: 'מאמרים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
       { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort/${decoded}` },
     ]
   } as const;
@@ -84,21 +86,21 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
           <BreadcrumbsSimple links={
             [
               { href: `/`, label: 'בית' },
-              { href: `/vort`, label: 'וורטים' },
+              { href: `/vort`, label: 'מאמרים' },
             ]
           } current={parsha.name} />
           {/* <CarouselNav items={sisterParashot.map(p => ({ label: p.name, href: `/vort/${encodeURIComponent(p.name)}` }))} />  */}
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
-          <p className="text-slate-600">וורטים, מאמרים וצפייה נוחה בקובץ PDF</p>
+          <p className="text-slate-600">צפייה נוחה בקובץ PDF</p>
         </header>
-
+        <QuickShare title={`מאמר על פרשת ${parsha.name}`} url={`${baseUrl}/vort/${decoded}`} />
         {parsha.articles && parsha.articles.length > 0 && (
-          <section aria-labelledby="toc-heading" className="mb-8">
+          <section aria-labelledby="toc-heading" className="my-8">
             <details className="group rounded-xl border border-slate-200 bg-white/80 shadow-sm backdrop-blur-sm">
               <summary className="cursor-pointer list-none px-6 py-4 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors rounded-xl">
                 <div>
                   <h2 id="toc-heading" className="text-lg md:text-xl font-semibold text-slate-800">תוכן עניינים</h2>
-                  <p className="text-sm text-slate-500">רשימת הוורטים והעמודים במסמך</p>
+                  <p className="text-sm text-slate-500">רשימת המאמרים והעמודים במסמך</p>
                 </div>
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold group-open:rotate-180 transition-transform">
                   <ArrowDown />
@@ -112,17 +114,23 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
                       key={index}
                       className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 hover:shadow-sm hover:border-slate-300 transition"
                     >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span className="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-sm font-bold">
-                          {index + 1}
+                      <Link href={`/vort/${parsha.name}/${article.title}`}
+                        className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 hover:shadow-sm hover:border-slate-300 transition"
+                      >
+
+
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span className="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-sm font-bold">
+                            {index + 1}
+                          </span>
+                          <span className="font-medium text-slate-800 truncate" title={article.title}>
+                            {article.title}
+                          </span>
+                        </div>
+                        <span className="shrink-0 text-xs md:text-sm text-slate-600 bg-slate-100 px-2 py-1 rounded-full">
+                          עמודים {article.start}-{article.end}
                         </span>
-                        <span className="font-medium text-slate-800 truncate" title={article.title}>
-                          {article.title}
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-xs md:text-sm text-slate-600 bg-slate-100 px-2 py-1 rounded-full">
-                        עמודים {article.start}-{article.end}
-                      </span>
+                      </Link>
                     </li>
                   ))}
                 </ul>

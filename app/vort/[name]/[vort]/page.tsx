@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import ViewPDF from '../view-pdf';
+import QuickShare from '@/components/quick-share';
 
 export const findParshaByName = (name: string): Parsha | undefined => {
     for (const book of torahBooks as unknown as TorahBook[]) {
@@ -31,10 +32,10 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
     const article = parsha.articles.find(a => a.title === decodedVort);
     if (!article) return {};
     const canonicalUrl = `${baseUrl}/vort/${encodeURIComponent(decoded)}/${encodeURIComponent(decodedVort)}`;
-    const desc = `וורט על פרשת ${parsha.name}: ${article.title}.`;
+    const desc = `מאמר על פרשת ${parsha.name}: ${article.title}.`;
 
     return {
-        title: `${article.title} – פרשת ${parsha.name} | למדני חוקך`,
+        title: `${article.title} – פרשת ${parsha.name} | למדני חוקיך`,
         description: desc,
         alternates: { canonical: canonicalUrl },
         openGraph: {
@@ -64,7 +65,7 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
         '@type': 'BreadcrumbList',
         'itemListElement': [
             { '@type': 'ListItem', position: 1, name: 'דף הבית', item: (baseUrl || 'http://localhost:3000').replace(/\/$/, '') },
-            { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
+            { '@type': 'ListItem', position: 2, name: 'מאמרים', item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort` },
             { '@type': 'ListItem', position: 3, name: `פרשת ${parsha.name}`, item: `${(baseUrl || 'http://localhost:3000').replace(/\/$/, '')}/vort/${encodeURIComponent(decoded)}` },
         ]
     } as const;
@@ -79,14 +80,20 @@ export default async function ViewPDFPage({ params }: { params: Promise<{ name: 
                 <header className="my-6 text-center">
                     <BreadcrumbsSimple links={
                         [
-                            { href: `/vort`, label: 'וורטים' },
+                            { href: `/vort`, label: 'מאמרים' },
                             { href: `/vort/${encodeURIComponent(decoded)}`, label: `פרשת ${parsha.name}` },
                         ]
                     } current={article?.title} />
+
+
+                    <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-2 text-slate-900">פרשת {parsha.name}</h1>
                     <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2 text-slate-900">{article?.title}</h1>
+                    <p className="text-slate-600">צפייה נוחה בקובץ PDF</p>
+
                 </header>
+                <QuickShare title={`מאמר על פרשת ${parsha.name} - ${article?.title}`} url={`${baseUrl}/vort/${decoded}/${decodedVort}`} />
             </main>
-            <section aria-label="PDF Viewer">
+            <section aria-label="PDF Viewer" className="my-8">
                 <ViewPDF start={article?.start} end={article?.end} />
             </section>
         </>

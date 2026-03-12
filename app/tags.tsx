@@ -5,12 +5,15 @@ import Link from 'next/link';
 export default async function Tags() {
 
   return (
-    <section className="grid grid-cols-3 md:flex px-4 pt-8 pb-0 gap-6 overflow-x-auto scroll-smooth w-fit max-w-full mx-auto scroll-snap-x-mandatory">
-      {favoriteTags.map((t) => (
+    <section className="grid grid-cols-3 md:flex px-4 pt-8 pb-0 gap-6 overflow-x-auto scroll-smooth w-fit max-w-full mx-auto scroll-snap-x-mandatory ">
+      {favoriteTags.map((t, i) => (
         <Link
-          key={t.name }
+          key={t.name}
           href={`/category/${t.name}`}
-          className="group scroll-snap-start transition-all text-primary hover:text-primary/50 shrink-0 grow-0 block text-center"
+          className={`group scroll-snap-start transition-all text-primary hover:text-primary/50 shrink-0 grow-0 block text-center ${i === favoriteTags.length - 1 && favoriteTags.length % 3 === 1
+            ? 'col-start-2'
+            : ''
+            }`}
         >
           <Image
             src={t.image}

@@ -264,28 +264,28 @@
     "inHebrew": "ערב פורים",
     "hDate": "13 Adar 5785",
     "hDateInHebrew": "יג-אדר-תשפ״ה",
-    "mainTag": null
+    "mainTag": "פורים וחודש אדר"
   },
   "2025-03-14": {
     "inEnglish": "Purim",
     "inHebrew": "פורים",
     "hDate": "14 Adar 5785",
     "hDateInHebrew": "יד-אדר-תשפ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2025-03-15": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5785",
     "hDateInHebrew": "טו-אדר-תשפ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2025-03-16": {
     "inEnglish": "Purim Meshulash",
     "inHebrew": "פורים משולש",
     "hDate": "16 Adar 5785",
     "hDateInHebrew": "טז-אדר-תשפ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2025-03-22": {
     "inEnglish": "Shabbat Parah",
@@ -679,14 +679,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5786",
     "hDateInHebrew": "יד-אדר-תשפ״ו",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2026-03-04": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5786",
     "hDateInHebrew": "טו-אדר-תשפ״ו",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2026-03-07": {
     "inEnglish": "Shabbat Parah",
@@ -1066,14 +1066,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5787",
     "hDateInHebrew": "יד-אדר-תשפ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2027-02-22": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5787",
     "hDateInHebrew": "טו-אדר-תשפ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2027-03-06": {
     "inEnglish": "Shabbat Shekalim",
@@ -1101,14 +1101,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5787",
     "hDateInHebrew": "יד-אדר-תשפ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2027-03-24": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5787",
     "hDateInHebrew": "טו-אדר-תשפ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2027-03-27": {
     "inEnglish": "Shabbat Parah",
@@ -1495,7 +1495,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar 5788",
     "hDateInHebrew": "יא-אדר-תשפ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2028-03-11": {
     "inEnglish": "Erev Purim",
@@ -1509,14 +1509,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5788",
     "hDateInHebrew": "יד-אדר-תשפ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2028-03-13": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5788",
     "hDateInHebrew": "טו-אדר-תשפ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2028-03-18": {
     "inEnglish": "Shabbat Parah",
@@ -1931,14 +1931,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5789",
     "hDateInHebrew": "יד-אדר-תשפ״ט",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2029-03-02": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5789",
     "hDateInHebrew": "טו-אדר-תשפ״ט",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2029-03-10": {
     "inEnglish": "Shabbat Parah",
@@ -2319,14 +2319,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5790",
     "hDateInHebrew": "יד-אדר-תש״צ",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2030-02-18": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5790",
     "hDateInHebrew": "טו-אדר-תש״צ",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2030-03-02": {
     "inEnglish": "Shabbat Shekalim",
@@ -2354,14 +2354,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5790",
     "hDateInHebrew": "יד-אדר-תש״צ",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2030-03-20": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5790",
     "hDateInHebrew": "טו-אדר-תש״צ",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2030-03-23": {
     "inEnglish": "Shabbat Parah",
@@ -2748,7 +2748,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar 5791",
     "hDateInHebrew": "יא-אדר-תשצ״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2031-03-08": {
     "inEnglish": "Erev Purim",
@@ -2762,14 +2762,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5791",
     "hDateInHebrew": "יד-אדר-תשצ״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2031-03-10": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5791",
     "hDateInHebrew": "טו-אדר-תשצ״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2031-03-15": {
     "inEnglish": "Shabbat Parah",
@@ -3183,14 +3183,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5792",
     "hDateInHebrew": "יד-אדר-תשצ״ב",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2032-02-27": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5792",
     "hDateInHebrew": "טו-אדר-תשצ״ב",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2032-03-06": {
     "inEnglish": "Shabbat Parah",
@@ -3570,14 +3570,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5793",
     "hDateInHebrew": "יד-אדר-תשצ״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2033-02-14": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5793",
     "hDateInHebrew": "טו-אדר-תשצ״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2033-02-26": {
     "inEnglish": "Shabbat Shekalim",
@@ -3605,14 +3605,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5793",
     "hDateInHebrew": "יד-אדר-תשצ״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2033-03-16": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5793",
     "hDateInHebrew": "טו-אדר-תשצ״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2033-03-19": {
     "inEnglish": "Shabbat Parah",
@@ -3999,7 +3999,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar 5794",
     "hDateInHebrew": "יא-אדר-תשצ״ד",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2034-03-04": {
     "inEnglish": "Erev Purim",
@@ -4013,14 +4013,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5794",
     "hDateInHebrew": "יד-אדר-תשצ״ד",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2034-03-06": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5794",
     "hDateInHebrew": "טו-אדר-תשצ״ד",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2034-03-11": {
     "inEnglish": "Shabbat Parah",
@@ -4407,14 +4407,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5795",
     "hDateInHebrew": "יד-אדר-תשצ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2035-02-24": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5795",
     "hDateInHebrew": "טו-אדר-תשצ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2035-03-10": {
     "inEnglish": "Shabbat Shekalim",
@@ -4428,7 +4428,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar II 5795",
     "hDateInHebrew": "יא-אדר-תשצ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2035-03-24": {
     "inEnglish": "Erev Purim",
@@ -4442,14 +4442,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5795",
     "hDateInHebrew": "יד-אדר-תשצ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2035-03-26": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5795",
     "hDateInHebrew": "טו-אדר-תשצ״ה",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2035-03-31": {
     "inEnglish": "Shabbat Parah",
@@ -4864,14 +4864,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5796",
     "hDateInHebrew": "יד-אדר-תשצ״ו",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2036-03-14": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5796",
     "hDateInHebrew": "טו-אדר-תשצ״ו",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2036-03-22": {
     "inEnglish": "Shabbat Parah",
@@ -5258,7 +5258,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar 5797",
     "hDateInHebrew": "יא-אדר-תשצ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2037-02-28": {
     "inEnglish": "Erev Purim",
@@ -5272,14 +5272,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5797",
     "hDateInHebrew": "יד-אדר-תשצ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2037-03-02": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5797",
     "hDateInHebrew": "טו-אדר-תשצ״ז",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2037-03-07": {
     "inEnglish": "Shabbat Parah",
@@ -5680,14 +5680,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5798",
     "hDateInHebrew": "יד-אדר-תשצ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2038-02-20": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5798",
     "hDateInHebrew": "טו-אדר-תשצ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2038-03-06": {
     "inEnglish": "Shabbat Shekalim",
@@ -5701,7 +5701,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar II 5798",
     "hDateInHebrew": "יא-אדר-תשצ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2038-03-20": {
     "inEnglish": "Erev Purim",
@@ -5715,14 +5715,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5798",
     "hDateInHebrew": "יד-אדר-תשצ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2038-03-22": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5798",
     "hDateInHebrew": "טו-אדר-תשצ״ח",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2038-03-27": {
     "inEnglish": "Shabbat Parah",
@@ -6137,14 +6137,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5799",
     "hDateInHebrew": "יד-אדר-תשצ״ט",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2039-03-11": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5799",
     "hDateInHebrew": "טו-אדר-תשצ״ט",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2039-03-19": {
     "inEnglish": "Shabbat Parah",
@@ -6552,14 +6552,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5800",
     "hDateInHebrew": "יד-אדר-ת״ת",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2040-02-29": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5800",
     "hDateInHebrew": "טו-אדר-ת״ת",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2040-03-03": {
     "inEnglish": "Shabbat Parah",
@@ -6946,14 +6946,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5801",
     "hDateInHebrew": "יד-אדר-תת״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2041-02-16": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5801",
     "hDateInHebrew": "טו-אדר-תת״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2041-03-02": {
     "inEnglish": "Shabbat Shekalim",
@@ -6967,7 +6967,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar II 5801",
     "hDateInHebrew": "יא-אדר-תת״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2041-03-16": {
     "inEnglish": "Erev Purim",
@@ -6981,14 +6981,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5801",
     "hDateInHebrew": "יד-אדר-תת״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2041-03-18": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5801",
     "hDateInHebrew": "טו-אדר-תת״א",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2041-03-23": {
     "inEnglish": "Shabbat Parah",
@@ -7403,14 +7403,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5802",
     "hDateInHebrew": "יד-אדר-תת״ב",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2042-03-07": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5802",
     "hDateInHebrew": "טו-אדר-תת״ב",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2042-03-15": {
     "inEnglish": "Shabbat Parah",
@@ -7797,14 +7797,14 @@
     "inHebrew": "פורים קטן",
     "hDate": "14 Adar I 5803",
     "hDateInHebrew": "יד-אדר-תת״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2043-02-25": {
     "inEnglish": "Shushan Purim Katan",
     "inHebrew": "שושן פורים קטן",
     "hDate": "15 Adar I 5803",
     "hDateInHebrew": "טו-אדר-תת״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2043-03-07": {
     "inEnglish": "Shabbat Shekalim",
@@ -7832,14 +7832,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar II 5803",
     "hDateInHebrew": "יד-אדר-תת״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2043-03-27": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar II 5803",
     "hDateInHebrew": "טו-אדר-תת״ג",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2043-04-04": {
     "inEnglish": "Shabbat Parah",
@@ -8226,7 +8226,7 @@
     "inHebrew": "תענית אסתר",
     "hDate": "11 Adar 5804",
     "hDateInHebrew": "יא-אדר-תת״ד",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2044-03-12": {
     "inEnglish": "Erev Purim",
@@ -8240,14 +8240,14 @@
     "inHebrew": "פורים",
     "hDate": "14 Adar 5804",
     "hDateInHebrew": "יד-אדר-תת״ד",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2044-03-14": {
     "inEnglish": "Shushan Purim",
     "inHebrew": "שושן פורים",
     "hDate": "15 Adar 5804",
     "hDateInHebrew": "טו-אדר-תת״ד",
-    "mainTag": "פורים"
+    "mainTag": "פורים וחודש אדר"
   },
   "2044-03-19": {
     "inEnglish": "Shabbat Parah",

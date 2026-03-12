@@ -1,6 +1,7 @@
+import clsx from "clsx"
 
-export default function HeaderPlaceholder() {
+export default function HeaderPlaceholder({ className }: { className?: string }) {
    return (
-      <div className='h-20 w-full' />
+      <div className={clsx('h-20 w-full', className)} />
    )
 }

@@ -36,7 +36,7 @@ export const readWithOptions = async (
          query = query.populate(populate);
       }
    }
-   if (projection) query = query.select(projection);
+   if (projection) query = query.select(projection) as typeof query;
 
    if (numberOfDocuments) query = query.limit(numberOfDocuments);
 

@@ -24,9 +24,9 @@ interface RegFilter {
   }[];
 }
 
-interface Sorter extends Array<[string, 1 | -1]> {}
+interface Sorter extends Array<[string, 1 | -1]> { }
 
-interface Selector extends Array<string> {}
+interface Selector extends Array<string> { }
 
 interface Pagination {
   pageLocation: number;
@@ -51,7 +51,7 @@ export interface GenericFilterOptions {
 }
 
 async function genericFilterWithPagination({
-//   filters = { isActive: true },
+  //   filters = { isActive: true },
   filters = {},
   regFilter,
   queryFilterType = "$and",
@@ -73,7 +73,7 @@ async function genericFilterWithPagination({
           searchValue.type !== "_id"
             ? searchValue.values
             : searchValue.values?.map((v) => new mongoose.Types.ObjectId(v)
-          ),
+            ),
       },
     }));
     (matchStage.$match[queryFilterType] as any[]).push({
@@ -86,7 +86,7 @@ async function genericFilterWithPagination({
   // Regex filter
   if (regFilter?.searchValues.length) {
     const searchType = regFilter.searchType || "$and";
-    
+
     if (searchType === "$or") {
       // OR logic: match if ANY word is found in ANY field
       const regexConditions = regFilter.searchValues
@@ -137,13 +137,13 @@ async function genericFilterWithPagination({
         })
         .flat();
 
+
       pipeline.push({
         $project: {
           matchCount: { $sum: regexConditions },
           document: "$$ROOT",
         },
       });
-
       const wordsCount = regFilter.searchValues.reduce(
         (sum, searchValue) => sum + searchValue.value.split(" ").length,
         0

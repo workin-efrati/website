@@ -1,11 +1,13 @@
 import { favoriteTags } from '@/lib/favorite-tags-list';
 import torahBooks from '@/lib/torah_toc.json';
-import { baseUrl } from '@/lib/utils';
+import { baseUrl, cleanSlug } from '@/lib/utils';
 import { TorahBook } from '@/lib/vorts-types';
 import { connectToMongodb } from '@/server/connect';
 import { IShut } from '@/server/models/shut.model';
 import { readAllShutServiceWithSelect } from '@/server/services/shut.service';
 import { MetadataRoute } from 'next';
+
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
@@ -34,7 +36,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.8,
-        }
+        },
+        {
+            url: `${baseUrl}/zmanim`,
+            lastModified: new Date(),
+            changeFrequency: 'daily' as const,
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/category/neventzal`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly' as const,
+            priority: 0.8,
+        },
     ]
 
     await connectToMongodb()
@@ -49,9 +63,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
     // Dynamic routes for individual Q&A pages
-    const qaRoutes = (await readAllShutServiceWithSelect({ _id: 1, createdAt: 1, updatedAt: 1, tag: 1 }))
+    const qaRoutes = (await readAllShutServiceWithSelect({ _id: 1, createdAt: 1, updatedAt: 1, tag: 1, titleQuestion: 1 }))
         .map((question: IShut) => ({
-            url: `${baseUrl}/qa/${question._id}`,
+            url: `${baseUrl}/qa/${question._id}/${encodeURIComponent(cleanSlug(question.titleQuestion || 'שאלה'))}`,
             lastModified: new Date(question.updatedAt || question.createdAt || Date.now()),
             changeFrequency: 'weekly' as const,
             priority: 0.6,
@@ -71,10 +85,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 }
 
 function getCategories() {
-    return favoriteTags.map(t => t.name)
+    return favoriteTags.map(t => encodeURIComponent(t.name))
 }
 
 function getBooks() {
     const books = torahBooks as unknown as TorahBook[];
-    return books.flatMap((b) => b.parashot.map((p) => p.name));
+    return books.flatMap((b) => b.parashot.map((p) => encodeURIComponent(p.name)));
 };

@@ -4,7 +4,7 @@ import ShutModel, { IShut } from "../models/shut.model";
 import { findNodeKeysByPath, findParentsByKey } from "@/lib/getTags";
 
 export const readAllShutService = async () =>
-  await readWithOptions({}, undefined, undefined, { _id: 1 });
+  await readWithOptions({}, undefined, undefined, { _id: 1, titleQuestion: 1 });
 
 export const readAllShutServiceWithSelect = async (select: Record<string, 0 | 1>) =>
   await readWithOptions({}, undefined, undefined, select);

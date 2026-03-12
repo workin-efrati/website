@@ -10,14 +10,14 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-    title: 'וורטים על פרשיות השבוע | למדני חוקך',
-    description: 'וורטים ומאמרים על פרשיות השבוע לפי חומש ופרשה. צפייה נוחה בקבצי PDF. בחר חומש כדי לפתוח את רשימת הפרשות.',
+    title: 'מאמרים על פרשיות השבוע | למדני חוקיך',
+    description: 'מאמרים  על פרשיות השבוע לפי חומש ופרשה. צפייה נוחה בקבצי PDF. בחר חומש כדי לפתוח את רשימת הפרשות.',
     alternates: { canonical: '/vort' },
     openGraph: {
         type: 'website',
         url: '/vort',
-        title: 'וורטים על פרשיות השבוע',
-        description: 'קטלוג וורטים ומאמרים על פרשיות השבוע לפי חומש ופרשה.',
+        title: 'מאמרים על פרשיות השבוע',
+        description: 'קטלוג מאמרים על פרשיות השבוע לפי חומש ופרשה.',
     },
 };
 
@@ -30,21 +30,23 @@ const TorahParshiot = () => {
                     '@type': 'BreadcrumbList',
                     itemListElement: [
                         { '@type': 'ListItem', position: 1, name: 'דף הבית', item: baseUrl.replace(/\/$/, '') },
-                        { '@type': 'ListItem', position: 2, name: 'וורטים', item: `${baseUrl.replace(/\/$/, '')}/vort` },
+                        { '@type': 'ListItem', position: 2, name: 'מאמרים', item: `${baseUrl.replace(/\/$/, '')}/vort` },
                     ],
                 })}
             </Script>
+            <HeaderPlaceholder className="bg-primary" />
+
             <div className="relative w-full h-[42vh] md:h-[44vh] lg:h-[52vh] overflow-hidden flex flex-col">
                 <Image
-                    src="/1.webp"
-                    alt={`רקע אזור הוורטים`}
+                    src={'/cover3.webp'}
+                    alt={'harav Efrati'}
                     fill
                     sizes="(min-width:1024px) 1200px, (min-width:640px) 800px, 600px"
-                    className="object-cover object-top opacity-80"
+                    className="object-cover object-top-left opacity-80"
                     priority
+                    fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/70 to-primary/60" />
-                <HeaderPlaceholder />
                 <div className="max-w-4xl m-auto relative z-4 flex-1 flex items-center px-2">
                     <div className="bg-white rounded-lg shadow-xl w-full p-8 mb-6">
                         <div className="flex items-center gap-3 mb-2">
