@@ -1,7 +1,7 @@
 import BreadcrumbsSimple from '@/components/breadcrumbs-simple';
 import HeaderPlaceholder from '@/components/header-placeholder';
 import QuickShare from '@/components/quick-share';
-import { articles } from '@/lib/data/mamarim';
+import { articles, type Section, type Block } from '@/lib/data/mamarim';
 import { baseUrl } from '@/lib/utils';
 import { Calendar, Tag, User } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -23,13 +23,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
    return {
       title: `${article.title} | למדני חוקך`,
-      description: article.excerpt || `מאמר מאת ${article.author}: ${article.title}`,
+      description: `מאמר מאת ${article.author}: ${article.title}`,
       alternates: { canonical: canonicalUrl },
       openGraph: {
          type: 'article',
          url: canonicalUrl,
          title: article.title,
-         description: article.excerpt || `מאמר מאת ${article.author}: ${article.title}`,
+         description: `מאמר מאת ${article.author}: ${article.title}`,
          tags: article.tags,
          publishedTime: article.publishedAt,
          authors: [article.author],
@@ -37,42 +37,49 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
    };
 }
 
-// Helper component for recursive section rendering
-const ArticleSection = ({ section, level = 1 }: { section: any; level?: number }) => {
-   const TitleTag = level === 1 ? 'h2' : level === 2 ? 'h3' : 'h4';
+// Helper to parse *text* into strong tags for SEO and visual emphasis
+const renderTextWithBold = (text: string) => {
+   if (!text) return text;
+   const parts = text.split(/(\*[^*]+\*)/g);
+   if (parts.length === 1) return text;
 
+   return parts.map((part, i) => {
+      if (part.startsWith('*') && part.endsWith('*')) {
+         return <strong key={i} className="font-bold text-gray-900">{part.slice(1, -1)}</strong>;
+      }
+      return part;
+   });
+};
+
+// Helper component for section rendering
+const ArticleSection = ({ section }: { section: Section }) => {
    return (
-      <section className={`mb-6 ${level > 1 ? 'mt-4 mr-2 border-r-2 border-gray-200 pr-4' : ''}`}>
-         <TitleTag className={`font-bold mb-3 ${level === 1 ? 'text-2xl md:text-3xl text-gray-900 border-b pb-2' : level === 2 ? 'text-xl md:text-2xl text-gray-800' : 'text-lg md:text-xl text-gray-800'}`}>
+      <section className="mb-6">
+         <h2 className="font-bold mb-3 text-2xl md:text-3xl text-gray-900 border-b pb-2">
             {section.title}
-         </TitleTag>
+         </h2>
 
          <div className="space-y-3 text-gray-800 leading-relaxed text-lg">
-            {section.blocks?.map((block: any, idx: number) => {
+            {section.blocks?.map((block: Block, idx: number) => {
                if (block.type === 'paragraph') {
-                  return <p key={idx}>{block.text}</p>;
+                  return <p key={idx}>{renderTextWithBold(block.text)}</p>;
                }
                if (block.type === 'list') {
                   const ListTag = block.ordered ? 'ol' : 'ul';
                   return (
                      <ListTag key={idx} className={`${block.ordered ? 'list-decimal' : 'list-disc'} list-inside pr-2 md:pr-4 space-y-1.5`}>
                         {block.items.map((item: string, i: number) => (
-                           <li key={i}>{item}</li>
+                           <li key={i}>{renderTextWithBold(item)}</li>
                         ))}
                      </ListTag>
                   );
                }
+               if (block.type === 'heading') {
+                  return <h3 key={idx} className="font-bold text-xl md:text-2xl text-gray-800 mt-4">{renderTextWithBold(block.text)}</h3>;
+               }
                return null;
             })}
          </div>
-
-         {section.sections?.length > 0 && (
-            <div className="mt-5">
-               {section.sections.map((subSection: any, idx: number) => (
-                  <ArticleSection key={idx} section={subSection} level={level + 1} />
-               ))}
-            </div>
-         )}
       </section>
    );
 };
