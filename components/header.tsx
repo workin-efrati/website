@@ -12,6 +12,7 @@ export const navItems = [
   { label: "זמני היום", href: "/zmanim" },
   { label: "אודות", href: "/about" },
   { label: "הרב נבנצל", href: "/category/neventzal" },
+  { label: "מאמרים", href: "/maamarim" },
   // { label: "ילדים ונוער", href: "/kids" },
   // { label: "דרשות ומאמרים", href: "/articles" },
   // { label: "שאל את הרב", href: "/ask" },

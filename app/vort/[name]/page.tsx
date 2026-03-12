@@ -46,11 +46,11 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   };
 }
 
-const findSisterParashot = (parsha: string): Parsha[] => {
-  const book = torahBooks.find(b => b.parashot.find(p => p.name === parsha));
-  if (!book) return [];
-  return book.parashot;
-};
+// const findSisterParashot = (parsha: string): Parsha[] => {
+//   const book = torahBooks.find(b => b.parashot.find(p => p.name === parsha));
+//   if (!book) return [];
+//   return book.parashot;
+// };
 
 export default async function ViewPDFPage({ params }: { params: Promise<{ name: string }> }) {
   const { name } = await params;
