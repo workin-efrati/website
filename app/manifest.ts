@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'למדני חוקיך',
         short_name: 'למדני חוקיך',
-        description: "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקך' בניהול הרב ברוך אפרתי.",
+        description: "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקיך' בניהול הרב ברוך אפרתי.",
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',

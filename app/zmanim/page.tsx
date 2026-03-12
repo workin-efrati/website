@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       title: "זמני היום בהלכה - לוח זמנים יהודי מדויק",
       description: "קבלו את זמני היום ההלכתיים המדויקים ביותר לפי מיקומכם. הנץ, שקיעה, סוף זמן קריאת שמע ועוד.",
       url: `${baseUrl}/zmanim`,
-      siteName: "למדני חוקך",
+      siteName: "למדני חוקיך",
       locale: "he_IL",
       type: "website",
       images: [

@@ -28,10 +28,10 @@ const bonaNova = Bona_Nova(
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl as string), // שנה לכתובת האמיתית שלך
   title: {
-    default: "למדני חוקך - שאלות ותשובות יהדות | הרב אפרתי",
-    template: "%s | למדני חוקך",
+    default: "למדני חוקיך - שאלות ותשובות יהדות | הרב אפרתי",
+    template: "%s | למדני חוקיך",
   },
-  description: `למדני חוקך הוא אתר שאלות ותשובות מקוון בהלכה, אמונה ומחשבה, בניהולו של הרב אפרתי. באתר אלפי תשובות מסודרות לפי נושאים ותוויות — כשרות, שבת, טהרה, תפילה, זוגיות, חינוך ועוד.`,
+  description: `למדני חוקיך הוא אתר שאלות ותשובות מקוון בהלכה, אמונה ומחשבה, בניהולו של הרב אפרתי. באתר אלפי תשובות מסודרות לפי נושאים ותוויות — כשרות, שבת, טהרה, תפילה, זוגיות, חינוך ועוד.`,
   keywords: [
     "שו\"ת",
     "הלכה",
@@ -51,29 +51,29 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "הרב ברוך אפרתי" }],
   creator: "הרב ברוך אפרתי",
-  publisher: "למדני חוקך",
+  publisher: "למדני חוקיך",
   openGraph: {
     type: "website",
     locale: "he_IL",
     url: baseUrl,
-    title: "למדני חוקך - אתר שאלות ותשובות בהלכה | הרב אפרתי",
+    title: "למדני חוקיך - אתר שאלות ותשובות בהלכה | הרב אפרתי",
     description:
       "אתר שאלות ותשובות בהלכה, אמונה ומחשבה מאת הרב אפרתי. חיפוש לפי נושאים, תגים ושאלות עדכניות מהציבור הרחב.",
-    siteName: "למדני חוקך",
+    siteName: "למדני חוקיך",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "למדני חוקך - הרב ברוך אפרתי",
+        alt: "למדני חוקיך - הרב ברוך אפרתי",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "למדני חוקך - שאלות ותשובות בהלכה | הרב ברוך אפרתי",
+    title: "למדני חוקיך - שאלות ותשובות בהלכה | הרב ברוך אפרתי",
     description:
-      "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקך' בניהול הרב ברוך אפרתי.",
+      "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקיך' בניהול הרב ברוך אפרתי.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -117,7 +117,7 @@ export default function RootLayout({
         {/* Structured Data for Google Search */}
         <JsonLd
           id="website-schema"
-          data={createWebSiteSchema(baseUrl, 'למדני חוקך - הרב אפרתי')}
+          data={createWebSiteSchema(baseUrl, 'למדני חוקיך - הרב אפרתי')}
         />
         <JsonLd
           id="organization-schema"

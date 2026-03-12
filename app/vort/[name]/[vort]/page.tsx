@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
     const desc = `מאמר על פרשת ${parsha.name}: ${article.title}.`;
 
     return {
-        title: `${article.title} – פרשת ${parsha.name} | למדני חוקך`,
+        title: `${article.title} – פרשת ${parsha.name} | למדני חוקיך`,
         description: desc,
         alternates: { canonical: canonicalUrl },
         openGraph: {

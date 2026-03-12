@@ -66,7 +66,7 @@ export function createOrganizationSchema(baseUrl: string) {
    return {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      name: 'למדני חוקך',
+      name: 'למדני חוקיך',
       url: baseUrl,
       logo: `${baseUrl}/icon-512.png`,
       founder: {
