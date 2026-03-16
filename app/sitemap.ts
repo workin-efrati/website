@@ -6,6 +6,7 @@ import { connectToMongodb } from '@/server/connect';
 import { IShut } from '@/server/models/shut.model';
 import { readAllShutServiceWithSelect } from '@/server/services/shut.service';
 import { MetadataRoute } from 'next';
+import { articles as maamarim } from '@/lib/data/mamarim';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,6 +50,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'weekly' as const,
             priority: 0.8,
         },
+        {
+            url: `${baseUrl}/maamarim`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+        },
     ]
 
     await connectToMongodb()
@@ -81,7 +88,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
     }))
 
-    return [...baseRoutes, ...categoryRoutes, ...qaRoutes, ...bookRoutes]
+    // Dynamic routes for individual maamarim pages
+    const maamarim = getMaamarim()
+    const maamarimRoutes = maamarim.map((maamar: string) => ({
+        url: `${baseUrl}/maamarim/${maamar}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+    }))
+
+    return [...baseRoutes, ...categoryRoutes, ...qaRoutes, ...bookRoutes, ...maamarimRoutes]
+}
+
+function getMaamarim() {
+    return maamarim.map(m => encodeURIComponent(m.slug))
 }
 
 function getCategories() {

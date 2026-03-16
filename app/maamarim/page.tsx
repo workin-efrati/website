@@ -66,9 +66,9 @@ const MaamarimPage = () => {
                            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3 group-hover:text-blue-700 transition-colors">
                               {article.title}
                            </h2>
-                           {article.excerpt && (
+                           {article?.sections?.[0]?.blocks?.[0]?.type === 'paragraph' && (
                               <p className="text-gray-600 text-lg mb-6 line-clamp-2">
-                                 {article.excerpt}
+                                 {article?.sections?.[0]?.blocks?.[0]?.text}
                               </p>
                            )}
 
