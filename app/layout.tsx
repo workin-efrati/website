@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     siteName: "למדני חוקיך",
     images: [
       {
-        url: "/og-image.png",
+        url: "/thumb.png",
         width: 1200,
         height: 630,
         alt: "למדני חוקיך - הרב ברוך אפרתי",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     title: "למדני חוקיך - שאלות ותשובות בהלכה | הרב ברוך אפרתי",
     description:
       "מאגר ענק של שאלות ותשובות בהלכה, אמונה ומחשבה. אתר 'למדני חוקיך' בניהול הרב ברוך אפרתי.",
-    images: ["/og-image.png"],
+    images: ["/thumb.png"],
   },
   alternates: {
     canonical: baseUrl,

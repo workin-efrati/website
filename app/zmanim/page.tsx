@@ -53,7 +53,7 @@ export const metadata: Metadata = {
       type: "website",
       images: [
          {
-            url: "/og-image.png",
+            url: "/thumb.png",
             width: 1200,
             height: 630,
             alt: "זמני היום בהלכה",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       card: "summary_large_image",
       title: "זמני היום בהלכה - לוח זמנים יהודי מדויק",
       description: "זמני היום ההלכתיים המדויקים ביותר לישראל והעולם. מחושב לפי מיקומך המדויק.",
-      images: ["/og-image.png"],
+      images: ["/thumb.png"],
    },
 }
 
