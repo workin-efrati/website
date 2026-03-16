@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Clock, MapPin, ArrowLeft, Navigation } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { ArrowLeft, BookOpen, Clock, MapPin, Moon, Navigation, Star, Sunrise, Sunset } from "lucide-react";
 import Link from "next/link";
 
 interface CompactZmanim {
@@ -111,99 +111,72 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
 
    if (loading) {
       return (
-         <Card className={`w-full ${className} max-w-xl`} dir="rtl">
-            <CardHeader className="pb-3">
-               <Skeleton className="h-6 w-32" />
-            </CardHeader>
-            <CardContent className="space-y-2">
+         <div className={`w-full ${className} max-w-xl`} dir="rtl">
+            <div className="flex items-center justify-between mb-4">
+               <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-white/80" aria-hidden="true" />
+                  <Skeleton className="h-4 w-24 bg-white/15" />
+               </div>
+               <Skeleton className="h-7 w-28 rounded-full bg-white/15" />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
                {[...Array(4)].map((_, i) => (
-                  <Skeleton key={i} className="h-8 w-full" />
+                  <Skeleton key={i} className="h-14 w-full rounded-lg bg-white/10" />
                ))}
-            </CardContent>
-         </Card>
+            </div>
+
+            <div className="mt-4 flex gap-2">
+               <Skeleton className="h-9 flex-1 rounded-md bg-white/10" />
+               <Skeleton className="h-9 flex-1 rounded-md bg-white/10" />
+            </div>
+         </div>
       );
    }
 
    return (
-      <Card
-         className={`w-full pt-0 max-w-xl gap-0 overflow-hidden border-none shadow-2xl transition-all duration-500 hover:shadow-primary/20 ${className}`}
-         dir="rtl"
-      >
-         <CardHeader className="pb-6 pt-8 bg-linear-to-tr from-primary to-primary/80 text-white border-none relative overflow-hidden">
-            {/* Decorative background circle */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl" />
-
-            <div className="flex items-center justify-between relative z-10">
-               <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-lg">
-                     <Clock className="h-7 w-7" />
-                  </div>
-                  <div>
-                     <CardTitle className="text-2xl font-bold tracking-tight font-(--font-bona)">
-                        זמני היום
-                     </CardTitle>
-                     <p className="text-xs font-medium text-white/60 mt-0.5">
-                        Zmanim for Today
-                     </p>
-                  </div>
-               </div>
-               <div className="flex flex-col items-end gap-2">
-                  <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-xs font-bold text-white border border-white/20 shadow-sm">
-                     <MapPin className="h-3.5 w-3.5 text-white/90" />
-                     <span>{locationName}</span>
-                  </div>
-               </div>
-            </div>
-         </CardHeader>
-
-         <CardContent className="pt-6 pb-6 bg-white dark:bg-slate-950">
-            {/* Zmanim Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-               <ZmanItem
-                  label="הנץ החמה"
-                  time={zmanim?.sunrise}
-                  icon="🌅"
-                  highlight={true}
-               />
-               <ZmanItem
-                  label="סוף זמן ק''ש"
-                  time={zmanim?.sofZmanShma}
-                  icon="📖"
-               />
-               <ZmanItem
-                  label="שקיעת החמה"
-                  time={zmanim?.sunset}
-                  icon="🌇"
-                  highlight={true}
-               />
-               <ZmanItem
-                  label="צאת הכוכבים"
-                  time={zmanim?.tzeitHaKochavim}
-                  icon="⭐"
-               />
+      <div className={`w-full max-w-xl ${className}`} dir="rtl">
+         <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+               <Clock className="h-4 w-4 text-white/80" aria-hidden="true" />
+               <div className="font-(--font-bona) text-white/95">זמני היום</div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-3">
-               <Button
-                  onClick={detectLocation}
-                  disabled={isDetectingLocation}
-                  variant="outline"
-                  className="flex-1 cursor-pointer flex items-center justify-center gap-2 h-11 rounded-xl text-sm font-bold border-primary/10 hover:bg-primary/5 hover:text-primary transition-all duration-300"
-               >
-                  <Navigation className={`h-4 w-4 ${isDetectingLocation ? "animate-spin" : ""}`} />
-                  {isDetectingLocation ? "מזהה..." : "מיקום שלי"}
-               </Button>
+            <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/90">
+               <MapPin className="h-3.5 w-3.5 text-white/80" aria-hidden="true" />
+               <span className="max-w-48 truncate">{locationName}</span>
+            </div>
+         </div>
 
-               <Link href="/zmanim" className="flex-1">
-                  <Button className="w-full cursor-pointer flex items-center justify-center gap-2 h-11 rounded-xl text-sm font-extrabold bg-primary hover:bg-primary/80 text-white shadow-md hover:shadow-xl transition-all duration-300 group">
-                     כל הזמנים
-                     <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                  </Button>
+         <div className="grid grid-cols-2 gap-3">
+            <ZmanItem label="הנץ החמה" time={zmanim?.sunrise} icon={Sunrise} highlight />
+            <ZmanItem label="סוף זמן ק''ש" time={zmanim?.sofZmanShma} icon={BookOpen} />
+            <ZmanItem label="שקיעת החמה" time={zmanim?.sunset} icon={Sunset} highlight />
+            <ZmanItem label="צאת הכוכבים" time={zmanim?.tzeitHaKochavim} icon={Star} />
+         </div>
+
+         <div className="mt-4 flex gap-2">
+            <Button
+               onClick={detectLocation}
+               disabled={isDetectingLocation}
+               variant="outline"
+               className="flex-1 border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            >
+               <Navigation
+                  className={`h-4 w-4 ${isDetectingLocation ? "animate-spin" : ""}`}
+                  aria-hidden="true"
+               />
+               {isDetectingLocation ? "מזהה..." : "מיקום שלי"}
+            </Button>
+
+            <Button asChild className="flex-1 bg-white text-primary hover:bg-white/90">
+               <Link href="/zmanim">
+                  כל הזמנים
+                  <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                </Link>
-            </div>
-         </CardContent>
-      </Card>
+            </Button>
+         </div>
+      </div>
    );
 }
 
@@ -215,21 +188,20 @@ function ZmanItem({
 }: {
    label: string;
    time?: string;
-   icon: string;
+   icon: LucideIcon;
    highlight?: boolean;
 }) {
+   const Icon = icon;
+
    return (
       <div
-         className={`group flex flex-col p-4 rounded-2xl border transition-all duration-300 hover:shadow-md ${highlight
-               ? "bg-primary/5 border-primary/10 hover:border-primary/30"
-               : "bg-gray-50/50 border-gray-100 hover:border-gray-200"
-            }`}
+         className={`rounded-lg border px-3 py-2 ${highlight ? "border-white/20 bg-white/10" : "border-white/10 bg-white/5"}`}
       >
-         <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl group-hover:scale-110 transition-transform duration-300">{icon}</span>
-            <span className="text-xs font-bold text-gray-500 mt-0.5">{label}</span>
+         <div className="flex items-center gap-2">
+            <Icon className="h-4 w-4 text-white/80" aria-hidden="true" />
+            <span className="text-xs font-semibold text-white/80">{label}</span>
          </div>
-         <span className={`text-2xl font-black tabular-nums tracking-tighter ${highlight ? "text-primary" : "text-slate-900"}`}>
+         <span className="mt-1 text-xl font-bold tabular-nums text-white/95">
             {time || "--:--"}
          </span>
       </div>

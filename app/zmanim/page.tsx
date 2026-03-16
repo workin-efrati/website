@@ -94,7 +94,7 @@ export default function Zmanim() {
             </h1>
          </div>
       </div>
-      <div className="py-4">
+      <div className="pb-4">
          <ZmanimDisplayWithLocation />
       </div>
    </div>

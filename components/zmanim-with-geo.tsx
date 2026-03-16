@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Calendar, Clock, MapPin, Moon, Navigation, RefreshCw, Sun, Sunrise, Sunset } from "lucide-react";
+import { AlertTriangle, Clock, Info, Moon, Navigation, RefreshCw, Sun, Sunrise, Sunset } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Zmanim {
@@ -254,8 +254,8 @@ export default function ZmanimDisplayWithCitySelect() {
    }
 
    return (
-      <Card className="w-full rounded-2xl pt-0 max-w-2xl mx-auto shadow-xl border-none overflow-hidden" dir="rtl">
-         <CardHeader className="bg-linear-to-tr rounded-2xl from-primary to-primary/80 text-white p-2">
+      <Card className="w-full max-w-2xl mx-auto border-none shadow-none" dir="rtl">
+         <CardHeader className="space-y-3">
             {/* <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                <div className="flex-1 text-center md:text-right w-full">
                   <CardTitle className="text-3xl font-bold flex items-center justify-center md:justify-start gap-3 font-(--font-bona)">
@@ -286,20 +286,24 @@ export default function ZmanimDisplayWithCitySelect() {
                   </div>
                </div>
             </div> */}
-            <h2 className="text-center text-2xl font-bold mt-2">בחר מיקום</h2>
+            <div className="flex flex-col items-center text-center gap-1">
+               <CardTitle className="text-2xl font-(--font-bona)">בחר מיקום</CardTitle>
+               <CardDescription>הזמנים מחושבים לפי העיר שתבחרו או לפי מיקום המכשיר</CardDescription>
+               <span className="font-bold underline decoration-amber-300">{location.name}</span>
+            </div>
 
             {/* City Selector */}
-            <div className="mt-2 space-y-3 bg-white/5 p-4 rounded-xl border border-white/10">
-               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="space-y-3">
+               <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3">
                   <div className="flex-1">
                      <Select value={selectedCity} onValueChange={handleCityChange}>
-                        <SelectTrigger className="w-full bg-white text-primary border-none focus:ring-2 focus:ring-white/50 h-11 text-base font-medium" aria-label="בחר עיר להצגת זמנים">
+                        <SelectTrigger className="w-full h-11 text-base font-medium" aria-label="בחר עיר להצגת זמנים">
                            <SelectValue placeholder="בחר עיר מהרשימה" />
                         </SelectTrigger>
                         <SelectContent className="max-h-[300px]">
                            {Object.entries(CITIES).map(([countryCode, cities]) => (
                               <SelectGroup key={countryCode}>
-                                 <SelectLabel className="font-bold text-primary border-b pb-1 mb-1">
+                                 <SelectLabel className="font-bold border-b pb-1 mb-1">
                                     {COUNTRY_NAMES[countryCode]}
                                  </SelectLabel>
                                  {cities.map((city) => (
@@ -314,11 +318,10 @@ export default function ZmanimDisplayWithCitySelect() {
                   </div>
                   <div className="flex gap-2">
                      <Button
-                        variant="secondary"
-                        size="lg"
+                        variant="outline"
                         onClick={getUserLocation}
                         disabled={gettingLocation}
-                        className="gap-2 bg-white text-primary hover:bg-white/90 border-none h-11 px-6 shadow-sm"
+                        className="gap-2 px-6"
                         aria-label="זהה מיקום באופן אוטומטי"
                      >
                         {gettingLocation ? (
@@ -326,16 +329,16 @@ export default function ZmanimDisplayWithCitySelect() {
                         ) : (
                            <Navigation className="h-4 w-4" aria-hidden="true" />
                         )}
-                        <span className="hidden sm:inline">מיקום שלי</span>
+                        <span className="hiddeni sm:inline">מיקום שלי</span>
                      </Button>
                      <Button
-                        variant="ghost"
-                        size="icon"
+                        variant="secondary"
                         onClick={fetchZmanim}
-                        className="h-11 w-11 bg-white/20 hover:bg-white/30 text-white border-none rounded-xl"
+                        className="gap-2 px-6"
                         aria-label="רענן זמני היום"
                      >
                         <RefreshCw className="h-5 w-5" aria-hidden="true" />
+                        <span className="hiddeni sm:inline">רענן </span>
                      </Button>
                   </div>
                </div>
@@ -346,7 +349,8 @@ export default function ZmanimDisplayWithCitySelect() {
             {error && (
                <Alert className="mb-6 border-destructive/20 bg-destructive/10">
                   <AlertDescription className="text-destructive font-medium flex items-center gap-2">
-                     <span>⚠️</span> {error}
+                     <AlertTriangle className="h-4 w-4" aria-hidden="true" />
+                     <span>{error}</span>
                   </AlertDescription>
                </Alert>
             )}
@@ -364,7 +368,7 @@ export default function ZmanimDisplayWithCitySelect() {
                      >
                         <div className="flex items-center gap-4 flex-1">
                            <div className={`p-2.5 rounded-xl ${item.highlight ? "bg-primary text-white" : "bg-white text-primary border border-primary/10 shadow-sm"}`}>
-                              <Icon className="h-5 w-5 flex-shrink-0" />
+                              <Icon className="h-5 w-5 shrink-0" />
                            </div>
                            <div className="min-w-0">
                               <div className={`font-bold text-base truncate ${item.highlight ? "text-primary" : "text-gray-800"}`}>
@@ -383,9 +387,9 @@ export default function ZmanimDisplayWithCitySelect() {
                })}
             </div>
 
-            <div className="mt-8 p-4 bg-amber-50/50 rounded-2xl border border-amber-200/50 flex items-start gap-3">
-               <span className="text-xl">ℹ️</span>
-               <p className="text-sm text-amber-900/80 leading-relaxed font-medium">
+            <div className="mt-8 rounded-xl border bg-muted/30 p-4 flex items-start gap-3">
+               <Info className="h-5 w-5 text-muted-foreground mt-0.5" aria-hidden="true" />
+               <p className="text-sm text-muted-foreground leading-relaxed font-medium">
                   הזמנים מחושבים לפי <span className="font-bold underline decoration-amber-300">{location.name}</span>. לדיוק הלכתי מקסימלי, מומלץ לבחור את העיר המדויקת או להשתמש בלחצן זיהוי המיקום.
                </p>
             </div>
