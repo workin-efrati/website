@@ -25,7 +25,7 @@ export type Article = {
 // "title": "הלכות חודש ניסן וחג הפסח התשפ\"ו",
 export const articles: Article[] = [
    {
-      "tags": ["הלכות", "חודש ניסן", "  חג הפסח"],
+      "tags": ["הלכות", "חודש ניסן", "חג הפסח"],
       "slug": "pesach-2026",
       "id": "a4gtmutqu",
       "title": "הלכות חודש ניסן וחג הפסח התשפ\"ו",
