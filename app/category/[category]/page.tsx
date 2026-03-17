@@ -49,6 +49,8 @@ export default async function Page({ params, searchParams }: PageProps) {
    const children = Array.from(new Set(findNodeKeysByPath([...parents, category])))
    const directChildren = findDirectChildrenByPath([...parents, category])
 
+   console.log({ parents, children, directChildren })
+
    // console.log({ parents, children })
    // console.log({ directChildren, parents })
 
@@ -63,7 +65,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       );
    }
 
-   const bgSrc = favoriteTags.find((t) => t.name === category)?.image || '/2.webp'
+   const bgSrc = favoriteTags.find((t) => t.name === category || t.name === parents[0])?.image || '/2.webp'
 
    // Build breadcrumb schema
    const breadcrumbItems = [
@@ -136,6 +138,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                )}
             </div>
          </header>
+
          <div className="container mx-auto px-4 py-6 flex justify-center">
             <Search variant='white' placeholder='חפש שאלה...' />
          </div>

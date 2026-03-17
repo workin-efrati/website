@@ -1,6 +1,8 @@
 import HeaderPlaceholder from '@/components/header-placeholder';
 import { articles } from '@/lib/data/mamarim';
 import { baseUrl } from '@/lib/utils';
+import { connectToMongodb } from '@/server/connect';
+import MamarModel from '@/server/models/mamar.model';
 import { BookOpen, Calendar, Tag, User } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -19,7 +21,9 @@ export const metadata: Metadata = {
    },
 };
 
-const MaamarimPage = () => {
+const MaamarimPage = async () => {
+   await connectToMongodb();
+   const mamarim = await MamarModel.find({ isActive: true });
    return (
       <>
          <Script id="breadcrumbs-jsonld" type="application/ld+json" strategy="afterInteractive">
@@ -55,7 +59,7 @@ const MaamarimPage = () => {
          {/* Content Section */}
          < div className="min-h-screen bg-linear-to-br from-blue-50 to-purple-50 p-6 md:p-8 lg:p-12" dir="rtl" >
             <div className="max-w-5xl mx-auto space-y-6">
-               {articles.map((article) => (
+               {mamarim.map((article) => (
                   <Link
                      key={article.id}
                      href={`/maamarim/${article.slug}`}

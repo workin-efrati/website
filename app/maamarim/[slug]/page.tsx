@@ -3,6 +3,8 @@ import HeaderPlaceholder from '@/components/header-placeholder';
 import QuickShare from '@/components/quick-share';
 import { articles, type Section, type Block } from '@/lib/data/mamarim';
 import { baseUrl } from '@/lib/utils';
+import { connectToMongodb } from '@/server/connect';
+import MamarModel from '@/server/models/mamar.model';
 import { Calendar, Tag, User } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -10,12 +12,15 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 
 export const generateStaticParams = async () => {
-   return articles.map((article) => ({ slug: article.slug }));
+   await connectToMongodb();
+   const mamarim = await MamarModel.find({ isActive: true });
+   return mamarim.map((mamar) => ({ slug: mamar.slug }));
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
    const { slug } = await params;
-   const article = articles.find((a) => a.slug === slug);
+   await connectToMongodb();
+   const article = await MamarModel.findOne({ isActive: true, slug });
 
    if (!article) return {};
 
@@ -86,7 +91,8 @@ const ArticleSection = ({ section }: { section: Section }) => {
 
 export default async function MaamarPage({ params }: { params: Promise<{ slug: string }> }) {
    const { slug } = await params;
-   const article = articles.find((a) => a.slug === slug);
+   await connectToMongodb();
+   const article = await MamarModel.findOne({ isActive: true, slug });
 
    if (!article) {
       return notFound();
