@@ -77,7 +77,6 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-12 gap-8 items-start">
                <div className="md:col-span-12">
                   <h2 className="text-3xl font-bold text-primary mb-8 flex items-center gap-3 border-b pb-4">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                      על הרב ברוך אפרתי
                   </h2>
                </div>
