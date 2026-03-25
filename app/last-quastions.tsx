@@ -2,11 +2,12 @@ import QuestionCard from "@/components/question-card";
 import { connectToMongodb } from "@/server/connect";
 import { IShut } from "@/server/models/shut.model";
 import { readLast3ShutsService } from "@/server/services/shut.service";
+import addToDb from "@/lib/data/add-to-db-from-json";
 
 export default async function LastQuestions() {
     await connectToMongodb();
     const questions = (await readLast3ShutsService([{ path: 'tags', select: 'name' }])) || [];
-
+    // await addToDb()
     return (
         <section className="container mx-auto px-4 py-8 flex flex-col items-center">
             <h2 className="text-4xl font-bold text-center mb-4 text-primary">

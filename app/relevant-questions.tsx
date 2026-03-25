@@ -1,11 +1,12 @@
-import { unstable_cache } from 'next/cache'
 import QuestionCard from '@/components/question-card'
 import ZmanimWidget from '@/components/zmanim-widget'
 import { readThreeShutsByHolidayService } from '@/server/services/shut.service'
 import { ArrowLeft } from 'lucide-react'
+import { unstable_cache } from 'next/cache'
 import Link from 'next/link'
 import { getCurrentDateInfo } from '../lib/getHolidaysAndParashot'
 import { findParshaByName } from './vort/[name]/page'
+import MamarimByHoliday from '@/components/mamarim-by-holiday'
 
 // Cache the data fetching functions
 const getCachedDateInfo = unstable_cache(
@@ -29,6 +30,8 @@ const getCachedHolidayQuestions = unstable_cache(
 export default async function RelevantQuestions() {
     const { currentParasha, upcomingHoliday, currentHeDate, currentDate } =
         await getCachedDateInfo()
+
+    console.log(upcomingHoliday)
 
     const holidaysQuestions = upcomingHoliday
         ? await getCachedHolidayQuestions(upcomingHoliday)
@@ -105,6 +108,7 @@ export default async function RelevantQuestions() {
                     </div>
                 </article>
             }
+            {upcomingHoliday && <MamarimByHoliday holiday={upcomingHoliday} />}
         </section>
     )
 }

@@ -15,7 +15,7 @@ export interface IMamar {
   _id: string;
   slug: string;
   title: string;
-   image: string;
+  image: string;
   isActive: boolean;
   author: string;
   publishedAt: string;
@@ -78,8 +78,8 @@ const mamarSchema = new Schema<MamarDocument>(
   {
     slug: { type: String, required: true, unique: true },
     title: { type: String, required: true },
-      author: { type: String, required: true },
-      image: { type: String },
+    author: { type: String, required: true },
+    image: { type: String },
     isActive: { type: Boolean, default: true },
     publishedAt: { type: String, required: true },
     tags: { type: [String], required: true, default: [] },
