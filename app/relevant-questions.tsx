@@ -121,7 +121,7 @@ export default async function RelevantQuestions() {
                     </div>
                 </article>
             }
-            {upcomingHoliday && <MamarimByHoliday holiday={upcomingHoliday} />}
+            {/* {upcomingHoliday && <MamarimByHoliday holiday={upcomingHoliday} />} */}
         </section>
     )
 }
