@@ -18,14 +18,18 @@ const getCachedDateInfo = unstable_cache(
     }
 )
 
-const getCachedHolidayQuestions = unstable_cache(
-    async (holiday: string) => readThreeShutsByHolidayService(holiday),
-    ['holiday-questions'],
-    {
-        revalidate: 60 * 60,
-        tags: ['holiday-questions']
-    }
-)
+const _getCachedHolidayQuestions = (holiday: string) =>
+    unstable_cache(
+        async () => readThreeShutsByHolidayService(holiday),
+        ['holiday-questions', encodeURIComponent(holiday)],
+        {
+            revalidate: 60 * 60,
+            tags: ['holiday-questions']
+        }
+    )()
+
+const getCachedHolidayQuestions = (holiday: string) =>
+    _getCachedHolidayQuestions(holiday)
 
 export default async function RelevantQuestions() {
     const { currentParasha, upcomingHoliday, currentHeDate, currentDate } =
