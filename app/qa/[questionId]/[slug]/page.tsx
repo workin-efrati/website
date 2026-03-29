@@ -10,6 +10,7 @@ import { readOneShutWithPopulateService } from "@/server/services/shut.service";
 import { Tags, TriangleAlert } from "lucide-react";
 import mongoose from "mongoose";
 import { Metadata } from "next";
+import { unstable_cache } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -30,15 +31,30 @@ export const generateStaticParams = async () => {
    return []
 };
 
-export const revalidate = 7257600
+// Page is force-dynamic to avoid Next.js embedding the Hebrew slug
+// into the x-next-cache-tags HTTP header (non-ASCII chars are forbidden).
+// Data is cached at the service level via unstable_cache below.
+export const dynamic = 'force-dynamic'
+
+const getQuestion = (questionId: string) =>
+   unstable_cache(
+      async () => {
+         await connectToMongodb();
+         return readOneShutWithPopulateService({ _id: questionId });
+      },
+      [`question-${questionId}`],
+      {
+         revalidate: 7257600, // ~84 days
+         tags: [`question-${questionId}`],  // ASCII only
+      }
+   )()
 
 
 export async function generateMetadata({ params }: QuestionPageProps): Promise<Metadata> {
-   await connectToMongodb();
    const { questionId } = await params
    if (!mongoose.Types.ObjectId.isValid(questionId)) return {}
 
-   const data = await readOneShutWithPopulateService({ _id: questionId });
+   const data = await getQuestion(questionId);
    if (!data) return {}
 
    const canonicalUrl = `${baseUrl}/qa/${questionId}/${cleanSlug(data.titleQuestion || 'שאלה')}`;
@@ -55,12 +71,11 @@ export async function generateMetadata({ params }: QuestionPageProps): Promise<M
 }
 
 export default async function QuestionPage({ params }: QuestionPageProps) {
-   await connectToMongodb();
    const { questionId } = await params
    if (!mongoose.Types.ObjectId.isValid(questionId))
       return notFound()
 
-   const question = await readOneShutWithPopulateService({ _id: questionId });
+   const question = await getQuestion(questionId);
 
    if (!question)
       return notFound()
