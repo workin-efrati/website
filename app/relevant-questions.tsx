@@ -90,21 +90,30 @@ export default async function RelevantQuestions() {
                 <article className='bg-slate-50 py-12'>
                     <div className="container mx-auto px-4">
                         <p className='text-center text-sm opacity-80 mb-2'>החג הקרוב</p>
-                        <h3 className='text-3xl md:text-4xl text-center font-bold  text-primary'>{upcomingHoliday}</h3>
-                        {holidaysQuestions?.length && holidaysQuestions.length > 0 ? <div className='grid grid-cols-1 mt-8 md:grid-cols-3 gap-4'>
-                            {holidaysQuestions?.map((shut) => (
-                                <QuestionCard
-                                    key={shut._id}
-                                    question={shut.question}
-                                    answer={shut.answer}
-                                    isAnswer={true}
-                                    id={shut._id}
-                                    rankTitle='h4'
-                                    tag={shut.tag}
-                                    title={shut.titleQuestion}
-                                />
-                            ))}
-                        </div> : ''}
+                        <h3 className='text-4xl md:text-5xl text-center font-bold  text-primary'>{upcomingHoliday}</h3>
+                        <article className='bg-slate-50 py-12'>
+                            <MamarimByHoliday holiday={upcomingHoliday} />
+                            <hr />
+                        </article>
+                        {holidaysQuestions?.length && holidaysQuestions.length > 0 ?
+                            <>
+                                <h3 className='text-3xl md:text-4xl text-center font-bold text-primary mb-8'>שו"ת</h3>
+                                <div className='grid grid-cols-1 mt-8 md:grid-cols-3 gap-4'>
+
+                                    {holidaysQuestions?.map((shut) => (
+                                        <QuestionCard
+                                            key={shut._id}
+                                            question={shut.question}
+                                            answer={shut.answer}
+                                            isAnswer={true}
+                                            id={shut._id}
+                                            rankTitle='h4'
+                                            tag={shut.tag}
+                                            title={shut.titleQuestion}
+                                        />
+                                    ))}
+                                </div></> : ''}
+
                     </div>
                 </article>
             }
