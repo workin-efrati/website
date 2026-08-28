@@ -40,8 +40,9 @@ export default function ZmanimWidget({ className = "" }: ZmanimWidgetProps) {
          const month = String(today.getMonth() + 1).padStart(2, "0");
          const day = String(today.getDate()).padStart(2, "0");
 
+         const tzid = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Jerusalem";
          const response = await fetch(
-            `https://www.hebcal.com/zmanim?cfg=json&latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&date=${year}-${month}-${day}`
+            `https://www.hebcal.com/zmanim?cfg=json&latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&date=${year}-${month}-${day}&tzid=${tzid}`
          );
 
          if (!response.ok) throw new Error("Failed to fetch zmanim");
