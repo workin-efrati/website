@@ -20,7 +20,8 @@ export type Article = {
    title: string;
    author: string;
    publishedAt: string;
-   sections: Section[];
+   sections?: Section[];
+   content?: string;
 };
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -39,77 +40,49 @@ function generateId(): string {
 
 // ─── Parser Logic ───────────────────────────────────────────────────────────
 
-function parseWhatsAppToJSON(rawText: string): Article {
+function parseWhatsAppToMarkdown(rawText: string): Article {
    const lines = rawText.split('\n').map(l => l.trim());
 
-   // זיהוי מטא-דאטה ראשוני (כאן נשאיר את הניקוי כי זה ה-Title של האובייקט)
    const title = lines.find(l => l.startsWith('*'))?.replace(/\*/g, '') || "מאמר ללא כותרת";
-   const author = lines.find(l => l.includes("הרב"))?.replace(/\*/g, '') || "לא ידוע";
+   const author = lines.find(l => l.includes("הרב"))?.replace(/\*/g, '') || "הרב ברוך אפרתי";
 
-   const article: Article = {
+   // Build markdown content string directly from rawText
+   const contentLines: string[] = [];
+
+   lines.forEach((line) => {
+      if (!line) {
+         contentLines.push('');
+         return;
+      }
+
+      // Check if line is section header like *ערב ראש השנה, כ"ט אלול*
+      const isSectionHeader = line.startsWith('*') && line.endsWith('*') && line.length < 60 && line.split('*').length === 3;
+
+      if (isSectionHeader) {
+         const sectionTitle = line.replace(/\*/g, '');
+         contentLines.push(`\n## ${sectionTitle}\n`);
+         return;
+      }
+
+      // Convert bullet dots ∙ to markdown lists
+      if (line.startsWith('∙') || line.startsWith('•')) {
+         contentLines.push(`- ${line.substring(1).trim()}`);
+         return;
+      }
+
+      contentLines.push(line);
+   });
+
+   const markdownContent = contentLines.join('\n');
+
+   return {
       id: generateId(),
       slug: slugify(title),
       title,
       author,
       publishedAt: new Date().toISOString(),
-      sections: []
+      content: markdownContent
    };
-
-   let currentSection: Section | null = null;
-
-   lines.forEach((line) => {
-      if (!line) return;
-
-      // 1. זיהוי כותרת סעיף
-      const isSectionHeader = line.startsWith('*') && line.endsWith('*') && line.length < 50 && line.split('*').length === 3;
-
-      if (isSectionHeader) {
-         const sectionTitle = line.replace(/\*/g, '');
-         currentSection = {
-            id: slugify(sectionTitle),
-            title: sectionTitle, // הכותרת עצמה תהיה נקייה, אבל התוכן בפנים ישמור על כוכביות
-            blocks: []
-         };
-         article.sections.push(currentSection);
-         return;
-      }
-
-      if (!currentSection) return;
-
-      // 2. זיהוי רשימה
-      const listRegex = /^([-•*]|\d+\.)\s+(.*)/;
-      const listMatch = line.match(listRegex);
-
-      if (listMatch) {
-         const isOrdered = /\d+\./.test(listMatch[1]);
-         // שינוי כאן: הורדנו את ה-replace, הכוכביות נשארות בתוך פריטי הרשימה
-         const itemText = listMatch[2];
-
-         const lastBlock = currentSection.blocks[currentSection.blocks.length - 1];
-
-         if (lastBlock?.type === "list" && lastBlock.ordered === isOrdered) {
-            lastBlock.items.push(itemText);
-         } else {
-            currentSection.blocks.push({
-               id: generateId(),
-               type: "list",
-               ordered: isOrdered,
-               items: [itemText]
-            });
-         }
-      }
-      // 3. פסקה רגילה
-      else {
-         currentSection.blocks.push({
-            id: generateId(),
-            type: "paragraph",
-            // שינוי כאן: הפסקה נשמרת בדיוק כמו שהיא, כולל כוכביות
-            text: line
-         });
-      }
-   });
-
-   return article;
 }
 // ─── Main Execution ─────────────────────────────────────────────────────────
 
@@ -213,7 +186,7 @@ const rawWhatsAppMessage = `
 
 יה"ר שבזכות תפילתנו ותשובתנו יזכרנו השם בזיכרון טוב מלפניו`;
 
-const result = parseWhatsAppToJSON(rawWhatsAppMessage);
+const result = parseWhatsAppToMarkdown(rawWhatsAppMessage);
 
 // יצירת הנתיב ושמירת הקובץ
 const fileName = `${result.slug}.json`;

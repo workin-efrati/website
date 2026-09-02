@@ -18,7 +18,8 @@ export type Article = {
    author: string;
    publishedAt: string;
    tags: string[];
-   sections: Section[];
+   sections?: Section[];
+   content?: string;
 };
 
 // "slug": "pesach-2026",

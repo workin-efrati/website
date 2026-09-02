@@ -20,7 +20,8 @@ export interface IMamar {
   author: string;
   publishedAt: string;
   tags: string[];
-  sections: MamarSection[];
+  sections?: MamarSection[];
+  content?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -83,7 +84,8 @@ const mamarSchema = new Schema<MamarDocument>(
     isActive: { type: Boolean, default: true },
     publishedAt: { type: String, required: true },
     tags: { type: [String], required: true, default: [] },
-    sections: { type: [sectionSchema], required: true, default: [] },
+    sections: { type: [sectionSchema], default: [] },
+    content: { type: String },
   },
   { timestamps: true }
 );
